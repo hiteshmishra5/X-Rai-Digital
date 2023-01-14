@@ -1,0 +1,39 @@
+﻿@model DOTNETCOREEXAMPLE.Models.Class_SERVICE_GROUP_MASTER
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<h2>Edit</h2>
+
+<h4>Class_SERVICE_GROUP_MASTER</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="SERVICEGROUPID" />
+            <div class="form-group">
+                <label asp-for="SERVICEGROUPNAME" class="control-label"></label>
+                <input asp-for="SERVICEGROUPNAME" class="form-control" />
+                <span asp-validation-for="SERVICEGROUPNAME" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="ISACTIVE" /> @Html.DisplayNameFor(model => model.ISACTIVE)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

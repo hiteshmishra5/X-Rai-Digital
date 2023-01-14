@@ -1,0 +1,193 @@
+﻿@model DOTNETCOREEXAMPLE.Models.Class_Offer_Master
+
+@{
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+
+<style>
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+        -webkit-box-sizing: inherit !important ;
+        box-sizing: inherit !important;
+    }
+    
+</style>
+
+
+    <script src="~/scripts/jquery-1.12.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" rel="stylesheet" />
+
+
+
+    <h4>Offer Master</h4>
+
+    <hr />
+
+    <form asp-action="Create" method="post" enctype="multipart/form-data">
+        
+        <div class="section section-sm section-bottom">
+            <div class="container">
+
+                <div class="row ">
+                    <div class="appointmentform">
+                        <div class="field-group">
+                            @*class="field-group"*@
+
+                            <div class="col-sm-6">
+                                <label asp-for="REGISTRATIONTYPEID" class="control-label"> Registration Type</label>
+
+                                @Html.DropDownListFor(x => x.REGISTRATIONTYPEID, new SelectList(ViewBag.REGISTRATIONTYPES, "Value", "Text"), "--SELECT--", new { @onchange = "refreshUsersForRegistrationType($(this).val())", @required = "required", @class = "form-control" })
+
+                                @Html.ValidationMessageFor(model => model.REGISTRATIONTYPEID, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="col-sm-6">
+                                <label asp-for="USERID" class="control-label"> Users</label>
+
+                                @Html.DropDownListFor(x => x.USERID, new SelectList(ViewBag.Users, "Value", "Text"), "--SELECT--", new { @required = "required", @class = "form-control" })
+
+                                @Html.ValidationMessageFor(model => model.USERID, "", new { @class = "text-danger" })
+
+                            </div>
+                            <div class="col-sm-6">
+                                <label asp-for="OFFERDISCOUNT" class="control-label">Promo Discount</label>
+
+                                <input asp-for="OFFERDISCOUNT" class="form-control" />
+                               
+                                <span asp-validation-for="OFFERDISCOUNT" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <label asp-for="OFFERNAME" class="control-label">OFFER CODE</label>
+
+
+                                <input asp-for="OFFERNAME" class="form-control" />
+                                <a href="#" class="btn btn-lg btn-primary" id="APPLY" onclick="checkcode();">Check</a><div id="lblComment"></div>
+                                <span asp-validation-for="OFFERNAME" class="text-danger"></span>
+                            </div>
+
+
+                            <div class="col-sm-6">
+                                <label for="visit-date">Effective from Date (dd/mm/yyyy)</label>
+
+                                @Html.TextBoxFor(model => model.EFFECTIVEDATEFROM, new { @class = "form-control", @onchange = "datechange(this.value)", type = "date", min = DateTime.Today.ToString("yyyy-MM-dd"), max = DateTime.Today.AddDays(7).ToString("yyyy-MM-dd") })
+                                @Html.ValidationMessageFor(m => m.EFFECTIVEDATEFROM)
+
+                            </div>
+
+                            <div class="col-sm-6">
+                                <label for="visit-date">Effective to Visit Date (dd/mm/yyyy)</label>
+
+                                @Html.TextBoxFor(model => model.EFFECTIVEDATETO, new { type = "date", @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.EFFECTIVEDATETO)
+
+                            </div>
+
+
+
+                            <div class="col-sm-6">
+                                <div class="checkbox">
+                                    <label>
+                                        <input asp-for="ISACTIVE" /> @Html.DisplayNameFor(model => model.ISACTIVE)
+                                    </label>
+                                </div>
+                             </div>
+
+
+
+
+                                <input id="btnCreateOffer" disabled type="submit" value="Create" class="btn btn-default" />
+
+
+                            </div>
+                        </div>
+             </div>
+        </div>
+    </form>
+
+
+    <div>
+        <a asp-action="Index"></a>
+    </div>
+
+
+
+    <script>
+   function refreshUsersForRegistrationType(registrationtypeid) {
+      //  alert(registrationtypeid);
+       if (registrationtypeid == 1) {
+           $('#USERID').attr("disabled", true);
+       } else {
+           $('#USERID').attr("disabled", false);
+           var projects1 = $("#USERID");
+
+
+
+           $.get('@Url.Action("GetUsersByRegistrationType", "OfferMaster")', { registrationtypeid: registrationtypeid },
+               function (result) {
+                   // clear the dropdown
+                   projects1.empty();
+                   // rebuild the dropdown
+                   projects1.append($('<option />').text('--SELECT--').val(0));
+                   $.each(result, function (i, e) {
+
+
+                       projects1.append($('<option />').text(e.Text).val(e.Value));
+
+                   });
+
+               });
+       }
+        // refreshPrice($("#SERVICETYPEID").val(), $("#SERVICEGROUPID").val(), 1)
+        }
+
+        function datechange(e) {
+            var EFFECTIVEDATEFROM = new Date(Date.parse($("#EFFECTIVEDATEFROM").val()));
+            alert(EFFECTIVEDATEFROM.toISOString().substring(0, 10));
+            //$('#EFFECTIVEDATETO').datepicker({
+            //    dateFormat: "yy-mm-dd",
+            //    maxDate: 7,
+            //    minDate: EFFECTIVEDATEFROM
+
+            //});
+            $("#EFFECTIVEDATETO").attr("min", (EFFECTIVEDATEFROM).toISOString().substring(0, 10));
+           // document.getElementById("EFFECTIVEDATETO").setAttribute("min", EFFECTIVEDATEFROM);
+            //EFFECTIVEDATETO.
+           // refreshProjects(e);
+            //    alert("refreshProjects");
+            // alert( $("#SLOTBOOKINGDATETIME").val(e));
+        }
+
+        var checkcode = function () {
+            // alert($("#mobile").val());
+            $.ajax({
+                url: "/OfferMaster/OfferCodeExists/",
+                type: "get",
+                data: "Prefix=" + $("#OFFERNAME").val(),
+                success: function (data) {
+                    //  alert(data);
+                    if (data == "success") {
+         
+                        window.alert("Code Not available, you can create the offer with this code");
+                        $('#btnCreateOffer').attr("disabled", false); 
+                      
+                    }
+                    else {
+                        
+                        window.alert("Already Available, Please enter a new offer code ");
+                        $("#OFFERNAME").val("");
+
+                    }
+
+
+                }
+            })
+        }
+
+    </script>
+
+
+

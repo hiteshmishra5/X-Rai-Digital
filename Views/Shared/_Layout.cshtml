@@ -1,0 +1,397 @@
+﻿@*<!DOCTYPE html>*@
+
+<!--Rajesh 24 Apr 2021-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Xrai Diagnostics</title>
+    <link rel="icon" href="~/assets/images/favicon.ico">
+    <script src="~/wwwroot/assets/js/page/carousel-preload.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-229552969-1">
+    </script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-229552969-1');
+    </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TJFM2X49TP"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-TJFM2X49TP');
+    </script>
+    <!--[if IE 8]><html class="ie8"><![endif]-->
+    <!-- Bootstrap -->
+    <link href="~/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600,700,800,300' rel='stylesheet' type='text/css'>
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Plugins -->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/magnific-popup.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/css/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/css/owl.theme.css">
+    <!-- Theme -->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/carousel-animate.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/css/theme.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript">
+        function preventBack() { window.history.forward(); }
+        setTimeout("preventBack()", 0);
+        window.onunload = function () { null };
+    </script>
+    <style>
+        .social-hover-v1.a-instagram:before,
+        .social-hover-v1.a-instagram:after {
+            content: '\f16d';
+        }
+
+        .social-hover-v1.a-instagram:after {
+            background-color: #8a3ab9;
+        }
+    </style>
+</head>
+
+<body class="body-nav-fixed-menu-top">
+    <div class="wrapper-body">
+
+        <!-- NAVBAR -->
+        <!--===============================================================-->
+        <div id="header">
+            <nav id="nav" class="navbar navbar-default navbar-fixed-top">
+                <div class="menu-top menu-top-inverse">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-5 hidden-xs">                                
+                                <marquee><a class="title-menu-top display-inline-block" href="mailto:support@example.com">Call us at -<b>18002702900</b></a></></marquee>
+                            </div>
+                            <div class="col-sm-7 col-xs-12">
+                                <div class="pull-right">
+                                    <div class="dropdown dropdown-login pull-left">
+                                        <button class="btn-menu-top" id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> Employee | Partner Log in</button>
+                                        <div class="dropdown-menu dropdown-menu-right stop-prop" role="menu" aria-labelledby="dLabel">
+                                            <div class="wrapper-form-box">
+                                                <h3>Log In</h3>
+                                                <form>
+                                                    <div class="form-group">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                                            <input type="text" class="form-control" placeholder="Username" id="username" name="username">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                                                            <input type="password" class="form-control" placeholder="Password" id="password" name="password">
+                                                        </div>
+                                                    </div>
+                                                    <button type="button" class="btn btn-primary text-theme-xs mr-8" onclick="LoginAdmin()" >Login</button>
+                                                    <a href="#" class="text-theme-xs pull-right a-black">Forgot your password ?</a>
+                                                    @*@Html.ActionLink("Register with us", "Register", "Account")*@
+                                                    @*<a href="register.html" class="text-theme-xs ">Register with us with us</a>*@
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-inline social-icons-menu-top pull-right">
+                                    <a target="_blank" href="https://www.linkedin.com/company/xrai-digital" class="social-hover-v1 a-linkedin"></a>
+                                    <a target="_blank" href="https://www.facebook.com/XRAi.Digital" class="social-hover-v1 a-facebook"></a>
+                                    <a target="_blank" href="https://instagram.com/xraidigital?utm_medium-copy_link" class="social-hover-v1 fa fa-instagram"></a>
+                                    @*<a href="#" class="social-hover-v1 a-google"></a>*@
+                                    @*<a href="#" class="social-hover-v1 a-twitter"></a>*@
+
+                                    <!--   <a href="#" class="social-hover-v1 a-pinterest"></a>
+    <a href="#" class="social-hover-v1 a-behance"></a>
+    <a href="#" class="social-hover-v1 a-youtube"></a> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="/Home/Index"><img class="img-responsive" src="~/assets/images/logo/logo-default.png" alt="theme-img"></a>
+                    </div>
+
+                    <div id="navbar" class="navbar-collapse collapse">
+
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="">
+                                @*<a href="index.html" class="" role="button" aria-expanded="false">Home</a>*@
+                                @Html.ActionLink("Home", "Index", "Home")
+                            </li>
+                            <li class="">
+                                @*<a href="index.html" class="" role="button" aria-expanded="false">Home</a>*@
+                                @Html.ActionLink("About", "AboutUs", "Home")
+                            </li>
+
+                            <li class="dropdown">
+                                @Html.ActionLink("Services", "Services", "Home")
+                                @*<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Services</a>*@
+                                <ul class="dropdown-menu dropdown-menu-left" role="menu">
+                                    <li><a href="/Home/Services/#xray">X-RAY</a></li>
+                                    <li><a href="/Home/Services/#ecg">ECG</a></li>
+                                    <li><a href="/Home/Services/#holter">HOLTER MONITORING</a></li>
+                                    <li><a href="/Home/Services/#samplecollection">SAMPLE COLLECTION</a></li>
+                                    <li><a href="/Home/Services/#healthcheckup">HEALTH CHECK UP</a></li>
+                                    <li><a href="/Home/Services/#pft">PFT</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="">
+                                @*<a href="index.html" class="" role="button" aria-expanded="false">Home</a>*@
+                                @Html.ActionLink("Blog", "Blog", "Home")
+                            </li>
+
+                            <li class="">
+                                @Html.ActionLink("Contact Us", "ContactUs", "Home")
+                                @*<a href="#" class="" role="button" aria-expanded="false">Contact Us</a>*@
+
+                            </li>
+
+                            <li class="">
+                                @*@Html.ActionLink("Reports", "Index", "SlotBookingMaster")*@
+                                @*<a href="#" class="" role="button" aria-expanded="false">@Html.ActionLink("About", "About", "Home")About Us</a>*@
+
+                            </li>
+
+
+
+                            <li class="">
+                                @Html.ActionLink("Login & Book", "Login", "Account", null, new { @class = "btn btn-xs btn-primary" })
+
+                                @*<a href="#" class="btn btn-xs btn-primary" role="button" aria-expanded="false">Book Now</a>*@
+
+                            </li>
+
+
+
+
+
+
+
+                        </ul>
+                    </div><!--/.nav-collapse -->
+                </div>
+            </nav>
+        </div>
+        <!-- NAVBAR END -->
+        @*<div class="navbar navbar-inverse navbar-fixed-top">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        @Html.ActionLink("Doctor Visitor Management", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                    </div>
+
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                            <li>@Html.ActionLink("About", "About", "Home")</li>
+                            <li>@Html.ActionLink("Services", "Contact", "Home")</li>
+                            <li>@Html.ActionLink("Diagnostic Services", "Contact", "Home")</li>
+
+                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                        </ul>
+                        @Html.Partial("_LoginPatial")
+                    </div>
+                </div>
+            </div>*@
+        @*<div class="container body-content">*@
+        @RenderBody()
+
+        <hr />
+
+        @*</div>*@
+
+        @*@Scripts.Render("~/bundles/jquery")
+            @Scripts.Render("~/bundles/bootstrap")
+            @RenderSection("scripts", required: false)*@
+        <!-- SECTION FOOTER -->
+        <!--===============================================================-->
+        <div class="section footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-3 col-xs-12">
+                        <div class="logo-footer text-theme">
+                            <img src="~/assets/images/logo/logo-footer.png" alt="theme-img">
+                        </div>
+                        <p class="text-theme">Experience safe and reliable diagnostic services at comfort of your home with XRAi Digital</p>
+                        <div class="text-theme">
+                            <ul class="list-inline">
+                                <li><a target="_blank" href="https://www.linkedin.com/company/xrai-digital"><i class="fa fa-linkedin fa-round"></i></a></li>
+                                <li><a target="_blank" href="https://www.facebook.com/XRAi.Digital"><i class="fa fa-facebook fa-round"></i></a></li>
+                                <li><a target="_blank" href="https://instagram.com/xraidigital?utm_medium-copy_link" ><i class="fa fa-instagram fa-round"></i></a></li>
+                                @*<li><a href="#"><i class="fa fa-twitter fa-round"></i></a></li>*@
+                                @*<li><a href="#"><i class="fa fa-dribbble fa-round"></i></a></li>*@
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-2 col-sm-offset-1 col-xs-6">
+                        <h3 class="text-theme title-sm hr-left">Home</h3>
+                        <ul class="list-unstyled text-theme">
+                            <li>@Html.ActionLink("Services", "Services", "Home")</li>
+                            <li>   @Html.ActionLink("About", "AboutUs", "Home")</li>
+                            <li>@Html.ActionLink("Contact Us", "ContactUs", "Home")</li>
+                            <li>   @Html.ActionLink("Book Your Slot", "Login", "Account")</li>
+                            @*<li><a href="home-personal-portfolio-option-2.html">Our Specialities</a></li>*@
+
+                        </ul>
+                    </div>
+                    <div class="col-sm-2 col-xs-6">
+                        <h3 class="text-theme title-sm hr-left">@Html.ActionLink("Services", "Services", "Home")</h3>
+                        <ul class="list-unstyled text-theme">
+                            <li><a href="/Home/Services/#xray">X-RAY</a></li>
+                            <li><a href="/Home/Services/#ecg">ECG</a></li>
+                            <li><a href="/Home/Services/#holter">HOLTER MONITORING</a></li>
+                            <li><a href="/Home/Services/#samplecollection">SAMPLE COLLECTION</a></li>
+                            <li><a href="/Home/Services/#healthcheckup">HEALTH CHECK UP</a></li>
+                            <li><a href="/Home/Services/#pft">PFT</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-4 col-xs-12">
+                        <h3 class="text-theme title-sm hr-left">Subscribe To Our Newsletter</h3>
+                        <div class="input-group text-theme">
+                            <input type="text" class="form-control input-lg" placeholder="E-mail">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-primary input-lg btn-z-index"><i class="fa fa-paper-plane"></i>Subscribe</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--SECTION FOOTER BOTTOM -->
+        <!--===============================================================-->
+        <div class="section footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 text-center col-footer-bottom">
+                        <a id="scroll-top" href="#"><i class="fa fa-angle-up fa-2x"></i></a>
+                        <p class="copyright">2021 &copy; XRAi Diagnostics. All Rights Reserved.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="~/assets/js/page/page.navbar-fixed-shrinked.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/assets/js/owl.carousel.js"></script>
+    <script src="~/assets/js/jquery.magnific-popup.js"></script>
+    <script src="~/assets/js/jquery.waypoints.js"></script>
+    <script src="~/assets/js/jquery.countTo.js"></script>
+    <script src="~/assets/js/page/theme.js"></script>
+    <script src="~/assets/js/page/page.home.js"></script>
+    <script>
+        var LoginAdmin = function () {
+            // alert($("#mobile").val());
+           //  alert($("#username").val());
+            $.ajax({
+                url: "/Account/LoginAdmin/",
+                type: "Post",
+                data: {
+                    username: $("#username").val(),
+                    password: $("#password").val()
+
+
+                },
+                success: function (data) {
+                   
+                    if (data == "success") {
+                        alert("Login Successful");
+                        
+                        window.location.href="/SlotBookingMaster/Index";
+
+
+                    }
+                    else {
+                        
+                        window.location.href = "/Account/Login";
+                    }
+
+
+                }
+            })
+        }
+
+    </script>
+</body>
+</html>
+
+@*<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>@ViewData["Title"] - DOTNETCOREEXAMPLE</title>
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+    </head>
+    <body>
+        <header>
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+                <div class="container">
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">DOTNETCOREEXAMPLE</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <div class="container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+
+        <footer class="border-top footer text-muted">
+            <div class="container">
+                &copy; 2021 - DOTNETCOREEXAMPLE - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </div>
+        </footer>
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        @RenderSection("Scripts", required: false)
+    </body>
+    </html>*@

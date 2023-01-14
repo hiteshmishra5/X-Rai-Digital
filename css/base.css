@@ -1,0 +1,15 @@
+#list{
+    font-family: sans-serif;
+    list-style-type: none;
+    position: relative;
+}
+.box {
+    background-color: white;
+    padding-left: 1in;
+    padding-right: 1in;
+}
+.text-center {
+    border-style: outset;
+    padding: 5px;
+    border-radius: 15px;
+}

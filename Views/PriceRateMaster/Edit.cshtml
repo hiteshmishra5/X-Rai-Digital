@@ -1,0 +1,56 @@
+﻿@model DOTNETCOREEXAMPLE.Models.Class_Price_Rate_Master
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>Class_Price_Rate_Master</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="PRICERATEID" />
+            <div class="form-group">
+                <label asp-for="SERVICEGROUPID" class="control-label"></label>
+                <input asp-for="SERVICEGROUPID" class="form-control" />
+                <span asp-validation-for="SERVICEGROUPID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SERVICEID" class="control-label"></label>
+                <input asp-for="SERVICEID" class="form-control" />
+                <span asp-validation-for="SERVICEID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VISITTYPEID" class="control-label"></label>
+                <input asp-for="VISITTYPEID" class="form-control" />
+                <span asp-validation-for="VISITTYPEID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EFFECTIVEFROMDATE" class="control-label"></label>
+                <input asp-for="EFFECTIVEFROMDATE" class="form-control" />
+                <span asp-validation-for="EFFECTIVEFROMDATE" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EFFECTIVETODATE" class="control-label"></label>
+                <input asp-for="EFFECTIVETODATE" class="form-control" />
+                <span asp-validation-for="EFFECTIVETODATE" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PRICE" class="control-label"></label>
+                <input asp-for="PRICE" class="form-control" />
+                <span asp-validation-for="PRICE" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

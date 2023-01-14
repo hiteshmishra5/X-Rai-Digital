@@ -1,0 +1,73 @@
+﻿@model IEnumerable<DOTNETCOREEXAMPLE.Models.Class_Offer_Master>
+
+@{
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<div class="section-heading-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <h1 class="heading-page text-center-xs">Offer Master Dashboard </h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb text-right text-center-xs">
+                    <li>
+                        <a href="#">Patient</a>
+                    </li>
+                    <li class="active">Index</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.OFFERNAME)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OFFERDISCOUNT)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ISACTIVE)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.OFFERNAME)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OFFERDISCOUNT)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ISACTIVE)
+            </td>
+            <td>
+                @*<a asp-action="Edit" asp-route-id="@item.OFFERID">Edit</a> |*@
+                <a asp-action="Details" asp-route-id="@item.OFFERID">Details</a> |
+                @*<a asp-action="Delete" asp-route-id="@item.OFFERID">Delete</a>*@
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</body>
+</html>

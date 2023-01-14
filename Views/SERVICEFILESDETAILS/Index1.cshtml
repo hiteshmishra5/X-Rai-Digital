@@ -1,0 +1,64 @@
+﻿@model IEnumerable<DOTNETCOREEXAMPLE.Models.Class_SERVICE_FILES_DETAILS>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @*<a asp-action="Create">Create New</a>*@
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.SLOTBOOKINGDETID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SERVICEFILENAME)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SERVICEEXTENSION)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ISACTIVE)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SLOTBOOKINGDETID)
+                    </td>
+                    <td>
+                        
+                        <a href="https://xraidigital.com/servicefiles/@item.SERVICEFILENAME@item.SERVICEEXTENSION" target="_blank">@Html.DisplayFor(modelItem => item.SERVICEFILENAME)</a>
+
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SERVICEEXTENSION)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ISACTIVE)
+                    </td>
+                    <td>
+                        @*<a asp-action="Edit" asp-route-id="@item.SERVICEFILEDETID">Edit</a> |
+                            <a asp-action="Details" asp-route-id="@item.SERVICEFILEDETID">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@item.SERVICEFILEDETID">Delete</a>*@
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>

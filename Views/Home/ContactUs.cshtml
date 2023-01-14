@@ -1,0 +1,198 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewBag.Title = "Contact Us";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!--===============================================================-->
+<div class="section-heading-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <h1 class="heading-page text-center-xs">Contact us </h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb text-right text-center-xs">
+                    <li>
+                        <a href="#">Home</a>
+                    </li>
+                    <li class="active">Contact us</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- SECTION CALL-TO -->
+<!--===============================================================-->
+<div class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+
+                <h3 class="title-md text-theme hr-left">Contact Form</h3>
+                <form class="form-bg text-theme" id="frmCONTACTUSNAME" name="frmCONTACTUSNAME" method="post" novalidate="novalidate">
+                    <div class="form-group">
+                        <label for="name">
+                            Name
+                            <span class="required">*</span>
+                        </label>
+                        <input class="form-control" type="text" name="CONTACTUSNAME" id="CONTACTUSNAME" size="30" value="" required="">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">
+                            Email
+                            <span class="required">*</span>
+                        </label>
+                        <input class="form-control" type="text" name="CONTACTUSEMAIL" id="CONTACTUSEMAIL" size="30" value="" required="">
+                    </div>
+                    <div class="form-group text-theme">
+                        <label for="message">
+                            Message
+                            <span class="required">*</span>
+                        </label>
+                        <textarea class="form-control" rows="6" name="CONTACTUSMESSAGE" id="CONTACTUSMESSAGE" required=""></textarea>
+                    </div>
+                    <button id="submit" type="button" class="btn btn-primary text-theme" name="submit" value="Send" onclick="SendEnquiry()"><i class="fa fa-paper-plane"></i>Send Message</button>
+                </form>
+
+                <div id="success" class="mt-40">
+                    <div class="icon-box bordered">
+                        <i class="fa fa-check fa-round fa-4x text-theme"></i>
+                        <h3 class="lead text-theme">Your message was successfully sent!</h3>
+                    </div>
+                </div>
+
+                <div id="error" class="mt-40">
+                    <div class="icon-box bordered">
+                        <i class="fa fa-lock fa-round fa-4x text-theme"></i>
+                        <h3 class="lead text-theme">Something went wrong, try refreshing and submitting the form again.</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-5 col-md-offset-1">
+                <h3 class="title-md text-theme hr-left">Get in touch</h3>
+                <p class="text-theme lead">We'd love to hear from you. Drop us a line if you have any questions.</p>
+                <h3 class="title-md text-theme">Head Office</h3>
+                <ul class="list-unstyled list-md text-theme">
+                    <li><i class="fa fa-map-marker fa-box"></i>Address: C406, Nirvana courtyard, Sector 50, Near North Close, Gurugram, Haryana 122018</li>
+                    <li><i class="fa fa-phone fa-box"></i>Phone: +91 124 4254012</li>
+                    <li><i class="fa fa-envelope fa-box"></i>info@xraidigital.com</li>
+                </ul>
+                <h3 class="title-md text-theme">Office Hours</h3>
+                <ul class="list-unstyled list-md text-theme">
+                    <li><i class="fa fa-clock-o fa-box"></i>Monday - Saturday 9am to 7pm</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+    
+
+
+<!-- SECTION GOOGLE MAP -->
+<!--===============================================================-->
+
+@*<div id="" style="height:380px;overflow:hidden;position:relative;margin:0px;">
+    <iframe style="width:100%; position: relative;top:-48px;" src="https://www.google.com/maps/d/u/0/embed?mid=1_wEikMn1iQcvH_KEmCvPOli74WL91SMu&zoom=9" height="430"></iframe>
+</div>
+<div class="section section-dark mb-40">
+    <div class="container mb-20 mt-30">
+        <div class="row">
+            <div class="col-sm-12">
+                <h3 class="title-v2">Our Nation Wide Locations</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 mb-20">
+                <div class="content-box bordered">
+                    <h3 class="title-sm text-theme-sm">South Delhi </h3>
+                    <p class="text-theme-sm">Greater Kailash</p>
+                    <p class="text-theme-sm">M-32, Central GK2, Near Landmark, Delhi-110022</p>
+
+                </div>
+            </div>
+            <div class="col-sm-3 mb-20">
+                <div class="content-box bordered">
+                    <h3 class="title-sm text-theme-sm">West Delhi </h3>
+                    <p class="text-theme-sm">Pitam Pura</p>
+                    <p class="text-theme-sm">M-32, Town Name, Near Landmark, Delhi-110022</p>
+
+                </div>
+            </div>
+            <div class="col-sm-3 mb-20">
+                <div class="content-box bordered">
+                    <h3 class="title-sm text-theme-sm">East Delhi </h3>
+                    <p class="text-theme-sm">Lakshmi Nagar</p>
+                    <p class="text-theme-sm">M-32, Town Name, Near Landmark, Delhi-110022</p>
+
+                </div>
+            </div>
+            <div class="col-sm-3 mb-20">
+                <div class="content-box bordered">
+                    <h3 class="title-sm text-theme-sm">North Delhi </h3>
+                    <p class="text-theme-sm">Town Name</p>
+                    <p class="text-theme-sm">M-32, Central GK2, Near Landmark, Delhi-110022</p>
+
+                </div>
+            </div>
+            <div class="col-sm-3 mb-20">
+                <div class="content-box bordered">
+                    <h3 class="title-sm text-theme-sm">Delhi </h3>
+                    <p class="text-theme-sm">Greater Kailash</p>
+                    <p class="text-theme-sm">M-32, Central GK2, Near Landmark, Delhi-110022</p>
+
+                </div>
+            </div>
+            <div class="col-sm-3 mb-20">
+                <div class="content-box bordered">
+                    <h3 class="title-sm text-theme-sm">Delhi </h3>
+                    <p class="text-theme-sm">Greater Kailash</p>
+                    <p class="text-theme-sm">M-32, Central GK2, Near Landmark, Delhi-110022</p>
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>*@
+
+<script>
+      var SendEnquiry = function () {
+        // alert($("#mobile").val());
+
+        $.ajax({
+            url: "/Home/SendEnquiry/",
+            type: "get",
+            data: {
+                CONTACTUSNAME: $("#CONTACTUSNAME").val(),
+                CONTACTUSEMAIL: $("#CONTACTUSEMAIL").val(),
+                CONTACTUSMESSAGE: $("#CONTACTUSMESSAGE").val()
+              
+
+            },
+            success: function (data) {
+
+                alert("We have sucessfully received your enquiry");
+                 window.location.href = '@Url.Action("Login","Account")';
+                if (data == "success") {
+                    //    alert("OTP sent Successfully");
+
+                    document.getElementById("btnVerify").type = "submit";
+
+                }
+                else {
+                    //  alert("failure");
+                    document.getElementById("btnVerify").type = "button";
+
+                    //alert("failed");
+
+                }
+
+
+            }
+        })
+    }
+</script>

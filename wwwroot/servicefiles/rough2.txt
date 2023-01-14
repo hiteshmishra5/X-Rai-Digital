@@ -1,0 +1,20 @@
+view prescription is not showing 
+
+PATIENT
+
+Home
+Slot Booking
+Reports
+Book another appointment
+
+
+ if(Model.PAYMENTMETHOD=="HOME PAYMENT"){
+                                    @Html.TextBoxFor(model => model.PAYMENTSTATUS, new { @Value = "Payment Successful", @class = "form-control",@readonly=readonly })
+
+                                    @Html.ValidationMessageFor(model => model.PAYMENTMETHOD, "", new { @class = "text-danger" })
+                                    }
+                                    else
+                                    {
+                                    @Html.TextBoxFor(model => model.PAYMENTSTATUS, new { @Value = Model.PAYMENTSTATUS, @class = "form-control",@readonly=readonly })
+                                    @Html.ValidationMessageFor(model => model.PAYMENTMETHOD, "", new { @class = "text-danger" })
+                                    }

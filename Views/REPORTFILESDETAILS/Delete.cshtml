@@ -1,0 +1,54 @@
+﻿@model DOTNETCOREEXAMPLE.Models.Class_REPORT_FILES_DETAILS
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete</title>
+</head>
+<body>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Class_REPORT_FILES_DETAILS</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SLOTBOOKINGDETID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SLOTBOOKINGDETID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.REPORTFILENAME)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.REPORTFILENAME)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.REPORTEXTENSION)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.REPORTEXTENSION)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ISACTIVE)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ISACTIVE)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="REPORTFILEDETID" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,63 @@
+﻿@model DOTNETCOREEXAMPLE.Models.Class_SERVICE_FILES_DETAILS
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create</title>
+</head>
+<body>
+
+<h4>REPORT FILES DETAILS</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        @using (Html.BeginForm("Create", "SERVICEFILESDETAILS", FormMethod.Post,new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                @*<label asp-for="SLOTBOOKINGDETID" class="control-label"></label>*@
+                @Html.Hidden("SLOTBOOKINGDETID", (object)ViewBag.SLOTBOOKINGDETID, new { @readonly = "readonly", @class = "form-control" })
+                @Html.Hidden("SLOTBOOKINGID", (object)ViewBag.SLOTBOOKINGID, new { @readonly = "readonly", @class = "form-control" })
+                @*<input asp-for="SLOTBOOKINGDETID" class="form-control" />*@
+                <span asp-validation-for="SLOTBOOKINGDETID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="visit-type">Report File Name </label>
+                <input type="file" class="form-control file" name="servicefile" id="servicefile" value="a.txt" /><br><br>
+                @*<input asp-for="SERVICEFILENAME" class="form-control" />
+                <span asp-validation-for="SERVICEFILENAME" class="text-danger"></span>*@
+            </div>
+            @*<div class="form-group">
+                <label asp-for="SERVICEEXTENSION" class="control-label"></label>
+                <input asp-for="SERVICEEXTENSION" class="form-control" />
+                <span asp-validation-for="SERVICEEXTENSION" class="text-danger"></span>
+            </div>*@
+            @*<div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="ISACTIVE" /> @Html.DisplayNameFor(model => model.ISACTIVE)
+                    </label>
+                </div>
+            </div>*@
+
+            <div class="form-group">
+                <input type="submit" value="Upload" class="btn btn-default" />
+            </div>
+        }
+        </div>
+</div>
+
+<div>
+    @*<a asp-action="Index">Back to List</a>*@
+</div>
+
+</body>
+</html>

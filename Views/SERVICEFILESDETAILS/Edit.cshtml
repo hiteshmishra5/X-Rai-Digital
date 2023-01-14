@@ -1,0 +1,57 @@
+﻿@model DOTNETCOREEXAMPLE.Models.Class_SERVICE_FILES_DETAILS
+
+@{
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit</title>
+</head>
+<body>
+
+<h4>Class_SERVICE_FILES_DETAILS</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="SERVICEFILEDETID" />
+            <div class="form-group">
+                <label asp-for="SLOTBOOKINGDETID" class="control-label"></label>
+                <input asp-for="SLOTBOOKINGDETID" class="form-control" />
+                <span asp-validation-for="SLOTBOOKINGDETID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SERVICEFILENAME" class="control-label"></label>
+                <input asp-for="SERVICEFILENAME" class="form-control" />
+                <span asp-validation-for="SERVICEFILENAME" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SERVICEEXTENSION" class="control-label"></label>
+                <input asp-for="SERVICEEXTENSION" class="form-control" />
+                <span asp-validation-for="SERVICEEXTENSION" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="ISACTIVE" /> @Html.DisplayNameFor(model => model.ISACTIVE)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+</body>
+</html>

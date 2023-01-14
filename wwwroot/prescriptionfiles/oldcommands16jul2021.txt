@@ -1,0 +1,1000 @@
+  119  ls -l
+  120  sudo systemctl status webnixservicefile.service
+  121  sudo systemctl stop webnixservicefile.service
+  122  sudo systemctl status webnixservicefile.service
+  123  sudo systemctl start webnixservicefile.service
+  124  sudo systemctl status webnixservicefile.service
+  125  curl localhost
+  126  curl xraidigotal.com
+  127  curl xraidigital.com
+  128  cd ~
+  129  ls
+  130  mkdir netcore
+  131  cd netcore/
+  132  dotnet new web -o testapp
+  133  cd testapp/
+  134  dotnet publish
+  135  cd bin/Debug/netcoreapp3.1/publish/
+  136  ls
+  137  pwd
+  138  sudo nano /etc/systemd/system/webnixservicefile.service 
+  139  sudo systemctl enable webnixservicefile.service
+  140  cd /etc/systemd/system/
+  141  ls
+  142  ren webnixservicefile.service testapp.service
+  143  sudo mv webnixservicefile.service testapp.service
+  144  ls
+  145  cd multi-user.target.wants/
+  146  ls
+  147  sudo rm webnixservicefile.service 
+  148  sudo systemctl enable testapp.service
+  149  sudo systemctl start testapp.service
+  150  sudo systemctl status testapp.service
+  151  curl localhost
+  152  curl localhost:5000
+  153  curl xraidigital.com
+  154  curl testapp
+  155  cd /etc/apache2/conf-enabled/
+  156  ls
+  157  sudo nano netcore.conf 
+  158  sudo systemctl restart apache2
+  159  sudo systemctl status apache2
+  160  sudo apachectl configtest
+  161  cd /var/log/apache2/
+  162  ls
+  163  cat netcore-access.log
+  164  sudo nano /etc/systemd/system/webnixservicefile.service 
+  165  sudo nano /etc/systemd/system/testapp.service 
+  166  sudo nano /etc/apache2/conf-enabled/netcore.conf 
+  167  ls
+  168  cat netcore-access.log.1
+  169  now
+  170  date
+  171  cat netcore-access.log
+  172  cat netcore-error.log
+  173  cd ~/netcore/
+  174  cd testapp/
+  175  nano Startup.cs 
+  176  dotnet run
+  177  lsof -i:5000
+  178  sudo netstat -ltp
+  179  kill -9 1386
+  180  sudo kill -9 1386
+  181  sudo netstat -ltp
+  182  sudo systemctl enable testapp.service
+  183  sudo systemctl start testapp.service
+  184  sudo systemctl status testapp.service
+  185  curl localhost
+  186  sudo netstat -ltp
+  187  sudo systemctl stop testapp.service
+  188  sudo netstat -ltp
+  189  ls
+  190  rm *
+  191  ls Properties/
+  192  rm Properties/*
+  193  rm bin/*
+  194  rm obj/*
+  195  cd ~
+  196  cd .ssh/
+  197  ls
+  198  cd ..
+  199  cd netcore/
+  200  ls
+  201  pwd
+  202  cd ../..
+  203  cd rsa-key-20210502/
+  204  ls
+  205  cd netcore/
+  206  ls
+  207  sudo nano /etc/systemd/system/testapp.service 
+  208  sudo systemctl status testapp.service
+  209  sudo netstat -ltp
+  210  sudo systemctl stop testapp.service
+  211  sudo systemctl daemon-reload
+  212  sudo netstat -ltp
+  213  sudo systemctl stop testapp.service
+  214  sudo netstat -ltp
+  215  sudo systemctl stop testapp.service
+  216  sudo netstat -ltp
+  217  sudo kill -9 23791
+  218  sudo netstat -ltp
+  219  sudo nano /etc/systemd/system/testapp.service 
+  220  sudo systemctl start testapp.service
+  221  sudo netstat -ltp
+  222  curl localhost
+  223  history
+  224  sudo nano /etc/systemd/system/testapp.service 
+  225  sudo systemctl stop servicename.service
+  226  cd /etc/systemd/system
+  227  sudo systemctl stop servicename.service
+  228  ls
+  229  sudo systemctl status testapp.service
+  230  netstat -ltp
+  231  sudo systemctl stop testapp.service
+  232  sudo systemctl start testapp.service
+  233  netstat -ltp
+  234  sudo systemctl restart testapp.service
+  235  curl localhost
+  236  sudo systemctl restart testapp.service
+  237  sudo systemctl status testapp.service
+  238  sudo systemctl stop servicename.service
+  239  sudo netstat -ltp
+  240  sudo kill -9 24139
+  241  sudo netstat -ltp
+  242  sudo systemctl status testapp.service
+  243  sudo systemctl stop servicename.service
+  244  sudo systemctl stop testapp.service
+  245  sudo systemctl start testapp.service
+  246  sudo nano /etc/systemd/system/testapp.service 
+  247  sudo systemctl stop testapp.service
+  248  sudo systemctl status testapp.service
+  249  sudo systemctl stop servicename.service
+  250  sudo systemctl stop testapp.service
+  251  sudo systemctl status testapp.service
+  252  sudo systemctl start testapp.service
+  253  sudo netstat -ltp
+  254  sudo kill -9 3084
+  255  sudo netstat -ltp
+  256  sudo systemctl start testapp.service
+  257  sudo systemctl stop testapp.service
+  258  sudo systemctl status testapp.service
+  259  sudo netstat -ltp
+  260  sudo nano /etc/systemd/system/testapp.service 
+  261  sudo systemctl stop testapp.service
+  262  systemctl damemon-reload
+  263  sudo systemctl damemon-reload
+  264  run systemctl damemon-reload
+  265  sudo systemctl daemon-reload
+  266  sudo systemctl stop testapp.service
+  267  sudo systemctl start testapp.service
+  268  sudo systemctl stop testapp.service
+  269  sudo netstat -ltp
+  270  sudo kill -9 5789
+  271  sudo netstat -ltp
+  272  sudo systemctl start testapp.service
+  273  sudo nano /etc/systemd/system/testapp.service 
+  274  sudo systemctl status testapp.service
+  275  ls
+  276  cd /etc/systemd/system/
+  277  ls
+  278  rm testapp.service
+  279  cd..
+  280  cd\
+  281  sudo netstat -ltp
+  282  sudo kill -9 6609
+  283  sudo netstat -ltp
+  284  sudo systemctl stop testapp.service
+  285  sudo netstat -ltp
+  286  sudo kill -9 9516
+  287  sudo netstat -ltp
+  288  sudo systemctl status testapp.service
+  289  sudo systemctl stop testapp.service
+  290  sudo systemctl status testapp.service
+  291  sudo systemctl start testapp.service
+  292  sudo systemctl status testapp.service
+  293  sudo systemctl stop testapp.service
+  294  sudo systemctl status testapp.service
+  295  sudo systemctl start testapp.service
+  296  sudo systemctl status testapp.service
+  297  sudo netstat -ltp
+  298  sudo kill -9 9546
+  299  sudo netstat -ltp
+  300  sudo systemctl status testapp.service
+  301  sudo systemctl stop testapp.service
+  302  sudo systemctl status testapp.service
+  303  sudo netstat -ltp
+  304  sudo systemctl start testapp.service
+  305  sudo systemctl status testapp.service
+  306  sudo systemctl stop testapp.service
+  307  sudo netstat -ltp
+  308  sudo kill -9 16209
+  309  sudo systemctl status testapp.service
+  310  sudo systemctl start testapp.service
+  311  sudo systemctl status testapp.service
+  312  sudo systemctl stop testapp.service
+  313  sudo netstat -ltp
+  314  sudo kill -9 17586
+  315  sudo systemctl status testapp.service
+  316  sudo netstat -ltp
+  317  sudo systemctl status testapp.service
+  318  sudo systemctl start testapp.service
+  319  sudo systemctl status testapp.service
+  320  sudo systemctl stop testapp.service
+  321  sudo netstat -ltp
+  322  sudo kill -9 19333
+  323  sudo netstat -ltp
+  324  sudo systemctl stop testapp.service
+  325  sudo netstat -ltp
+  326  sudo kill -9 21261
+  327  sudo netstat -ltp
+  328  sudo systemctl status testapp.service
+  329  sudo systemctl start testapp.service
+  330  sudo systemctl status testapp.service
+  331  sudo systemctl start testapp.service
+  332  sudo systemctl stop testapp.service
+  333  sudo netstat -ltp
+  334  sudo kill -9 23567
+  335  sudo systemctl start testapp.service
+  336  sudo systemctl stop testapp.service
+  337  sudo netstat -ltp
+  338  sudo kill -9 25213
+  339  sudo netstat -ltp
+  340  sudo systemctl status testapp.service
+  341  sudo systemctl start testapp.service
+  342  sudo systemctl status testapp.service
+  343  sudo systemctl start testapp.service
+  344  sudo systemctl status testapp.service
+  345  sudo nano /etc/systemd/system/testapp.service 
+  346  sudo systemctl start testapp.service
+  347  sudo systemctl stop testapp.service
+  348  sudo systemctl status testapp.service
+  349  sudo systemctl start testapp.service
+  350  sudo systemctl status testapp.service
+  351  sudo systemctl stop testapp.service
+  352  sudo netstat -ltp
+  353  sudo kill -9 27063
+  354  sudo netstat -ltp
+  355  sudo systemctl start testapp.service
+  356  sudo systemctl stop testapp.service
+  357  sudo netstat -ltp
+  358  sudo kill -9 1276
+  359  sudo systemctl start testapp.service
+  360  sudo systemctl stop testapp.service
+  361  sudo netstat -ltp
+  362  sudo kill -9 24908
+  363  sudo systemctl start testapp.service
+  364  sudo systemctl stop testapp.service
+  365  sudo netstat -ltp
+  366  sudo kill -9 10606
+  367  sudo systemctl start testapp.service
+  368  sudo systemctl status testapp.service
+  369  sudo systemctl stop testapp.service
+  370  sudo netstat -ltp
+  371  sudo kill -9 15418
+  372  sudo netstat -ltp
+  373  sudo systemctl start testapp.service
+  374  sudo systemctl stop testapp.service
+  375  sudo netstat -ltp
+  376  sudo kill -9 17115
+  377  sudo systemctl start testapp.service
+  378  sudo systemctl stop testapp.service
+  379  sudo netstat -ltp
+  380  sudo kill -9 18256
+  381  sudo systemctl start testapp.service
+  382  sudo systemctl stop testapp.service
+  383  sudo netstat -ltp
+  384  sudo kill -9 19935
+  385  sudo systemctl start testapp.service
+  386  sudo systemctl stop testapp.service
+  387  sudo netstat -ltp
+  388  sudo kill -9 20807
+  389  sudo systemctl start testapp.service
+  390  sudo systemctl stop testapp.service
+  391  sudo netstat -ltp
+  392  sudo kill -9 22079
+  393  sudo systemctl start testapp.service
+  394  sudo systemctl stop testapp.service
+  395  sudo netstat -ltp
+  396  sudo systemctl stop testapp.service
+  397  sudo netstat -ltp
+  398  sudo kill -9 27679
+  399  sudo systemctl start testapp.service
+  400  sudo systemctl stop testapp.service
+  401  sudo netstat -ltp
+  402  sudo kill -9 30080
+  403  sudo systemctl start testapp.service
+  404  sudo systemctl stop testapp.service
+  405  sudo netstat -ltp
+  406  sudo kill -9 31002
+  407  sudo systemctl start testapp.service
+  408  sudo systemctl stop testapp.service
+  409  sudo netstat -ltp
+  410  sudo kill -9 32464
+  411  sudo systemctl start testapp.service
+  412  openssl req -new -newkey rsa:2048 -nodes -keyout xraidigital.com.key -out xraidigital.com.csr
+  413  ls
+  414  sudo a2ensite xraidigital
+  415  sudo a2ensite xraidigital.com
+  416  ls
+  417  cd /etc/apache2
+  418  cd sites-enabled
+  419  ls
+  420  cd..
+  421  cd\
+  422  ls
+  423  cat xraidigital.com.csr
+  424  ls
+  425  cd  /etc/apache2/sites-enabled/
+  426  ls
+  427  ls  /etc/apache2/sites-enabled/
+  428  sudo nano /etc/apache2/sites-enabled/000-default.conf
+  429  ls
+  430  sudo nano /etc/apache2/sites-enabled/000-default.conf
+  431  apachectlConfigtest
+  432  sudo systemctl stop testapp.service
+  433  sudo netstat -ltp
+  434  sudo kill -9 2743
+  435  sudo systemctl start testapp.service
+  436  sudo nano /etc/apache2/sites-enabled/000-default.conf
+  437  sudo systemctl stop testapp.service
+  438  sudo netstat -ltp
+  439  sudo kill -9 27419
+  440  sudo systemctl start testapp.service
+  441  curl xraidigital.com
+  442  curl https://xraidigital.com
+  443  sudo nano /etc/apache2/sites-enabled/000-default.conf
+  444  curl https://xraidigital.com
+  445  sudo nano /etc/apache2/sites-enabled/000-default.conf
+  446  curl https://xraidigital.com
+  447  sudo nano /etc/apache2/sites-enabled/000-default.conf
+  448  sudo systemctl stop testapp.service
+  449  sudo netstat -ltp
+  450  sudo kill -9 29053
+  451  sudo systemctl start testapp.service
+  452  curl https://xraidigital.com
+  453  sudo systemctl stop testapp.service
+  454  sudo netstat -ltp
+  455  sudo kill -9 29582
+  456  sudo systemctl start testapp.service
+  457  curl https://xraidigital.com
+  458  ls /etc/apache2/sites-enabled/
+  459  sudo nano /etc/apache2/sites-enabled/000-default.conf
+  460  sudo systemctl stop testapp.service
+  461  sudo netstat -ltp
+  462  sudo kill -9 29978
+  463  sudo systemctl start testapp.service
+  464  curl https://xraidigital.com
+  465  sudo nano /etc/apache2/sites-enabled/000-default.conf
+  466  sudo systemctl stop testapp.service
+  467  sudo systemctl stop apache2
+  468  sudo systemctl start apache2
+  469  sodo systemct1 status apache2.service
+  470  sudo systemct1 status apache2.service
+  471  systemct1 status apache2.service
+  472  sudo systemctl start apache2
+  473  curl xraidigital.com
+  474  curl http://xraidigital.com
+  475  curl https://xraidigital.com
+  476  sudo nano /etc/apache2/sites-enabled/000-default.conf
+  477  journalct1 -xe
+  478  sudo systemctl stop testapp.service
+  479  sudo systemctl stop apache2
+  480  sudo netstat -ltp
+  481  sudo systemctl start testapp.service
+  482  sudo systemctl start apache2
+  483  sudo nano /etc/apache2/sites-enabled/000-default.conf
+  484  sudo systemctl start apache2
+  485  curl xraidigital.com
+  486  sudo systemctl start apache2
+  487  sudo journalctl -xe
+  488  sudo systemctl start testapp.service
+  489  sudo journalctl -xe
+  490  sudo systemctl start testapp.service
+  491  sudo systemctl start apache2
+  492  sudo systemctl status apache2
+  493  sudo nano /etc/apache2/sites-enabled/000-default.conf
+  494  sudo systemctl start apache2
+  495  sudo systemctl status apache2
+  496  sudo nano /etc/apache2/sites-enabled/000-default.conf
+  497  sudo systemctl start apache2
+  498  sudo systemctl status apache2
+  499  sudo nano /etc/apache2/sites-enabled/000-default.conf
+  500  sudo systemctl start apache2
+  501  sudo systemctl status apache2
+  502  sudo nano /etc/apache2/sites-enabled/000-default.conf
+  503  sudo systemctl start testapp.service
+  504  sudo systemctl start apache2
+  505  sudo nano /etc/apache2/sites-enabled/000-default.conf
+  506  sudo systemctl start apache2
+  507  sudo systemctl status apache2
+  508  sudo nano /etc/apache2/sites-enabled/000-default.conf
+  509  sudo systemctl start apache2
+  510  curl xraidigital.com
+  511  sudo nano /etc/apache2/sites-enabled/000-default.conf
+  512  sudo systemctl start apache2
+  513  curl https://xraidigital.com
+  514  sudo nano /etc/apache2/sites-enabled/000-default.conf
+  515  sudo systemctl start apache2
+  516  curl https://xraidigital.com
+  517  sudo nano /etc/apache2/sites-enabled/000-default-linux.conf
+  518  sudo nano /etc/apache2/sites-enabled/000-default.conf
+  519  sudo systemctl start apache2
+  520  curl https://xraidigital.com
+  521  curl xraidigital.com
+  522  curl https://xraidigital.com
+  523  curl https://www.xraidigital.com
+  524  curl --ipv4 -v "https://xraidigital.com/";
+  525  curl https://www.xraidigital.com
+  526  curl https://xraidigital.com
+  527  sudo nano /etc/apache2/sites-enabled/000-default-linux.conf
+  528  curl --ipv4 -v "https://xraidigital.com/";
+  529  curl https://xraidigital.com
+  530  sudo systemctl stop apache2
+  531  sudo systemctl start apache2
+  532  sudo systemctl status apache2
+  533  sudo nano /etc/apache2/sites-enabled/000-default-linux.conf
+  534  sudo systemctl stop apache2
+  535  sudo systemctl start apache2
+  536  sudo systemctl status apache2
+  537  sudo nano /etc/apache2/sites-enabled/000-default-linux.conf
+  538  sudo systemctl start apache2
+  539  sudo nano /etc/apache2/sites-enabled/000-default-linux.conf
+  540  sudo systemctl start apache2
+  541  sudo systemctl status apache2
+  542  sudo nano /etc/apache2/sites-enabled/000-default-linux.conf
+  543  curl xraidigital.com
+  544  sudo nano /etc/apache2/sites-enabled/000-default-linux.conf
+  545  sudo systemctl start apache2
+  546  curl xraidigital.com
+  547  sudo nano /etc/apache2/sites-enabled/000-default-linux.conf
+  548  sudo systemctl start apache2
+  549  curl xraidigital.com
+  550  curl https://xraidigital.com
+  551  ls /usr/local/apache2/conf/ssl
+  552  ls /usr/local/apache2/
+  553  ls /usr/
+  554  ls /usr/local/
+  555  sudo apt-get install certbot python3-certbot-apache
+  556  sudo certbot --apache
+  557  sudo certbot --apache -d xraidigital.com 
+  558  sudo nano /etc/apache2/sites-enabled/000-default-linux.conf
+  559  sudo certbot --apache -d xraidigital.com 
+  560  curl https://xraidigital.com
+  561  sudo nano /etc/apache2/sites-enabled/000-defax.conf
+  562  curl https://xraidigital.com
+  563  sudo certbot --apache2 -d xraidigital.com 
+  564  sudo certbot --apache -d xraidigital.com 
+  565  sudo apt update
+  566  sudo apt install python-certbot-apache -t buster-backports
+  567  sudo certbot --apache -d xraidigital.com
+  568  y
+  569  sudo ufw allow 443/tcp
+  570  sudo ufw reload
+  571  sudo ufw status
+  572  curl https://xraidigital.com
+  573  sudo certbot renew --dry-run
+  574  sudo certbot --apache -d xraidigital.com
+  575  sudo nano /etc/apache2/sites-enabled/000-default-linux.conf
+  576  sudo apt update
+  577  sudo apt install python-certbot-apache -t buster-backports
+  578  sudo certbot --apache -d xraidigital.com -d www.xraidigital.com
+  579  Redirect permanent / https://xraidigital.com/
+  580  sudo Redirect permanent / https://xraidigital.com/
+  581  sudo ufw allow 443/tcp
+  582  sudo ufw reload
+  583  sudo ufw status
+  584  sudo nano /etc/apache2/sites-enabled/000-default.conf
+  585  sudo systemctl start apache2
+  586  curl https://xraidigital.com
+  587  sudo nano /etc/apache2/sites-enabled/000-default.conf
+  588  sudo systemctl start apache2
+  589  curl xraidigital.com
+  590  sudo vi /etc/httpd/conf.d
+  591  sudo systemctl start apache2
+  592  sudo nano /etc/apache2/sites-enabled/000-default.conf
+  593  sudo systemctl start apache2
+  594  curl https://xraidigital.com
+  595  sudo apt update
+  596  sudo apt install python-certbot-apache -t buster-backports
+  597  sudo certbot --apache -d xraidigital.com -d www.xraidigital.com
+  598  sudo ufw allow 443/tcp
+  599  sudo ufw reload
+  600  sudo ufw status
+  601  curl https://xraidigitl.com
+  602  curl https://xraidigital.com
+  603  curl https://www.xraidigital.com
+  604  sudo systemctl start apache2
+  605  curl https://xraidigital.com
+  606  sudo nano /etc/apache2/sites-enabled/000-default.conf
+  607  sudo systemctl start apache2
+  608  curl https://xraidigital.com
+  609  curl xraidigital.com
+  610  sudo nano /etc/apache2/sites-enabled/000-default.conf
+  611  sudo systemctl restart apache2
+  612  sudo systemctl start apache2
+  613  sudo nano /etc/apache2/sites-enabled/000-default.conf
+  614  sudo systemctl start apache2
+  615  sudo nano /etc/apache2/sites-enabled/000-default.conf
+  616  sudo systemctl restart apache2
+  617  curl https://xraidigital.com
+  618  sudo nano /etc/apache2/sites-enabled/000-default.conf
+  619  sudo systemctl restart apache2
+  620  curl https://xraidigital.com
+  621  sudo nano /etc/apache2/sites-enabled/000-default.conf
+  622  sudo systemctl restart apache2
+  623  curl https://xraidigital.com
+  624  sudo systemctl restart apache2
+  625  curl https://xraidigital.com
+  626  sudo systemctl start testapp.service
+  627  curl https://xridigital.com
+  628  sudo systemctl restart apache2
+  629  curl https://xridigital.com
+  630  curl https://xraidigital.com
+  631  sudo nano /etc/apache2/sites-enabled/000-default.conf
+  632  sudo systemctl restart apache2
+  633  curl https://xraidigital.com
+  634  sudo nano /etc/apache2/sites-enabled/000-default.conf
+  635  sudo systemctl restart apache2
+  636  curl https://xraidigital.com
+  637  sudo nano /etc/apache2/sites-enabled/000-default.conf
+  638  sudo systemctl restart apache2
+  639  curl https://xraidigital.com
+  640  sudo nano /etc/apache2/sites-enabled/000-default.conf
+  641  ls
+  642  sudo nano /etc/apache2/sites-enabled/000-default.conf
+  643  sudo systemctl restart apache2
+  644  curl https://xraidigital.com
+  645  sudo nano /etc/apache2/sites-enabled/000-default.conf
+  646  sudo nano /etc/systemd/system/testapp.service 
+  647  sudo nano /etc/apache2/sites-enabled/000-default.conf
+  648  sudo systemctl restart apache2
+  649  curl https://xraidigital.com
+  650  sudo nano /etc/apache2/sites-enabled/000-default.conf
+  651  sudo nano /etc/systemd/system/testapp.service 
+  652  sudo nano /etc/apache2/sites-enabled/000-default.conf
+  653  sudo systemctl restart apache2
+  654  sudo nano /etc/apache2/sites-enabled/000-default.conf
+  655  sudo systemctl restart apache2
+  656  curl https://xraidigital.com
+  657  sudo nano /etc/apache2/sites-enabled/000-default.conf
+  658  sudo systemctl restart apache2
+  659  curl https://xraidigital.com
+  660  sudo nano /etc/apache2/sites-enabled/000-default.conf
+  661  sudo nano /etc/systemd/system/testapp.service 
+  662  sudo nano /etc/apache2/sites-enabled/000-default.conf
+  663  sudo systemctl restart apache2
+  664  curl https://xraidigital.com
+  665  sudo nano /etc/apache2/sites-enabled/000-default.conf
+  666  sudo systemctl restart apache2
+  667  curl https://xraidigital.com
+  668  sudo systemctl restart apache2
+  669  curl https://xraidigital.com
+  670  sudo nano /etc/apache2/sites-enabled/000-default.conf
+  671  sudo systemctl restart apache2
+  672  curl https://xraidigital.com
+  673  sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/xraidigital.conf
+  674  sudo a2ensite xraidigital.conf
+  675  systemctl reload apache2
+  676  sudo systemctl reload apache2
+  677  sudo a2dissite 000-default.conf
+  678  sudo systemctl reload apache2
+  679  sudo gedit /etc/apache2/apache2.conf
+  680  sudo nano /etc/apache2/sites-enabled/xraidigital.conf
+  681  sudo systemctl restart apache2
+  682  curl https://xraidigital.com
+  683  sudo nano /etc/apache2/sites-enabled/xraidigital.conf
+  684  sudo systemctl restart apache2
+  685  curl https://xraidigital.com
+  686  sudo nano /etc/apache2/sites-enabled/xraidigital.conf
+  687  sudo systemctl restart apache2
+  688  curl https://xraidigital.com
+  689  sudo systemctl restart apache2
+  690  curl https://xraidigital.com
+  691  sudo nano /etc/apache2/sites-enabled/xraidigital.conf
+  692  sudo systemctl restart apache2
+  693  curl https://xraidigital.com
+  694  sudo nano /etc/apache2/sites-enabled/xraidigital.conf
+  695  sudo systemctl restart apache2
+  696  curl https://xraidigital.com
+  697  $ sudo chmod 777 /etc/systemd/system
+  698  sudo chmod 777 /etc/systemd/system
+  699  sudo systemctl restart apache2
+  700  curl https://xraidigital.com
+  701  sudo chmod 777 /etc/systemd/system/testapp.service
+  702  sudo systemctl restart apache2
+  703  curl https://xraidigital.com
+  704  sudo nano /etc/systemd/system/testapp.service 
+  705  sudo nano /etc/apache2/sites-enabled/xraidigital.conf
+  706  sudo systemctl restart apache2
+  707  curl https://xraidigital.com
+  708  sudo chmod 777 /usr/bin/dotnet
+  709  sudo systemctl restart apache2
+  710  curl https://xraidigital.com
+  711  sudo nano /etc/apache2/sites-enabled/xraidigital.conf
+  712  sudo systemctl restart apache2
+  713  curl https://xraidigital.com
+  714  sudo nano /etc/apache2/sites-enabled/xraidigital.conf
+  715  sudo systemctl restart apache2
+  716  curl https://xraidigital.com
+  717  cd /home/rsa-key-20210502/netcore
+  718  cd /etc/apache2/
+  719  cd sites-available
+  720  vim netcore.conf
+  721  sudo nano /etc/apache2/sites-enabled/xraidigital.conf
+  722  sudo nano /etc/apache2/sites-enabled/netcore.conf
+  723  sudo nano /etc/apache2/sites-enabled/xraidigital.conf
+  724  sudo systemctl restart apache2
+  725  curl https://xraidigital.com
+  726  sudo nano /etc/apache2/sites-enabled/xraidigital.conf
+  727  cd /etc/apache2/sites-enabled
+  728  ls
+  729  ls xradigital.conf >a.txt
+  730  rn xraidigital.conf netcore.conf
+  731  mv xraidigital.conf netcore.conf
+  732  sudo a2dissite xraidigital.conf
+  733  sudo systemctl reload apache2
+  734  sudo systemctl restart apache2
+  735  curl https://xraidigital.com
+  736  sudo nano /etc/apache2/sites-enabled/netcorel.conf
+  737  sudo systemctl restart apache2
+  738  curl https://xraidigital.com
+  739  vim netcore.conf
+  740  sudo nano /etc/apache2/sites-enabled/netcore.conf
+  741  sudo nano /etc/apache2/sites-available/netcore.conf
+  742  sudo a2ensite netcorel.conf
+  743  sudo a2ensite netcore.conf
+  744  vim netcore.conf
+  745  sudo a2ensite netcore.conf
+  746  sudo systemctl restart apache2
+  747  curl https://xraidigital.com
+  748  sudo a2ensite netcore.conf
+  749  touch
+  750  touch -help
+  751  touch --help
+  752  sudo nano /etc/apache2/sites-available/netcore.conf
+  753  sudo systemctl restart apache2
+  754  sudo a2ensite netcore.conf
+  755  cd /etc/apache2/sites-available
+  756  sudo a2ensite netcore.conf
+  757  sudo service apache2 reload
+  758  sudo systemctl status testapp.service
+  759  curl https://xraidigital.com
+  760  sudo nano /etc/apache2/sites-available/netcore.conf
+  761  ls
+  762  ls /home/rsa-key-20210502/netcore
+  763  sudo nano /etc/systemd/system/testapp.service 
+  764  sudo nano /etc/apache2/sites-available/netcore.conf
+  765  sudo systemctl restart apache2
+  766  curl https://xraidigital.com
+  767  sudo nano /etc/apache2/sites-available/netcore.conf
+  768  sudo systemctl restart apache2
+  769  ls /etc/apache2/sites-enabled/
+  770  sudo a2ensite netcore
+  771  sudo ls -lh /etc/apache2/
+  772  sudo ls -lh /etc/apache2/sites-available/
+  773  sudo ls -lh /etc/apache2/sites-enabled/
+  774  cd /etc/apache2/
+  775  ls
+  776  mkdir ~/bkp
+  777  mv sites-available/netcore.conf ~/bkp/
+  778  sudo su
+  779  sudo apachectl configtest
+  780  cd /etc/apache2
+  781  ls
+  782  sudo vi httpd.config
+  783  sudo systemctl restart apache2
+  784  sudo nano /etc/apache2/sites-available/netcore.conf
+  785  sudo nano /etc/apache2/apache2.config
+  786  sudo systemctl restart apache2
+  787  curl https://xraidigital.com
+  788  sudo nano /etc/apache2/sites-available/netcore.conf
+  789  sudo systemctl restart apache2
+  790  curl https://xraidigital.com
+  791  sudo nano /etc/apache2/apache2.config
+  792  sudo systemctl restart apache2
+  793  sudo service apache2 reload
+  794  sudo nano /etc/apache2/apache2.config
+  795  sudo service apache2 reload
+  796  sudo nano /etc/systemd/system/testapp.service 
+  797  sudo nano /etc/apache2/sites-available/netcore.conf
+  798  sudo service apache2 reload
+  799  sudo nano /etc/apache2/sites-available/netcore.conf
+  800  sudo service apache2 reload
+  801  sudo nano /etc/apache2/apache2.config
+  802  sudo service apache2 reload
+  803  sudo systemctl restart apache2
+  804  ls
+  805  sudo nano /etc/apache2/apache2.config
+  806  sudo nano /etc/apache2/sites-available/netcore.conf
+  807  ls
+  808  pwd
+  809  sudo su
+  810  w
+  811  l
+  812  ls
+  813  w
+  814  ps aux | grep bi
+  815  ps aux | grep vi
+  816  sudo su
+  817  sudo service apache2 stop
+  818  sudo netstat -ltp
+  819  sudo service apache2 restart
+  820  sudo nano /etc/apache2/sites-available/netcore.conf
+  821  sudo systemctl restart apache2
+  822  curl https://localhost:5001
+  823  curl http://localhost:5000
+  824  curl https://localhost
+  825  curl https://xraidigital.com
+  826  sudo nano /var/log/apache2/netcore-access.log
+  827  sudo tail /var/log/apache2/netcore-access.log -f
+  828  sudo tail /var/log/apache2/netcore-error.log -f
+  829  sudo tail /var/log/apache2/netcore-access.log -f
+  830  sudo tail /var/log/apache2/netcore-access.log.1 -f
+  831  sudo tail /var/log/apache2/netcore-error.log.1 -f
+  832  sudo tail /var/log/apache2/access.log -f
+  833  ls -l /var/log/apache2/
+  834  sudo tail /var/log/apache2/other_vhosts_access.log
+  835  sudo tail /var/log/apache2/other_vhosts_access.log -f
+  836  sudo nano /etc/apache2/sites-available/netcore.conf
+  837  sudo systemctl restart apache2
+  838  sudo nano /etc/systemd/system/testapp.service 
+  839  ls /etc/apache2/site-enabled
+  840  ls /etc/apache2/sites-enabled
+  841  sudo apache2ctl -S
+  842  sudo rm /etc/apache2/sites-enabled/netcore1.conf
+  843  cd /etc/apache2/
+  844  ls
+  845  sites-available/
+  846  ls
+  847  cd sites-available/
+  848  ls
+  849  cat 000-default.conf 
+  850  mkdir ~/backup
+  851  sudo mv 000-default.conf ~/backup/
+  852  ls
+  853  cat default-ssl.conf 
+  854  curl https://localhost:443
+  855  cd ~
+  856  sudo apache2ctl -V
+  857  ls /etc/apache2/conf-enabled/
+  858  ls /etc/apache2/conf-available/
+  859  ls /etc/apache2/
+  860  sudo nano /etc/apache2/apache2.conf
+  861  sudo apache2ctl -S
+  862  sudo ls /etc/apache2/sites-enabled/
+  863  sudo mv /etc/apache2/sites-enabled/netcore1.conf ~/backup/
+  864  sudo ls -l /etc/apache2/sites-enabled/
+  865  cat /etc/apache2/sites-available/netcore.conf 
+  866  ls /etc/apache2/sites-available/
+  867  tree
+  868  sudo mv /etc/apache2/site-available/*.conf ~/backup
+  869  sudo mv /etc/apache2/sites-available/*.conf ~/backup
+  870  ls /etc/apache2/sites-available/
+  871  sudo mv /etc/apache2/sites-enabled/*.conf ~/backup
+  872  sudo mv /etc/apache2/conf-available/*.conf ~/backup
+  873  sudo mv /etc/apache2/conf-enabled/*.conf ~/backup
+  874  ls /etc/apache2/sites-available/
+  875  ls /etc/apache2/sites-enabled/
+  876  sudo nano /etc/apache2/sites-available/netcore.conf
+  877  sudo systemctl restart apache2
+  878  sudo nano /etc/apache2/sites-available/netcore.conf
+  879  sudo systemctl restart apache2
+  880  sudo nano /etc/apache2/sites-available/netcore.conf
+  881  sudo systemctl restart apache2
+  882  sudo nano /etc/apache2/sites-available/netcore.conf
+  883  ls /etc/apache2/sites-enabled/
+  884  sudo nano /etc/apache2/sites-available/netcore.conf
+  885  sudo systemctl restart apache2
+  886  sudo service apache2 restart
+  887  sudo nano /etc/apache2/sites-available/netcore.conf
+  888  sudo service apache2 restart
+  889  sudo nano /etc/apache2/sites-available/netcore.conf
+  890  sudo service apache2 restart
+  891  sudo service apache2 reload
+  892  sudo service apache2 restart
+  893  sudo nano /etc/apache2/sites-available/netcore.conf
+  894  sudo service apache2 restart
+  895  sudo nano /etc/apache2/sites-enabled\netcore.conf
+  896  sudo service apache2 restart
+  897  curl http://xraidigital.com
+  898  sudo nano /etc/apache2/sites-enabled/netcore.conf
+  899  sudo service apache2 restart
+  900  systemc1 statys apache2
+  901  systemc1 status apache2
+  902  systemctl status apache2
+  903  sudo nano /etc/apache2/sites-enabled/netcore.conf
+  904  sudo service apache2 restart
+  905  systemctl status apache2
+  906  sudo nano /etc/apache2/sites-enabled/netcore.conf
+  907  systemctl status apache2
+  908  sudo nano /etc/apache2/sites-enabled/netcore.conf
+  909  sudo service apache2 restart
+  910  systemctl status apache2
+  911  sudo nano /etc/apache2/sites-enabled/netcore.conf
+  912  systemctl status apache2
+  913  sudo service apache2 restart
+  914  sudo nano /etc/apache2/sites-enabled/netcore.conf
+  915  systemctl status apache2
+  916  sudo service apache2 restart
+  917  systemctl status apache2
+  918  sudo nano /etc/apache2/sites-enabled/netcore.conf
+  919  systemctl status apache2
+  920  sudo nano /etc/apache2/sites-enabled/netcore.conf
+  921  systemctl status apache2
+  922  sudo service apache2 restart
+  923  systemctl status apache2
+  924  sudo nano /etc/apache2/sites-enabled/netcore.conf
+  925  systemctl status apache2
+  926  sudo service apache2 restart
+  927  systemctl status apache2
+  928  sudo nano /etc/apache2/sites-enabled/netcore.conf
+  929  sudo service apache2 restart
+  930  systemctl status apache2
+  931  sudo nano /etc/apache2/sites-enabled/netcore.conf
+  932  sudo service apache2 restart
+  933  systemctl status apache2
+  934  sudo nano /etc/apache2/sites-enabled/netcore.conf
+  935  sudo service apache2 restart
+  936  curl http://localhost
+  937  sudo nano /etc/apache2/sites-enabled/netcore.conf
+  938  sudo mv /etc/apache2/sites-enabled/*.conf ~/backup
+  939  sudo systemctl restart apache2
+  940  sudo mv /etc/apache2/apache2.config ~/backup
+  941  sudo nano /etc/apache2/sites-enabled/netcore.conf
+  942  sudo systemctl restart apache2
+  943  sudo service restart apache2
+  944  sudo service apache2 restart
+  945  systemctl status apache2
+  946  sudo service apache2 start
+  947  journalctl -xe
+  948  sudo nano /etc/apache2/sites-enabled/netcore.conf
+  949  sudo service apache2 start
+  950  sudo service apache2 restart
+  951  systemctl status apache2
+  952  sudo nano /etc/apache2/apache2.config
+  953  sudo nano /etc/apache2/apache2.conf
+  954  sudo service apache2 restart
+  955  sudo systemctl restart apache2
+  956  sudo nano /etc/apache2/sites-enabled/netcore.conf
+  957  sudo systemctl restart apache2
+  958  sudo nano /etc/apache2/sites-enabled/netcore.conf
+  959  sudo systemctl restart apache2
+  960  sudo systemctl status apache2
+  961  sudo nano /etc/apache2/sites-enabled/netcore.conf
+  962  sudo systemctl status apache2
+  963  sudo systemctl restart apache2
+  964  sudo nano /etc/apache2/sites-enabled/netcore.conf
+  965  sudo service apache2 restart
+  966  sudo nano /etc/apache2/sites-enabled/netcore.conf
+  967  sudo service apache2 restart
+  968  sudo journalctl -xe
+  969  sudo nano /etc/apache2/sites-enabled/netcore.conf
+  970  sudo service apache2 restart
+  971  sudo nano /etc/apache2/sites-enabled/netcore.conf
+  972  sudo service apache2 restart
+  973  sudo nano /etc/apache2/sites-enabled/netcore.conf
+  974  sudo service apache2 restart
+  975  curl http://localhost
+  976  apachectlconfigtest
+  977  apachectlConfigtest
+  978  apachectl Configtest
+  979  sudo nano /etc/apache2/sites-enabled/netcore.conf
+  980  sudo service apache2 restart
+  981  sudo nano /etc/apache2/sites-enabled/netcore.conf
+  982  sudo service apache2 restart
+  983  curl http://localhost
+  984  sudo nano /etc/apache2/sites-enabled/netcore.conf
+  985  sudo service apache2 restart
+  986  curl http://localhost
+  987  sudo nano /etc/apache2/sites-enabled/netcore.conf
+  988  pwd
+  989  cd /etc/apache2/sites-enabled
+  990  ls
+  991  cd..
+  992  cd /etc/apache2/
+  993  ls
+  994  sudo nano /etc/apache2/apache2.conf
+  995  cd /var/www/
+  996  ls
+  997  cd html
+  998  ls
+  999  cd /etc/apache2/sites-enabled
+ 1000  ls
+ 1001  cd /etc/apache2/
+ 1002  ls
+ 1003  sudo nano /etc/apache2/sites-enabledcore.conf
+ 1004  sudo service apache2 restart
+ 1005  cd /etc/apache2/sites-available/
+ 1006  ls
+ 1007  cd /etc
+ 1008  ls
+ 1009  cd systemd
+ 1010  cd system
+ 1011  ls
+ 1012  sudo nano /etc/systemd/system/testapp.service
+ 1013  sudo nano /etc/apache2/sites-enabled/netcore.conf
+ 1014  sudo systemctl start testapp.service
+ 1015  sudo nano /etc/systemd/system/testapp.service
+ 1016  sudo ufw allow 443/tcp
+ 1017  sudo ufw reload
+ 1018  sudo nano /etc/apache2/sites-enabled/netcore.conf
+ 1019  sudo service apache2 restart
+ 1020  sudo nano /etc/apache2/sites-enabled/netcore.conf
+ 1021  sudo service apache2 restart
+ 1022  apache2 -v
+ 1023  /user/sbin/apache2 -v
+ 1024  /usr/sbin/apache2 -v
+ 1025  sudo service httpd configtest
+ 1026  sudo systemctl restart httpd
+ 1027  cd /etc/
+ 1028  ls
+ 1029  cd apache2/
+ 1030  ls
+ 1031  sudo nano apache2.conf
+ 1032  sudo nano /etc/apache2/sites-enabled/netcore.conf
+ 1033  cd\
+ 1034  ..
+ 1035  cd /home
+ 1036  ls
+ 1037  cd pdey44721/
+ 1038  ls
+ 1039  pwd
+ 1040  cd /home
+ 1041  cd rsa-key-20210502/
+ 1042  ls
+ 1043  cd netcore/
+ 1044  ls
+ 1045  cd xrai/
+ 1046  ls
+ 1047  clr
+ 1048  cls
+ 1049  cd /etc/apache2/
+ 1050  ls
+ 1051  cd 
+ 1052  ls
+ 1053  cd /etc/apache2/
+ 1054  cd sites-available
+ 1055  ls
+ 1056  sudo yum
+ 1057  sudo yum install firewalld -y
+ 1058  sudo install firewalld -y
+ 1059  sudo firewall-cmd --add-port=80/tcp
+ 1060  suodo a2enmod rewrite
+ 1061  sudo a2enmod rewrite
+ 1062  sudo a2enmod proxy
+ 1063  sudo a2enmod headers
+ 1064  sudo a2enmod ssl
+ 1065  sudo service apache2 restart
+ 1066  sudo mkdir -p var/www/publishapplication/publish/
+ 1067  sudo cp /home/rsa-key-20210502/netcore /var/www/publishapplication/
+ 1068  sudo cp -r /home/rsa-key-20210502/netcore /var/www/publishapplication/
+ 1069  sudo nano /etc/apache2/sites-available/netcore.conf
+ 1070  sudo a2dissite 000-default.conf
+ 1071  sudo s2ensite netcore.conf
+ 1072  sudo a2ensite netcore.conf
+ 1073  sudo apachectl configtest
+ 1074  sudo systemctl restart apache2
+ 1075  sudo nano /etc/systemd/system/tstapp.service
+ 1076  sudo nano /etc/systemd/system/testapp.service
+ 1077  sudo systemctl enable testapp.service
+ 1078  sudo systemctl start testapp.service
+ 1079  sudo nano /etc/apache2/sites-enabled/netcore.conf
+ 1080* sudo a2dissite apacnetcore.conf
+ 1081  sudo nano /etc/apache2/sites-available/netcore.conf
+ 1082  sudo nano /etc/apache2/sites-enabled/netcore.conf
+ 1083  sudo a2ensite netcore.conf
+ 1084  sudo nano /etc/apache2/sites-available/netcore.conf
+ 1085  sudo a2ensite netcore.conf
+ 1086  sudo nano /etc/apache2/sites-available/netcore.conf
+ 1087  sudo systemctl restart apache2
+ 1088  systemctl status apache2
+ 1089  sudo service apache2 restart
+ 1090  journalctl -xe
+ 1091  sudo nano /etc/systemd/system/testapp.service
+ 1092  sudo systemctl restart apache2
+ 1093  sudo nano /etc/apache2/apache2.service
+ 1094  sudo nano /etc/systemd/system/testapp.service
+ 1095  sudo systemctl start testapp.service
+ 1096  systemctl daemon-reload
+ 1097  sudo systemctl start testapp.service
+ 1098  sudo systemctl restart apache2
+ 1099  sudo systemctl enable testapp.service
+ 1100  sudo nano /etc/systemd/system/testapp.service
+ 1101  sudo systemctl start testapp.service
+ 1102  sudo systemctl enable testapp.service
+ 1103  sudo systemctl start testapp.service
+ 1104  sudo systemctl restart apache2
+ 1105  sudo nano /etc/apache2/sites-available/netcore.conf
+ 1106  sudo systemctl restart apache2
+ 1107  sudo service apache2 restart
+ 1108  sudo nano /etc/apache2/sites-enabled/netcore.conf
+ 1109  sudo service apache2 restart
+ 1110  sudo nano /etc/apache2/sites-available/netcore.conf
+ 1111  sudo cp -r /home/rsa-key-20210502/netcore /var/www/publishapplication/
+ 1112  sudo nano /etc/apache2/sites-available/netcore.conf
+ 1113  sudo service apache2 restart
+ 1114  sudo nano /etc/apache2/sites-available/netcore.conf
+ 1115  sudo service apache2 restart
+ 1116  sudo nano /etc/apache2/sites-available/netcore.conf
+ 1117  sudo service apache2 restart
+ 1118  history>oldcommands16jul2021.txt

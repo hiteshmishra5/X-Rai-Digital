@@ -1,0 +1,1252 @@
+﻿@model DOTNETCOREEXAMPLE.Models.Class_SLOT_BOOKING_MASTER
+@using Microsoft.AspNetCore.Http;
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<h2></h2>
+
+
+<script src="~/scripts/jquery-1.12.4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" rel="stylesheet" />
+<style>
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    div.ex3 {
+        background-color: lightblue;
+        width: 1024px;
+        height: 110px;
+        overflow: auto;
+    }
+</style>
+<script>
+    refreshOfferPercentage= function () {
+      //  alert(offeroptionid);
+
+        var projects = $("#OFFERPROMONAME").val();
+        //alert(projects);
+
+
+
+        $.get('@Url.Action("GetOfferIdPercentage", "SlotBookingMaster")', { OFFERCODE: projects},
+        function (result) {
+            // clear the dropdown
+          //  projects.empty();
+            // rebuild the dropdown
+           // projects.append($('<option/>').text('--SELECT--').val(0));
+           // alert(result);
+            if (result == "") {
+                $("#OFFERID").val(2);
+                $("#OFFERDISCOUNT").val(0);
+                alert("Promo code is Invalid");
+                document.getElementById("lblComment").innerHTML = "Promo code is Invalid";
+            } else {
+                $.each(result, function (i, e) {
+
+                    if (e.Value == "") {
+
+                        //lblComment.innerHtml("")
+                    }
+                    else {
+                        $("#OFFERID").val(e.Value);
+                        $("#OFFERDISCOUNT").val(e.Text);
+                        alert("Promo code is valid");
+                        document.getElementById("lblComment").innerHTML = "Promo code is valid";
+                    }
+
+                    // projects.append($('<option/>').text(e.Text).val(e.Value));
+
+                });
+            }
+
+        });
+
+       // refreshPrice($("#SERVICETYPEID").val(), $("#SERVICEGROUPID").val(), 1)
+    }
+
+    $("#SLOTBOOKINGDATETIME").change(function(){
+    refreshProjects($(this).val());
+    });
+    $("#SERVICEGROUPID").change(function () {
+       // alert("Sai");
+        refreshServices($(this).val());
+        refreshPrice($("#SERVICETYPEID").val(), $("#SERVICEGROUPID").val(), 1)
+    });
+    $("#SERVICETYPEID").change(function () {
+      //  alert("Sai");
+       // refreshServices($(this).val());
+        refreshPrice($("#SERVICETYPEID").val(), $("#SERVICEGROUPID").val(), 1)
+    });
+function refreshProjects(id) {
+    var projects = $("#SLOTID");
+    var REGISTRATIONTYPEID = $("#REGISTRATIONTYPEID").val();
+    $.get('@Url.Action("GetSlotByDate", "SlotBookingMaster")', { dt: id },
+        function (result) {
+            // clear the dropdown
+            projects.empty();
+            // rebuild the dropdown
+            var TodayDate = new Date();
+            var endDate = new Date(Date.parse($("#SLOTBOOKINGDATETIME").val()));
+            projects.append($('<option/>').text('--SELECT--').val(""));
+            if (REGISTRATIONTYPEID == "3") {
+                //window.alert("3")
+                $.each(result, function (i, e) {
+                    // alert(TodayDate);
+                    //  alert(endDate);
+                    projects.append($('<option/>').text(e.Text).val(e.Value));
+
+                });
+            }
+            else { 
+            if (endDate > TodayDate) {
+                $.each(result, function (i, e) {
+                    // alert(TodayDate);
+                    //  alert(endDate);
+                    projects.append($('<option/>').text(e.Text).val(e.Value));
+
+                });
+            }
+            else {
+                $.each(result, function (i, e) {
+
+                    // alert(TodayDate);
+                    //  alert(endDate);
+
+                    //alert("today");
+                    //condition satisfied for today date too.
+                    //                   alert(e.Text);
+                    var subStr = e.Text.substring(0, 5);
+                    var dt = new Date();
+                    var time = dt.getHours() + ":" + dt.getMinutes();
+                    //alert(subStr);
+                    //alert(time);
+                    var cm = compareTime(time, subStr);
+                    if (cm == 2) {
+                        projects.append($('<option/>').text(e.Text).val(e.Value));
+                    }
+                    else {
+
+                    }
+                });
+            }
+        }
+            });
+    }
+
+    function compareTime(str1, str2) {
+     //   alert("compare");
+        if (str1 === str2) {
+            return 0;
+        }
+        var time1 = str1.split(':');
+
+
+        var time2 = str2.split(':');
+      //  alert(time1[0]);
+     //   alert(time2[0]);
+    //    alert(time1[0]);
+      //  alert(time2[0]);
+       // alert(time1[1]);
+        //alert(time2[1]);
+        //&& eval(time1[1]) < eval(time2[1])
+        var sec1 = time1[0] * 60 * 60 + time1[1] * 60;
+        var sec2 = time2[0] * 60 * 60 + time2[1] * 60;
+      //  alert(sec2 - sec1);
+        if (sec2-sec1>=3600) {
+       //  if (eval(time1[0]) < eval(time2[0]) ) {
+           //alert(2);
+            return 2;
+        } else {
+            return -1;
+        }
+    }
+
+    function refreshServiceGroupAndServices() {
+       // alert(id);
+        if ($("#LOCATIONID").val() > 0) {
+            $('#SERVICEGROUPID').attr("disabled", false);
+            $('#SERVICETYPEID').attr("disabled", true);
+            $('#SLOTBOOKINGDATETIME').attr("disabled", false);
+            $('#PAYMENTMETHOD').attr("disabled", false);
+            $('#OFFEROPTION').attr("disabled", false);
+
+
+        } else {
+            $('#SERVICEGROUPID').attr("disabled", true);
+         //   $('#SERVICETYPEID').attr("disabled", true);
+            $('#SLOTBOOKINGDATETIME').attr("disabled", true);
+            $('#PAYMENTMETHOD').attr("disabled", true);
+          //  alert("Please select the location.");
+         //   return false;
+        }
+
+
+
+    }
+    function refreshServices(id) {
+        $("#SERVICETYPEID").attr("disabled", false);
+        var projects = $("#SERVICETYPEID");
+        if ($("#SERVICEGROUPID").val() == "") {
+            //alert("Sai");
+            $('#SERVICETYPEID').attr("disabled", true);
+            //  $('#SERVICETYPEID').attr("disabled", false);
+        } else {
+            $('#SERVICETYPEID').attr("disabled", false);
+            //   $('#SERVICETYPEID').attr("disabled", true);
+            //  alert("Please select the location.");
+            //   return false;
+        }
+
+        $('#SERVICETYPEID').attr("disabled", false);
+    $.get('@Url.Action("GetServicesByServiceGroup", "SlotBookingMaster")', {dt:id},
+        function (result) {
+            // clear the dropdown
+            projects.empty();
+            // rebuild the dropdown
+            projects.append($('<option/>').text('--SELECT--').val(0));
+            $.each(result, function (i, e) {
+                projects.append($('<option/>').text(e.Text).val(e.Value));
+
+            });
+            if (id == 3) {
+                $("#consent").hide();
+                $('#OFFERID').attr("disabled", true);
+
+                $("#defaultCheck1").hide();
+                $('label[for="defaultCheck1"]').hide();
+             //   $("#lbldefaultCheck1").hide();
+            } else {
+                $("#consent").show();
+                $('#OFFERID').attr("disabled", false);
+                $("#defaultCheck1").show();
+                $('label[for="defaultCheck1"]').show();
+               // $("#lbldefaultCheck1").show();
+
+            }
+        });
+
+        refreshPrice($("#SERVICETYPEID").val(), $("#SERVICEGROUPID").val(), 1)
+    }
+    function refreshOffers(offeroptionid) {
+      //  alert(offeroptionid);
+
+        var projects = $("#OFFERID");
+
+
+
+        $.get('@Url.Action("GetOffersByOption", "SlotBookingMaster")', { offeroptionid: offeroptionid},
+        function (result) {
+            // clear the dropdown
+            projects.empty();
+            // rebuild the dropdown
+           // projects.append($('<option/>').text('--SELECT--').val(0));
+            $.each(result, function (i, e) {
+                projects.append($('<option/>').text(e.Text).val(e.Value));
+
+            });
+
+        });
+
+       // refreshPrice($("#SERVICETYPEID").val(), $("#SERVICEGROUPID").val(), 1)
+    }
+    function enableAddButton() {
+
+        $('#btnAdd').attr("disabled", false);
+    }
+
+     function refreshPrice(serviceid,servicegroupid,visittypeid) {
+        //var projects = $("#SERVICETYPEID");
+
+         $.get('@Url.Action("GetPriceServiceGroupVisitWise", "PriceRateMaster")', { SERVICEID: serviceid, SERVICEGROUPID: servicegroupid, VISITTYPEID: visittypeid},
+        function (result) {
+            // clear the dropdown
+          //  projects.empty();
+            // rebuild the dropdown
+         //   alert(result);
+            if (result == "") {
+                $("#PRICERATEID").val("");
+                $("#PRICE").val("");
+            }
+            else {
+                $.each(result, function (i, e) {
+                    //alert(e.Text);
+                    //alert(e.Value);
+                    if (e.Text != "") {
+                        var customers = new Array();
+                        var count = 0;
+                        var amountbeforeoffer = 0;
+                        $("#tblCustomers TBODY TR").each(function () {
+                            var row = $(this);
+                            var customer = {};
+                            customer.SERVICEGROUPID = row.find("TD").eq(3).html();
+
+                            if (servicegroupid == 1) {
+                                if (customer.SERVICEGROUPID == servicegroupid) { count = count + 1; } else { }
+                            }
+                            customer.SERVICETYPEID = row.find("TD").eq(1).html();
+                            customer.PRICE = row.find("TD").eq(2).html();
+                            customers.push(customer);
+                        });
+                        if (count == 1) {
+                            amountbeforeoffer = e.Text - (e.Text * 50 / 100);
+                        } else if (count >= 2) {
+
+                            amountbeforeoffer = e.Text - (e.Text * 75 / 100);
+                        }
+                        else if (count == 0) {
+                            amountbeforeoffer = e.Text;
+                        }
+                        $("#PRICERATEID").val(e.Value);
+
+                      //  $("#PRICE").val(e.Text);
+                        $("#PRICE").val(amountbeforeoffer);
+                        var OFFERDISCOUNT = $("#OFFERDISCOUNT").val();
+                        var amountafteroffer = amountbeforeoffer - (amountbeforeoffer * OFFERDISCOUNT / 100);
+                        $("#NETPRICE").val(amountafteroffer);
+                    }
+                    else {
+                        $("#PRICERATEID").val(1);
+                        $("#PRICE").val(1);
+
+                    }
+                    /*  projects.append($('<option/>').text(e.Text).val(e.Value));*/
+
+                });
+            }
+
+    });
+    }
+    function refreshOfferPrice(id) {
+       // alert(id);
+        var projects = $("#OFFERID");
+    $.get('@Url.Action("GetOfferPriceOnOffer", "SlotBookingMaster")', {id:id},
+        function (result) {
+           // alert(result);
+            // clear the dropdown
+            $("#OFFERDISCOUNT").val(result);
+          //  alert($("#PRICE").val());
+            $("#OFFERPRICE").val($("#PRICE").val() - ($("#PRICE").val()*result)/100);
+
+            //OFFERDISCOUNTOFFERPRICE
+            // rebuild the dropdown
+
+        });
+
+
+    }
+
+    $(function () {
+        $("[name='PATIENTNAMES']").change(function () {
+          //  alert("Sai");
+            $("#PATIENTNAME").val($(this).val());
+        });
+    });
+    function datechange(e) {
+        if ($("#SLOTBOOKINGDATETIME").val() == "") {
+            $('#SLOTID').attr("disabled", true);
+
+
+        } else {
+            $('#SLOTID').attr("disabled", false);
+            //   $('#SERVICETYPEID').attr("disabled", true);
+
+            //  alert("Please select the location.");
+            //   return false;
+        }
+        refreshProjects(e);
+    //    alert("refreshProjects");
+      // alert( $("#SLOTBOOKINGDATETIME").val(e));
+    }
+
+    function ChangePATIENTNAME(e)
+    {
+       // alert(e);
+
+     //   var dataItem = this.dataItem(e.item);
+
+       //    alert(dataItem);
+        $("#PATIENTNAME").val(e);
+     //   alert("Sai");
+
+        $.ajax({
+            type: "POST",
+            url: '/SlotBookingMaster/GetPatientDetailsForPatient',
+            data: {
+                valueOfDropDown: e
+            },
+            /* Response is the data returned from controller method */
+            success: function (response) {
+             //   alert(response.value1);
+                var value1 = response.value1;
+                $("#AGE").val(value1);
+                var value2 = response.value2;
+                $("#WEIGHT").val(value2);
+                var value3 = response.value3;
+                $("#GENDER").val(value3);
+                var value4 = response.value4;
+                $("#ADDRESS").val(value4);
+                var value5 = response.value5;
+                $("#ALTERNATEMOBILENUMBER").val(value5);
+                var value6 = response.value6;
+                $("#EMAIL").val(value6);
+
+                //TODO : Use these values to update your page.
+
+                return false;
+            }
+        });
+
+    }
+</script>
+<form asp-action="Create" method="post" enctype="multipart/form-data" id="form1" name="form1">
+    <div class="section section-sm section-bottom">
+        <div class="container">
+
+            <div class="row ">
+
+                <h3 class="title-text"> Book your Slot</h3>
+                <div class="appointmentform">
+                    <div>
+                        <!-- <p class="text-theme appointment-sub-title">Please fill in your details to book your slot</p>-->
+
+                    </div>
+                    @*<form id="frmSubmit" onload="OnChange()">*@
+                    <h3> User </h3>
+                    <div class="field-group">
+
+                        <div class="form-group  col-sm-2">
+                            <label for="inputEmail">Phone Number</label>
+                        </div>
+                        <div class="form-group  col-sm-3">
+
+                            @*<input type="number" class="form-control" id="PHONENUMBER" name="PHONENUMBER" placeholder=" ">*@
+                            @Html.TextBox("PHONENUMBER", (object)ViewBag.phonenumber, new { maxLength = 24, size = 24, @class = "form-control" })
+                            @Html.HiddenFor(model => model.USERID, new { maxLength = 24, size = 24, @class = "form-control", Value = ViewBag.UserId })
+                            @Html.ValidationMessageFor(m => m.PHONENUMBER, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group  col-sm-2 send-otp">
+                            @*<button type="submit" class="btn btn-lg btn-primary" onclick="SendOTP()">Send OTP</button>*@
+                        </div>
+                        <div class="form-group  col-sm-2 ">
+                            @*<label for="inputEmail">Enter OTP</label>*@
+                        </div>
+                        <div class="form-group  col-sm-3">
+                            @*@Html.TextBox("enterotp", "", new { OnChange= "OnChange()",@id = "enterotp", @class = "form-control" })*@
+                            @*<input type="email" class="form-control" id="inputEmail" placeholder=" ">*@
+                        </div>
+
+                        <div class="clear-fix"> </div>
+                    </div>
+
+                    <h3></h3>
+                    Patient's Detail
+                    @*@if (Convert.ToInt32(ViewBag.CountPATIENTNAMESFORPHONENUMBER) > 0)
+                        {
+                            <div style="text-align:left;">
+                                @Html.DropDownList("PATIENTNAMES", new SelectList(ViewBag.PATIENTNAMESFORPHONENUMBER, "Value", "Text"), "--SELECT--", new { id = "PATIENTNAME1", @class = "form-control", @onchange = "ChangePATIENTNAME(this.value)" })
+                            </div>
+                            <div style="text-align:right;"><button style="text-align:right;" type="button" class="btn btn-lg btn-primary" onclick="EnableDisablePatient()">Add Patient</button></div>
+                        }
+                        else
+                        {
+
+                        }*@
+
+
+                    <div class="field-group">
+                        <div class="form-group  col-sm-6">
+                            <label for="inputEmail">Patient Name</label>
+                            @*@Html.TextBox("PATIENTNAME", (object)ViewBag.PATIENTNAME, new { @class = "form-control" })*@
+                            @ViewBag.PATIENTNAME
+                            @*@Html.TextBoxFor(model => model.PATIENTNAME, new { @class = "form-control", value = "sai" })*@
+                            @Html.Hidden("PATIENTID", (Object)ViewBag.PATIENTID, new { @class = "form-control" })
+                            @Html.Hidden("REGISTRATIONTYPEID", (object)ViewBag.RegistrationTypeId, new { @readonly = "readonly", @class = "form-control" })
+
+
+
+
+                            @Html.ValidationMessageFor(m => m.PATIENTNAME)
+                            @*<input type="email" class="form-control" id="inputEmail" placeholder=" ">*@
+                        </div>
+                        <div class="form-group  col-sm-6">
+                            <label for="inputEmail">Age (Yrs.) :</label>
+                            @ViewBag.AGE
+                            @*@Html.TextBox("AGE", (Object)ViewBag.AGE, new { @class = "form-control" })*@
+                            @Html.ValidationMessageFor(m => m.AGE)
+                            @*<input type="text" class="form-control" id="" placeholder=" ">*@
+                        </div>
+                        <div class="form-group  col-sm-6">
+                            <label for="inputEmail">Weight (Kgs.) :</label>
+                            @ViewBag.WEIGHT
+                            @*@Html.TextBox("WEIGHT", (Object)ViewBag.WEIGHT,new { @class = "form-control" })*@
+                            @Html.ValidationMessageFor(m => m.WEIGHT)
+                            @*<input type="email" class="form-control" id="inputEmail" placeholder=" ">*@
+                        </div>
+                        <div class="form-group  col-sm-6">
+                            <label for="slot">Gender :</label>
+                            @ViewBag.GENDER
+                            @*@Html.DropDownList("GENDER", new SelectList(ViewBag.GENDERS, "Value", "Text"), "--SELECT--", new { @class = "form-control", Value = @ViewBag.GENDER })*@
+
+                            @Html.ValidationMessageFor(model => model.GENDER, "", new { @class = "text-danger" })
+                            @*<select id="slot" class="form-control">
+                                    <option selected>Choose...</option>
+                                    <option>Male</option>
+                                    <option>Female</option>
+                                </select>*@
+                        </div>
+                        <div class="form-group  col-sm-6">
+                            <label for="message">
+                                Address :
+                                <!-- <span class="required">*</span> -->
+                            </label>
+                            @ViewBag.ADDRESS
+                            @*@Html.TextAreaFor(model => model.ADDRESS, new { @class = "form-control", Value = @ViewBag.ADDRESS })*@
+                            @Html.ValidationMessageFor(m => m.ADDRESS)
+                            @*<textarea class="form-control" rows="6" name="message" id="message"></textarea>*@
+                        </div>
+                        <div class="form-group  col-sm-6">
+                            <label for="message">
+                                Pin :
+                                <!-- <span class="required">*</span> -->
+                            </label>
+                            @ViewBag.PIN
+                            @Html.Hidden("PIN", (object)ViewBag.PIN, new { @readonly = "readonly", @class = "form-control" })
+                            @*@Html.TextAreaFor(model => model.ADDRESS, new { @class = "form-control", Value = @ViewBag.ADDRESS })*@
+                            @Html.ValidationMessageFor(m => m.ADDRESS)
+                            @*<textarea class="form-control" rows="6" name="message" id="message"></textarea>*@
+                        </div>
+
+                        <div class="form-group  col-sm-6">
+                            <label for="inputEmail">Alternate Mobile No. :</label>
+                            @ViewBag.ALTERNATEMOBILENUMBER
+                            @*@Html.TextBox("ALTERNATEMOBILENUMBER", (Object)ViewBag.ALTERNATEMOBILENUMBER, new { @class = "form-control" })*@
+                            @Html.ValidationMessageFor(m => m.ALTERNATEMOBILENUMBER)
+                            @*<input type="email" class="form-control" id="inputEmail" placeholder=" ">*@
+                        </div>
+                        <div class="form-group  col-sm-6">
+                            <label for="inputEmail">Email ID :</label>
+                            @ViewBag.EMAIL
+                            @*@Html.TextBox("EMAIL", (Object)ViewBag.EMAIL, new { @class = "form-control" })*@
+                            @Html.ValidationMessageFor(m => m.EMAIL)
+                            @*<input type="email" class="form-control" id="inputEmail" placeholder=" ">*@
+                        </div>
+                        <div class="clear-fix"> </div>
+                    </div>
+                    <h3> Service </h3>
+                    <div class="field-group">
+                        <div class="form-group  col-sm-6">
+                            <label for="slot-type">Location </label>
+                            @*<select id="slot-type" class="form-control">
+                                    <option selected>Choose...</option>
+                                    <option>X-Ray</option>
+                                </select>*@
+                            @Html.DropDownListFor(x => x.LOCATIONID, new SelectList(ViewBag.LOCATIONS, "Value", "Text"), "--SELECT--", new { @onchange = "refreshServiceGroupAndServices($(this).val())", @class = "form-control", @required = "required" })
+
+                            @Html.ValidationMessageFor(model => model.LOCATIONID, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group  col-sm-6">
+                            <label for="visit-type">Type of Visit</label>
+                            @*@Html.DropDownListFor(x => x.SLOTID, new SelectList(ViewBag.SLOTS, "Value", "Text"), "--SELECT--", new { @class = "form-control" })*@
+                            @if (HttpContextAccessor.HttpContext.Session.GetString("RegistrationTypeId") == "3")
+                                    {
+                            @Html.DropDownListFor(x => x.VISITTYPEID, new SelectList(ViewBag.VISITTYPES, "Value", "Text"), "--SELECT--", new { @class = "form-control" })
+                            }else{
+                            @Html.TextBox("visit", "Home", new { maxLength = 24, size = 24, @class = "form-control", Value = "Home", @readonly = "readonly" })
+                            @Html.Hidden("VISITTYPEID", "1", new { maxLength = 24, size = 24, @class = "form-control", Value = "Home", @readonly = "readonly" })
+                            @*@Html.TextBoxFor(model => model.VISITTYPEID, new { maxLength = 24, size = 24, @class = "form-control", @value = "1" })*@
+                            }
+                            @*@Html.DropDownListFor(x => x.VISITTYPEID, new SelectList(ViewBag.VISITORTYPES, "Value", "Text"), "--SELECT--", new { @class = "form-control" })*@
+
+                            @Html.ValidationMessageFor(model => model.SLOTID, "", new { @class = "text-danger" })
+                            <script>
+                                function filterPackingTypes() {
+
+                                    return {
+                                        categoryId: $("#SLOBOOKINGDATETIME").val()
+                                    };
+                                }
+                            </script>
+
+
+                            @*<select id="visit-type" class="form-control">
+            <option selected>Choose...</option>
+            <option>Morning(08:00-12:00 noon)</option>
+            <option>Afternoon (12:01-16:00)</option>
+            <option>Evening (16:00-20:00)</option>
+            <option> Emergency  (20:00-20:30)</option>
+            <option> Emergency  (20:30-21:00)</option>
+        </select>*@
+                        </div>
+
+
+
+
+                        <div class="form-group  col-sm-6">
+                            <label for="visit-type">@*Net Payable Amount*@ </label>
+                            @Html.TextBox("OFFERPRICE", "", new { maxLength = 24, size = 24, @class = "form-control", @readonly = "readonly", @style = "visibility:hidden" })
+
+                            @*<select id="visit-type" class="form-control">
+                                    <option selected>Choose...</option>
+                                    <option>Chest</option>
+
+                                </select>*@
+                        </div>
+
+                        <div class="form-group  col-sm-6">
+                            <label for="visit-date">Visit Date (dd/mm/yyyy)</label>
+                            @if (HttpContextAccessor.HttpContext.Session.GetString("RegistrationTypeId") == "3")
+                                    {
+                            @Html.TextBoxFor(model => model.SLOTBOOKINGDATETIME, new { @disabled = true, @onchange = "datechange(this.value)", type = "date", @class = "form-control", @required="required" })
+                            }
+                            else{
+                            @Html.TextBoxFor(model => model.SLOTBOOKINGDATETIME, new { @disabled = true, @onchange = "datechange(this.value)", type = "date", @class = "form-control", min = DateTime.Today.ToString("yyyy-MM-dd"), max = DateTime.Today.AddDays(7).ToString("yyyy-MM-dd"),@required="required" })
+                            @Html.ValidationMessageFor(m => m.SLOTBOOKINGDATETIME)
+                            }
+                            @*<div class='input-group date' id='visitdate'>
+            <input type='text' class="form-control" />
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+        </div>*@
+                        </div>
+                        <div class="form-group  col-sm-6">
+                            <label for="visit-type">Visit Slot</label>
+                            @*@Html.DropDownListFor(x => x.SLOTID, new SelectList(ViewBag.SLOTS, "Value", "Text"), "--SELECT--", new { @class = "form-control" })*@
+                            @Html.DropDownListFor(x => x.SLOTID, new SelectList(ViewBag.SLOTS, "Value", "Text"), "--SELECT--", new { @class = "form-control", @disabled = true,@required="required" })
+
+                            @Html.ValidationMessageFor(model => model.SLOTID, "", new { @class = "text-danger" })
+                            <script>
+                                function filterPackingTypes() {
+
+                                    return {
+                                        categoryId: $("#SLOBOOKINGDATETIME").val()
+                                    };
+                                }
+                            </script>
+
+
+                            @*<select id="visit-type" class="form-control">
+                                    <option selected>Choose...</option>
+                                    <option>Morning(08:00-12:00 noon)</option>
+                                    <option>Afternoon (12:01-16:00)</option>
+                                    <option>Evening (16:00-20:00)</option>
+                                    <option> Emergency  (20:00-20:30)</option>
+                                    <option> Emergency  (20:30-21:00)</option>
+                                </select>*@
+                        </div>
+
+                        <div class="form-group  col-sm-6">
+                            <label class="form-label" for="customFile">Payment Method</label>
+                            @Html.DropDownListFor(x => x.PAYMENTMETHOD, new SelectList(ViewBag.PAYMENTMETHOD, "Value", "Text"), "--SELECT--", new { @onchange = "enableAddButton()",@class = "form-control", @disabled = true,@required="required" })
+
+                            @Html.ValidationMessageFor(model => model.GENDER, "", new { @class = "text-danger" })
+
+                            @*<input type="file" class="form-control file" id="customFile" />*@
+                            @*<p>  A prescription must be shared with the technician before the procedure </p>*@
+                        </div>
+                        <div class="form-group  col-sm-6">
+
+                            <label class="form-label" for="customFile">
+                                Upload Prescription or
+                                <button style="width:150px !important" id="btnVerify" onclick="OpenToClick()" name="btnVerify" type="button" class="btn btn-lg btn-primary">Click a Photo</button>
+
+                            </label>
+                            @*<input type="file" class="form-control file" id="customFile" />*@
+                            <input type="file" class="form-control file" name="file" id="file" onchange="CloseToClick()" value="a.txt" />
+                            <p>  A prescription must be shared with the technician before the procedure </p>
+                            <br><br>
+
+                            @Html.TextBoxFor(model => model.UPLOADORCLICKPHOTO, new { @readonly = "readonly", maxLength = 24, size = 24, @class = "form-control", style = "visibility:hidden" })
+                            @Html.TextArea("dataImage", new { @readonly = "readonly", style = "visibility:hidden" })
+                            @*<input type="submit" value="Upload file" />*@
+
+                            @ViewBag.Message
+
+                        </div>
+                        <div class="form-group  col-sm-6">
+                            <label for="slot-type">@*OFFER/PROMO*@ </label>
+                            @*<select id="slot-type" class="form-control">
+                                    <option selected>Choose...</option>
+                                    <option>X-Ray</option>
+                                </select>*@
+                            @*@Html.DropDownList("OFFEROPTION", new SelectList(ViewBag.OFFEROPTIONS, "Value", "Text"), "--SELECT--", new { @onchange = "refreshOffers($(this).val())", @class = "form-control", @disabled = true })*@
+
+                            @*@Html.ValidationMessageFor(model => model.OFFEROPTIONID, "", new { @class = "text-danger" })*@
+                        </div>
+                        <div class="form-group  col-sm-6">
+                            <label for="visit-type">Enter Promo Code </label>
+                            @Html.TextBox("OFFERPROMONAME","", new { maxLength = 24, size = 24, @class = "form-control" })
+                            <a href="#" class="btn btn-lg btn-primary" id="APPLY" onclick="refreshOfferPercentage();">Apply</a><div id="lblComment"></div>
+                            @Html.Hidden("OFFERID","", new { maxLength = 24, size = 24, @class = "form-control" })
+                            @*@Html.DropDownListFor(x => x.OFFERID, new SelectList(ViewBag.OFFERS, "Value", "Text"), "--SELECT--", new { @onchange = "refreshOfferPrice($(this).val())", @class = "form-control" })*@
+
+                            @Html.ValidationMessageFor(model => model.OFFERID, "", new { @class = "text-danger" })
+                            @*<select id="visit-type" class="form-control">
+                                    <option selected>Choose...</option>
+                                    <option>Chest</option>
+
+                                </select>*@
+                        </div>
+                        <div class="form-group  col-sm-6">
+                            <label for="visit-type">Offer % </label>
+                            @Html.TextBox("OFFERDISCOUNT", "", new { maxLength = 24, size = 24, @class = "form-control", @readonly = "readonly" })
+
+                            @*<select id="visit-type" class="form-control">
+                                    <option selected>Choose...</option>
+                                    <option>Chest</option>
+
+                                </select>*@
+                        </div>
+
+                        <div class="form-group  col-sm-12">
+
+
+                            <table border="0" cellpadding="0" cellspacing="0" style="display:none" id="divPhoto">
+                                <tr>
+                                    <th align="center"><u>Live Camera</u></th>
+                                    <th align="center"><u>Captured Picture</u></th>
+                                </tr>
+                                <tr>
+                                    <td><div id="webcam"></div></td>
+                                    <td><img id="imgCapture" /></td>
+                                </tr>
+                                <tr>
+                                    <td align="center">
+                                        <input type="button" id="btnCapture" value="Capture" />
+                                    </td>
+                                    <td align="center">
+                                        @*<input type="button" id="btnUpload" value="Upload" disabled="disabled" />*@
+                                    </td>
+                                </tr>
+                            </table>
+                            <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+                            <script src="~/Webcam_Plugin/WebCam.js"></script>
+                            <script type="text/javascript">
+                                $(function () {
+                                    Webcam.set({
+                                        width: 320,
+                                        height: 240,
+                                        image_format: 'jpeg',
+                                        jpeg_quality: 90
+                                    });
+                                    Webcam.attach('#webcam');
+                                    $("#btnCapture").click(function () {
+                                        Webcam.snap(function (data_uri) {
+                                            //  alert(data_uri);
+                                            $("#imgCapture")[0].src = data_uri;
+                                            $("#btnUpload").removeAttr("disabled");
+                                            //  alert($("#file").val());
+                                            $("#UPLOADORCLICKPHOTO").val("CLICKPHOTO");
+                                            //   alert($("#imgCapture")[0].src);
+                                            $("#dataImage").val(data_uri);
+                                        });
+                                    });
+                                    //  $("#btnUpload").click(function () {
+                                    //$("#btnSubmit").click(function () {
+                                    //    var imgcap = $("#imgCapture")[0].src;
+                                    //    if ($("#UPLOADORCLICKPHOTO").val() == "") {
+                                    //        //alert(imgcap);
+                                    //        $.ajax({
+                                    //            url: "/SlotBookingMaster/SaveCapture",
+                                    //            type: "post",
+                                    //            data: "id=" + $("#imgCapture")[0].src,
+                                    //            success: function (r) { }
+                                    //        });
+                                    //    } else { }
+                                    //});
+                                });
+                                var VerifyCapture = function () {
+                                    if ($("#UPLOADORCLICKPHOTO").val() == "") { } else {
+                                        // alert($("#mobile").val());
+                                        $.ajax({
+                                            url: "/SlotBookingMaster/SaveCapture/",
+                                            type: "get",
+                                            data: "{id: '" + $("#imgCapture")[0].src + "'}",
+                                            dataType: "json",
+                                            contentType: "application/json; charset=utf-8",
+                                            success: function (data) {
+                                                //  alert(data);
+                                                if (data == "success") {
+                                                    //  alert("UserExists");
+                                                    //    alert("OTP sent Successfully");
+                                                    document.getElementById("btnVerify").type = "submit";
+
+                                                }
+                                                else {
+                                                    //  alert("failure");
+                                                    document.getElementById("btnVerify").type = "button";
+
+                                                    //alert("failed");
+
+                                                }
+
+
+                                            }
+                                        })
+                                    }
+                                }
+                            </script>
+
+
+
+
+                        </div>
+                        <div class="form-group  col-sm-6">
+
+                            @*@Html.TextArea("Consent", new { @class = "form-control" })*@
+                        </div>
+
+                        <div class="form-group  col-sm-6">
+                            <label for="slot-type">@*Service Type*@ </label>
+                            @*<select id="slot-type" class="form-control">
+                                    <option selected>Choose...</option>
+                                    <option>X-Ray</option>
+                                </select>*@
+                            @*@Html.DropDownListFor(x => x.SERVICEGROUPID, new SelectList(ViewBag.GROUPSERVICES, "Value", "Text"), "--SELECT--", new { @onchange = "refreshServices($(this).val())", @class = "form-control", @disabled = true })*@
+
+                            @Html.ValidationMessageFor(model => model.SERVICEGROUPID, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group  col-sm-6">
+                            <label for="visit-type">@*Select Body Part (Price per view)*@</label>
+                            @*@Html.DropDownListFor(x => x.SERVICETYPEID, new SelectList(ViewBag.SERVICES, "Value", "Text"), "--SELECT--", new { @onchange = "refreshPrice($(this).val(),$('#SERVICEGROUPID').val(),1)", @class = "form-control", @disabled = true })*@
+
+                            @Html.ValidationMessageFor(model => model.SERVICETYPEID, "", new { @class = "text-danger" })
+                            @*<select id="visit-type" class="form-control">
+                                    <option selected>Choose...</option>
+                                    <option>Chest</option>
+
+                                </select>*@
+                        </div>
+
+                        @*<div class="form-group  col-sm-6">
+                                <label for="visit-type"> Price </label>
+                                @Html.TextBox("PRICE", "", new { maxLength = 24, size = 24, @class = "form-control", @readonly = "readonly" })
+                                @Html.HiddenFor(model => model.PRICERATEID, new { maxLength = 24, size = 24, @class = "form-control" })
+
+                            </div>*@
+
+
+
+                        <div id="success" class="mt-40">
+                            <div class="icon-box bordered">
+                                <i class="fa fa-check fa-round fa-4x text-theme"></i>
+                                <h3 class="lead text-theme">Your message was successfully sent!</h3>
+                            </div>
+                        </div>
+
+                        <div id="error" class="mt-40">
+                            <div class="icon-box bordered">
+                                <i class="fa fa-lock fa-round fa-4x text-theme"></i>
+                                <h3 class="lead text-theme">Something went wrong, try refreshing and submitting the form again.</h3>
+                            </div>
+                        </div>
+                        <div class="clear-fix"> </div>
+                    </div>
+
+
+                    @Html.TextArea("txtslotbookingdetails", new { @readonly = "readonly",style="visibility:hidden" })
+                    <table id="tblCustomers" class="table" cellpadding="0" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th style="width:150px">Service</th>
+                                <th style="width:150px">Body Part</th>
+
+                                <th style="width:150px">Price</th>
+                                <th style="width:150px">Net Payable</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @*@foreach (var customer in ViewBag.SLOTBOOKINGDETAILS)
+                                {
+                                    <tr>
+                                        <td>@customer.f.SERVICEGROUPNAME</td>
+                                        <td>@customer.c.SERVICENAME</td>
+                                        <td><input type="button" value="Remove" onclick="Remove(this)" /></td>
+                                    </tr>
+                                }*@
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td>
+                                    @*<input type="text" id="txtName" />*@
+                                    @Html.DropDownListFor(x => x.SERVICEGROUPID, new SelectList(ViewBag.GROUPSERVICES, "Value", "Text"), "--SELECT--", new { @onchange = "refreshServices($(this).val())", @class = "form-control" })
+                                </td>
+                                <td>
+                                    @*<input type="text" id="txtCountry" />*@
+                                    @Html.DropDownListFor(x => x.SERVICETYPEID, new SelectList(ViewBag.SERVICES, "Value", "Text"), "--SELECT--", new { @onchange = "refreshPrice($(this).val(),$('#SERVICEGROUPID').val(),1)", @class = "form-control" })
+                                </td>
+                                <td>
+                                    @Html.TextBox("PRICE", "", new { maxLength = 24, size = 24, @class = "form-control", @readonly = "readonly" })
+                                    @Html.HiddenFor(model => model.PRICERATEID, new { maxLength = 24, size = 24, @class = "form-control" })
+                                </td>
+                                <td>
+                                    @Html.TextBox("NETPRICE", "", new { maxLength = 24, size = 24, @class = "form-control", @readonly = "readonly" })
+                                </td>
+                                <td><input type="button" id="btnAdd" value="Add" disabled /></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <br />
+                    @*<input type="button" id="btnSave" value="Save All" />*@
+                    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+                    <script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
+                    <script type="text/javascript">
+                        $("body").on("click", "#btnAdd", function () {
+                            //Reference the Name and Country TextBoxes.
+                            //  var txtName = $("#SERVICEGROUPID");
+                            var txtName = $("#SERVICEGROUPID :selected");
+                            if (txtName.text() == "X-RAY") {
+
+                            }
+                            else {
+                            }
+                            $('#btnSubmit').attr("disabled", false);
+                            var txtCountry = $("#SERVICETYPEID :selected");
+                            var txtPrice = $("#PRICE");
+                            var NETPRICE = $("#NETPRICE");
+                            //Get the reference of the Table's TBODY element.
+                            var tBody = $("#tblCustomers > TBODY")[0];
+
+                            //Add Row.
+                            var row = tBody.insertRow(-1);
+
+                            //Add Name cell.
+                            var cell = $(row.insertCell(-1));
+                            // cell.html(txtName.val());
+                            cell.html(txtName.text());
+
+                            //Add Name cell.
+                            var cell = $(row.insertCell(-1));
+                            // cell.html(txtName.val());
+                            cell.html(txtCountry.text());
+
+                            //Add Price cell.
+                            cell = $(row.insertCell(-1));
+                            cell.html(txtPrice.val());
+
+
+                            //Add Name cell.
+                            var cell = $(row.insertCell(-1));
+                            // cell.html(txtName.val());
+                            cell.html(txtName.val());
+                            cell.hide();
+                            //Add Country cell.
+                            cell = $(row.insertCell(-1));
+                            cell.html(txtCountry.val());
+                            cell.hide();
+
+
+
+
+                            //Add Button cell.
+                            cell = $(row.insertCell(-1));
+                            var btnRemove = $("<input />");
+                            btnRemove.attr("type", "button");
+                            btnRemove.attr("onclick", "Remove(this);");
+                            btnRemove.val("Remove");
+                            cell.append(btnRemove);
+                            var customers = new Array();
+                            $("#tblCustomers TBODY TR").each(function () {
+                                var row = $(this);
+                                var customer = {};
+                                customer.SERVICEGROUPID = row.find("TD").eq(3).html();
+                                customer.SERVICETYPEID = row.find("TD").eq(4).html();
+                                customer.PRICE = row.find("TD").eq(2).html();
+                                customers.push(customer);
+                            });
+                            //alert(JSON.stringify(customers));
+                            var cus = JSON.stringify(customers);
+                            $("#txtslotbookingdetails").val(cus);
+                            //    txtslotbookingdetails.val(cus);
+                            //Clear the TextBoxes.
+                            //     txtName.val(0);
+                            $("#SERVICEGROUPID").val("");
+                            $("#SERVICETYPEID").val(0);
+                            //  txtCountry.val(0);
+                            txtPrice.val(0);
+                            NETPRICE.val(0);
+
+                        });
+
+                        function Remove(button) {
+                            //Determine the reference of the Row using the Button.
+                            var row = $(button).closest("TR");
+                            var name = $("TD", row).eq(0).html();
+                            if (confirm("Do you want to delete: " + name)) {
+                                //Get the reference of the Table.
+                                var table = $("#tblCustomers")[0];
+
+                                //Delete the Table row using it's Index.
+                                table.deleteRow(row[0].rowIndex);
+                            }
+                        };
+
+
+                    </script>
+                    <div class="form-group ">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                            <label class="form-check-label" for="defaultCheck1" id="lbldefaultCheck1">
+                                I hereby give my consent for the procedure<br />
+
+                            </label>
+                            <div class="ex3" id="consent">
+                                I /the patient, do hereby agree, and give my consent for undergoing an X-ray diagnostic procedure(s) for myself/the patient conducted by the radio-technician provided by X-Rai, and Acknowledge that:<br />
+
+                                •	I have been made aware of the reason(s), risks, benefits, and all complications, that could arise during, or after the procedure. I have also been informed of the alternatives – If any- available for this procedure, along with the advantages and disadvantages of the same.<br />
+
+                                •	For Female Patients:<br />
+                                I declare that I/the patient am/is NOT pregnant at this point of time, and have no reason to suspect I am/is pregnant. I understand that if I/ the patient, withhold the fact that I/ the patient is pregnant at the time when specifically asked, it will harm the foetus/baby, and the responsibility for causing of this harm lies with me.<br />
+                                I have been made aware that X-Rays causes radiation exposure that is harmful, but without which, its not be able to bring out structural detail of various body parts required for imaging, and reporting leading to an impact on the future course of my/patient care.<br />
+                                •	I acknowledge I receive no guarantees regarding the benefits to be realized or the consequences of this procedure.<br />
+                                •	I acknowledge that I have read the above information in a language I understand, and fully understand the above information. I also understand, that I have the opportunity & right to ask questions pertaining to the test that I am going to undergo, and have asked these questions, that they have been answered to my satisfaction by the radio technician in a language that I fully comprehend and understand.<br />
+                                •	I affirm that this consent is given by me in my full senses.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group  ">
+                        <label for="inputEmail"></label>
+                        <button disabled type="submit" class="btn btn-lg btn-primary" id="btnSubmit" onclick="VerifyCapture()">Submit</button>
+                    </div>
+                    @*</form>*@
+                </div>
+
+
+
+                <!-- col 2 after form-->
+                <!-- col 2 after form-->
+            </div>
+        </div>
+    </div>
+    <script>
+
+        function EnableDisablePatient() {
+            //  alert("sai1");
+            //  $("#PATIENTNAME").show()
+            // $("#PATIENTNAMES").hide()
+
+            //   $("#PATIENTNAME").prop("visible",true)
+            //  $("#PATIENTNAMES").type("hidden");
+            $("#PATIENTNAME").val("");
+            $("#AGE").val("");
+            $("#WEIGHT").val("");
+            $("#GENDER").val("");
+            $("#ADDRESS").val("");
+            $("#ALTERNATEMOBILENUMBER").val("");
+            $("#EMAIL").val("");
+            $("#PATIENTNAMES").val("");
+            //   $("#PATIENTNAME").attr('visible', false);
+
+            $("#PATIENTNAMES").attr('visible', false);
+
+            //alert("sai2");
+
+        }
+        var SendOTP = function () {
+
+            $.ajax({
+                url: "/Account/SendOTP",
+                type: "post",
+                success: function (data) {
+                    alert(data);
+                    if (data == "success") {
+
+                        alert("OTP sent Successfully");
+                    }
+                    else {
+                        alert("failed");
+
+                    }
+
+
+                }
+            })
+
+        }
+    </script>
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $("#consent").hide();
+            $("#defaultCheck1").hide();
+            $('label[for="defaultCheck1"]').hide();
+            $("#btnSubmit").click(function () {
+
+                if ($("#SLOTID").val() > 0) {
+                } else {
+                    alert("Please select the slot.");
+                    return false;
+                }
+                if ($("#SLOTID").text() == "--SELECT--") {
+                    alert("Please select the slot text.");
+                    return false;
+                } else {
+
+                }
+                if ($("#txtslotbookingdetails").val() == "") {
+                    alert("Please select the atmost one service.");
+                    return false;
+                } else {
+
+                }
+
+
+                if ($("#LOCATIONID").val() == 1) {
+                    $('#SERVICEGROUPID').attr("disabled", false);
+                }
+                else {
+                    alert("Please select the location.");
+                    return false;
+                }
+                if ($("#SLOTBOOKINGDATETIME").val() == "" {
+                    alert("Please select the slot booking date.");
+                    return false;
+                }
+                else {
+
+
+                }
+                if ($("#PAYMENTMETHOD").val() == "" {
+                    alert("Please select the payment method.");
+                    return false;
+                }
+                else {
+
+
+                }
+                if ($("#SERVICEGROUPID").val() == 1) {
+
+                    if ($("#defaultCheck1").prop("checked") == true) {
+                        //  alert("Checkbox is checked.");
+                    }
+                    else if ($("#defaultCheck1").prop("checked") == false) {
+
+                        alert("Please click on the consent check box.");
+                        return false;
+                    }
+                }
+                else {
+                }
+            });
+
+
+            //$("#form1").validate({
+            //    rules: {
+            //        defaultCheck1: "required"
+            //    },
+            //    messages: {
+            //        defaultCheck1: "Please specify your name"
+            //    }
+            //})
+            $("#dataImage").hide();
+            $("#PATIENTNAMES").on("change", function () {
+                //   alert("Sai");
+            });
+
+            $('#PATIENTNAMES').change(function () {
+                //   alert("sai");
+                //LoadRegion(this.value);
+            });
+
+            $("#SLOTBOOKINGDATETIME").datepicker({
+                dateFormat: "yy-mm-dd",
+                maxDate: new Date('2021-5-10')
+            });
+            //  alert("Sai");
+            $('#SLOTBOOKINGDATETIME').datepicker({
+                dateFormat: "yy-mm-dd",
+                maxDate: 7,
+                minDate: -10
+
+            });
+
+        });
+
+
+        // alert("Sai");
+        DateTimePicker();
+        $("#SLOTBOOKINGDATETIME").change(function () {
+            var date2 = $("#SLOTBOOKINGDATETIME").datepicker('getDate', '+1d');
+            console.log(date2);
+            date2.setDate(date2.getDate() + 1);
+            $("#SLOTBOOKINGDATETIME").datepicker('option', 'minDate', date2);
+            $("#SLOTBOOKINGDATETIME").datepicker('setDate', date2);
+        });
+
+        $("#btnSave").click(function () {
+            alert($("#SLOTBOOKINGDATETIME").val());
+            alert($("#SLOTBOOKINGDATETIME").val());
+            var objStudentModel = { FromDate: $("#SLOTBOOKINGDATETIME").val(), ToDate: $("#SLOTBOOKINGDATETIME").val() };
+            $.ajax({
+                async: true,
+                type: 'POST',
+                dataType: 'JSON',
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify(objStudentModel),
+                success: function () {
+                    alert('da');
+                },
+                error: function () {
+
+                }
+            });
+        });
+        //});
+
+        function DateTimePicker() {
+            $(".datepicker").datepicker({
+                dateFormat: 'dd-M-yy',
+                changeMonth: true,
+                changeYear: true,
+                showOn: 'button',
+                sideBySide: true,
+                controlType: 'select',
+                buttonText: '<span class="glyphicon glyphicon-calendar" ></span>',
+                minDate: new Date()
+            });
+        }
+
+    </script>
+
+
+    <script type="text/javascript">
+
+        function OnChange() {
+            //  alert("Sai");
+            //if ($("#enterotp").val() == "") {
+
+
+            //}
+            //else {
+            //    $("#btnSubmit").attr("disabled", false);
+
+            //}
+        }
+
+        function OpenToClick() {
+            //  alert("Sai");
+            document.getElementById("divPhoto").style.display = "block"
+
+        }
+        function CloseToClick() {
+            document.getElementById("divPhoto").style.display = "none"
+            divPhoto
+        }
+
+    </script>
+</form>
+
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

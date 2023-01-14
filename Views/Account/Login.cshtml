@@ -1,0 +1,454 @@
+﻿@model DOTNETCOREEXAMPLE.Models.Class_PROJECT_USER_MASTER
+
+@{
+    ViewBag.Title = "Log in";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var otpmessage = TempData["OTPMESSAGE"] ?? string.Empty;
+}
+@*<%
+        apikey = "yourapikey"
+        address = "https://api.textlocal.in/send/?"
+        message = "This is your message"
+        message = Server.urlencode(message)
+        numbers = "918123456789"
+        sender = "TXTLCL"
+        url = address & "apikey=" & apikey & "&numbers=" & numbers & "&message=" & message & "&sender=" & sender
+        set xmlhttp = CreateObject("MSXML2.ServerXMLHTTP")
+        xmlhttp.open "POST", url, false
+        xmlhttp.send ""
+        msg = xmlhttp.responseText
+        response.write(msg)
+        set xmlhttp = nothing
+    %>*@
+@*<h2>@ViewBag.Title.</h2>*@
+
+<script>
+    var otpmessage = '@otpmessage';
+    if (otpmessage) alert(otpmessage);
+</script>
+<div class="section-heading-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <h1 class="heading-page text-center-xs">@ViewBag.Title.</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb text-right text-center-xs">
+                    <li>
+                        <a href="#">Home</a>
+                    </li>
+                    <li class="active">Login</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="section section-sm section-bottom">
+    <div class="container">
+
+        <div class="row ">
+
+            @*<h3 class="title-text"> Login to Book your Slot</h3>*@
+            <div class="appointmentform">
+                <div>
+                    <!-- <p class="text-theme appointment-sub-title">Please fill in your details to book your slot</p>-->
+
+                </div>
+                @*<form id="frmSubmit" onload="OnChange()">*@
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post,null, new { @class = "form-horizontal", role = "form" }))
+                {
+                @Html.AntiForgeryToken()
+
+                <h3> User </h3>
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="field-group">
+
+                    <div class="form-group  col-sm-2">
+                        <label for="inputEmail">Phone Number</label>
+                    </div>
+                    <div class="form-group  col-sm-2">
+                        @*<input type="number" class="form-control" id="PHONENUMBER" name="PHONENUMBER" placeholder=" ">*@
+                        @Html.TextBoxFor(model => model.mobile, "", new { maxLength = 24, size = 24, @class = "form-control", OnChange = "Verify()" })
+                        @Html.ValidationMessageFor(m => m.mobile, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group  col-sm-2">
+                        &nbsp;
+                        <button id="sendotp" type="button" style="padding:10px inherit!important; line-height:13px!important;" class="btn btn-lg btn-primary" onclick="SendOTP()">Send OTP</button>
+                    </div>
+                    <div class="form-group  col-sm-2 ">
+                        <label id="lblenterotp" for="inputEmail">Enter OTP</label>
+                    </div>
+                    <div class="form-group  col-sm-2">
+                        @Html.TextBox("enterotp", "", new { OnChange = "OnChange()", @id = "enterotp", @class = "form-control",@style = "visibility:visible" })
+                        @*<input type="email" class="form-control" id="inputEmail" placeholder=" ">*@
+                    </div>
+                    <div class="form-group  col-sm-2 ">
+                        <label for="inputEmail"> <span id="lblmmpin" style="visibility:hidden">&nbsp;&nbsp; (or) MPIN </span></label>
+                    </div>
+                    <div class="form-group  col-sm-2">
+
+                        @Html.TextBox("mmpin", "", new { @id = "mmpin", @class = "form-control", @style = "visibility:hidden" })
+                        @*<input type="email" class="form-control" id="inputEmail" placeholder=" ">*@
+                    </div>
+                    <div class="form-group  col-sm-2">
+                        &nbsp;
+                        <button id="btnVerify" style="padding:10px inherit!important; line-height:13px!important;" onclick="CreateOrLogin()" name="btnVerify" type="submit" class="btn btn-lg btn-primary">Verify OTP (or) MPIN</button>
+                        @*<a class="text-theme-xs pull-right a-black" onclick="showInPopup('@Url.Action("ForgetPassword")','Show a Sevice File')"> Forget MPIN</a>*@
+                        <a class="text-theme-xs pull-right a-black" href="~/Account/ForgetPassword"> Forget MPIN</a>
+                        @*<a class="text-theme-xs pull-right a-black" onclick="showInPopup('@Url.Action("Index1", "SERVICEFILESDETAILS", new { id = 73 })','Show a Sevice File')"> Forget1 MPIN</a>*@
+
+                        @*<a id="atagforget" style="visibility:hidden" href="#" class="text-theme-xs pull-right a-black" onclick="openforgetmpin()">Forgot MPIN ?</a>*@
+                        @*class="text-theme-xs pull-right a-black"*@
+                    </div>
+
+                    <div class="clear-fix"> </div>
+
+
+
+                </div>
+
+                <div class="field-group" id="forgetpin" style="visibility:hidden;">
+
+                    <div class="form-group  col-sm-2">
+                        <label for="inputEmail">MPIN</label>
+                    </div>
+                    <div class="form-group  col-sm-2">
+                        @*<input type="number" class="form-control" id="PHONENUMBER" name="PHONENUMBER" placeholder=" ">*@
+                        @Html.TextBox("typempin", "", new {  @id = "typempin", @class = "form-control" })
+                       
+                    </div>
+                    <div class="form-group  col-sm-2">
+                        &nbsp;
+                       
+                    </div>
+                    <div class="form-group  col-sm-2 ">
+                        <label id="lblenterotp" for="inputEmail">Re type MPIN</label>
+                    </div>
+                    <div class="form-group  col-sm-2">
+                        @Html.TextBox("retypempin", "", new {  @id = "retypempin", @class = "form-control" })
+                        @*<input type="email" class="form-control" id="inputEmail" placeholder=" ">*@
+                    </div>
+
+                  
+                    <div class="form-group  col-sm-2">
+                        &nbsp;
+                        <button id="btnMPIN" style="padding:10px inherit!important; line-height:13px!important;" onclick="UpdateMPIN()" name="btnVerify" type="submit" class="btn btn-lg btn-primary">Update MPIN</button>
+                        
+                    </div>
+
+                    <div class="clear-fix"> </div>
+
+
+
+                </div>
+
+
+                <div id="divRegistration" style="display:none;">
+                    <div>
+                        @*@using (Html.BeginForm("RegisterVisitor", "Account", FormMethod.Post))*@
+                        @using (Html.BeginForm())
+                            {
+                        @Html.AntiForgeryToken()
+
+
+
+
+
+
+                        <div class="form-group  col-sm-6">
+                            <div class="form-group col-sm-10">
+                                <label for="inputEmail">Full Name</label>
+                                @Html.TextBoxFor(model => model.fullname, new { @class = "form-control" })
+
+
+
+
+
+
+                                @Html.ValidationMessageFor(m => m.fullname)
+                                @*<input type="email" class="form-control" id="inputEmail" placeholder=" ">*@
+                            </div>
+                        </div>
+                        <div class="form-group  col-sm-6">
+                            <div class="form-group col-sm-10">
+                                <label for="slot">Gender </label>
+                                @Html.DropDownListFor(x => x.gender, new SelectList(ViewBag.GENDERS, "Value", "Text"), "--SELECT--", new { @class = "form-control" })
+
+                                @Html.ValidationMessageFor(model => model.gender, "", new { @class = "text-danger" })
+                                @*<select id="slot" class="form-control">
+                            <option selected>Choose...</option>
+                            <option>Male</option>
+                            <option>Female</option>
+                        </select>*@
+                            </div>
+                        </div>
+                        <div class="form-group  col-sm-6">
+                            <div class="form-group col-sm-10">
+                                <label for="inputEmail">Email ID</label>
+                                @Html.TextBoxFor(model => model.email, new { @class = "form-control", Value = @ViewBag.EMAIL })
+                                @Html.ValidationMessageFor(m => m.email)
+                                @*<input type="email" class="form-control" id="inputEmail" placeholder=" ">*@
+                            </div>
+                        </div>
+                        <div class="form-group  col-sm-6">
+                            <div class="form-group col-sm-10">
+                                <label for="inputEmail">MPIN</label>
+                                @Html.TextBoxFor(model => model.mpin, new { @class = "form-control", Value = @ViewBag.EMAIL })
+                                @Html.ValidationMessageFor(m => m.mpin)
+                                @*<input type="email" class="form-control" id="inputEmail" placeholder=" ">*@
+                            </div>
+                        </div>
+                        <div class="clear-fix"> </div>
+                        <div class="form-group col-sm-4">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="button" value="Create" class="btn btn-default" onclick="CreateVisitor()" />
+                            </div>
+                        </div>
+
+                            }
+
+                    </div>
+
+                </div>
+                }
+
+                @*</form>*@
+            </div>
+
+
+
+            <!-- col 2 after form-->
+            <!-- col 2 after form-->
+        </div>
+    </div>
+</div>
+<script>
+
+    var SendOTP = function () {
+
+        $.ajax({
+            url: "/Account/SendOTP",
+            type: "post",
+            data: "mobile=" + $("#mobile").val(),
+            success: function (data) {
+              //  alert(data);
+                if (data == "success") {
+                    alert("OTP sent Successfully");
+
+
+
+    }
+    else {
+                    alert("failed");
+
+
+    }
+
+
+    }
+        })
+
+    }
+
+    var Verify = function () {
+       // alert($("#mobile").val());
+        $.ajax({
+            url: "/Account/UserExists/"  ,
+            type: "get",
+            data: "Prefix=" + $("#mobile").val(),
+            success: function (data) {
+              //  alert(data);
+                if (data == "success") {
+                  //  alert("UserExists");
+                //    alert("OTP sent Successfully");
+                    document.getElementById("btnVerify").type = "submit";
+                    document.getElementById('mmpin').style.visibility = "visible";
+                    document.getElementById('lblmmpin').style.visibility = "visible";
+                    document.getElementById('atagforget').style.visibility = "visible";
+
+                 //   document.getElementById('lblenterotp').style.visibility = "hidden";
+                 //   document.getElementById('sendotp').style.visibility = "hidden";
+                 //   document.getElementById('enterotp').style.visibility = "hidden";
+
+
+
+
+
+
+                }
+                else {
+                  //  alert("failure");
+                    document.getElementById("btnVerify").type = "button";
+                    document.getElementById('mmpin').style.visibility = "hidden"
+                    document.getElementById('lblmmpin').style.visibility = "hidden"
+                    $("#mmpin").hide();
+                    //alert("failed");
+
+                }
+
+
+            }
+        })
+    }
+
+
+
+
+    var CreateVisitor = function () {
+        // alert($("#mobile").val());
+
+        $.ajax({
+            url: "/Account/RegisterVisitor/",
+            type: "get",
+            data: {
+                mobile: $("#mobile").val(),
+                fullname: $("#fullname").val(),
+                gender: $("#gender").val(),
+                email: $("#email").val(),
+                mpin: $("#mpin").val()
+
+            },
+            success: function (data) {
+
+                alert("Sucessfully Registered Please login");
+                 window.location.href = '@Url.Action("Login","Account")';
+                if (data == "success") {
+                    //    alert("OTP sent Successfully");
+
+                    document.getElementById("btnVerify").type = "submit";
+
+                }
+                else {
+                    //  alert("failure");
+                    document.getElementById("btnVerify").type = "button";
+
+                    //alert("failed");
+
+                }
+
+
+            }
+        })
+    }
+
+    var CreateOrLogin = function () {
+        // alert($("#mobile").val());
+      //  if ($("#mmpin").val() == "") {
+           // alert("Please select the MPIN.");
+           //  window.location.href = '@Url.Action("Login","Account")';
+         //   return false;
+      //  } else {
+           // alert("mpin exists");
+
+
+            $.ajax({
+                url: "/Account/VerifyOTP/",
+                type: "Post",
+                data: {
+                    otp: $("#enterotp").val(),
+                    mobile: $("#mobile").val(),
+                    mpin: $("#mmpin").val()
+
+                },
+                success: function (data) {
+                    //   alert(data);
+                    if (data == "success") {
+                        //  alert("success");
+                        var buttonorsumbit = document.getElementById("btnVerify").type;
+                        if (buttonorsumbit == "button") {
+
+                            alert("You are logging in for first time, kindly fill up the details below.");
+                            document.getElementById("divRegistration").style.display = "block";
+                        }
+                        else {
+                            document.getElementById("divRegistration").style.display = "none";
+                        }
+
+
+                    }
+                    else if (data == "failure") {
+
+                        alert("failure");
+                        if (buttonorsumbit == "button" && data == "failure") {
+                            alert("Entered OTP or MPIN is wrong");
+
+                        }
+                        $("#enterotp").val("");
+                        //alert("failed");
+
+                    }
+                    else {
+                        alert("empty");
+                    }
+
+
+                }
+            })
+        //}
+    }
+
+    var UpdateMPIN = function () {
+        // alert($("#mobile").val());
+
+        $.ajax({
+            url: "/Account/UpdateMPIN/",
+            type: "Post",
+            data: {
+
+                id: $("#mobile").val(),
+                mpin: $("#typempin").val()
+
+
+            },
+            success: function (data) {
+                //   alert(data);
+                if (data == "success") {
+                      alert("MPIN updated successfully");
+                      window.location.href = '@Url.Action("Login","Account")';
+
+
+                }
+                else if (data == "failure") {
+
+                    alert("failure");
+
+                    //alert("failed");
+
+                }
+                else {
+                    alert("empty");
+                }
+
+
+            }
+        })
+    }
+    function openforgetmpin() {
+       // alert("Sai");
+        //$("#forgetpin").show();
+        document.getElementById("forgetpin").style.visibility = "visible";
+       // return false;
+    }
+
+    showInPopup = (url, title) => {
+        alert(url);
+        $.ajax({
+            type: "GET",
+            url: url,
+            success: function (res) {
+                $("#form-modal .modal-body").html(res);
+                $("#form-modal .modal-title").html(title);
+                $("#form-modal").modal('show');
+
+            }
+
+        }
+
+        )
+
+    }
+</script>
+@*@section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }*@
+

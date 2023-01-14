@@ -1,0 +1,166 @@
+﻿@model DOTNETCOREEXAMPLE.Models.Class_Price_Rate_Master
+
+@{
+    ViewData["Title"] = "Create";
+Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<h2>Create</h2>
+
+<h4>Price Rate Master</h4>
+<hr />
+<script>
+
+     function refreshServices(id) {
+         $("#SERVICEID").attr("disabled", false);
+         var projects = $("#SERVICEID");
+        if ($("#SERVICEGROUPID").val() == "") {
+            //alert("Sai");
+            $('#SERVICEID').attr("disabled", true);
+            //  $('#SERVICETYPEID').attr("disabled", false);
+        } else {
+            $('#SERVICEID').attr("disabled", false);
+            //   $('#SERVICETYPEID').attr("disabled", true);
+            //  alert("Please select the location.");
+            //   return false;
+        }
+
+         $('#SERVICEID').attr("disabled", false);
+    $.get('@Url.Action("GetServicesByServiceGroup", "SlotBookingMaster")', {dt:id},
+        function (result) {
+            // clear the dropdown
+            projects.empty();
+            // rebuild the dropdown
+            projects.append($('<option/>').text('--SELECT--').val(0));
+            $.each(result, function (i, e) {
+                projects.append($('<option/>').text(e.Text).val(e.Value));
+
+            });
+            //if (id == 3) {
+            //    $("#consent").hide();
+            //    $('#OFFERID').attr("disabled", true);
+
+            //    $("#defaultCheck1").hide();
+            //    $('label[for="defaultCheck1"]').hide();
+            // //   $("#lbldefaultCheck1").hide();
+            //} else {
+            //    $("#consent").show();
+            //    $('#OFFERID').attr("disabled", false);
+            //    $("#defaultCheck1").show();
+            //    $('label[for="defaultCheck1"]').show();
+            //   // $("#lbldefaultCheck1").show();
+
+            //}
+        });
+
+         refreshPrice($("#SERVICEID").val(), $("#SERVICEGROUPID").val(), 1)
+    }
+
+      function refreshPrice(serviceid,servicegroupid,visittypeid) {
+        //var projects = $("#SERVICETYPEID");
+
+         $.get('@Url.Action("GetPriceServiceGroupVisitWise", "PriceRateMaster")', { SERVICEID: serviceid, SERVICEGROUPID: servicegroupid, VISITTYPEID: visittypeid},
+        function (result) {
+            // clear the dropdown
+          //  projects.empty();
+            // rebuild the dropdown
+         //   alert(result);
+            if (result == "") {
+                $("#PRICERATEID").val("");
+                $("#PRICE").val("");
+            }
+            else {
+                $.each(result, function (i, e) {
+                    //alert(e.Text);
+                    //alert(e.Value);
+                    if (e.Text != "") {
+                        var customers = new Array();
+                        var count = 0;
+                        var amountbeforeoffer = 0;
+                        $("#tblCustomers TBODY TR").each(function () {
+                            var row = $(this);
+                            var customer = {};
+                            customer.SERVICEGROUPID = row.find("TD").eq(3).html();
+                            if (customer.SERVICEGROUPID == servicegroupid) { count = count + 1;} else { }
+                            customer.SERVICETYPEID = row.find("TD").eq(1).html();
+                            customer.PRICE = row.find("TD").eq(2).html();
+                            customers.push(customer);
+                        });
+                        if (count == 1) {
+                            amountbeforeoffer = e.Text - (e.Text * 50 / 100);
+                        } else if (count >= 2) {
+
+                            amountbeforeoffer = e.Text - (e.Text * 75 / 100);
+                        }
+                        else if (count == 0) {
+                            amountbeforeoffer = e.Text;
+                        }
+                        $("#PRICERATEID").val(e.Value);
+
+                      //  $("#PRICE").val(e.Text);
+                        $("#PRICE").val(amountbeforeoffer);
+                        var OFFERDISCOUNT = $("#OFFERDISCOUNT").val();
+                        var amountafteroffer = amountbeforeoffer - (amountbeforeoffer * OFFERDISCOUNT / 100);
+                        $("#NETPRICE").val(amountafteroffer);
+                    }
+                    else {
+                        $("#PRICERATEID").val(1);
+                        $("#PRICE").val(1);
+
+                    }
+                    /*  projects.append($('<option/>').text(e.Text).val(e.Value));*/
+
+                });
+            }
+
+    });
+    }
+</script>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="SERVICEGROUPID" class="control-label"></label>
+                @Html.DropDownListFor(x => x.SERVICEGROUPID, new SelectList(ViewBag.GROUPSERVICES, "Value", "Text"), "--SELECT--", new { @onchange = "refreshServices($(this).val())", @class = "form-control" })
+                @*<input asp-for="SERVICEGROUPID" class="form-control" />*@
+                <span asp-validation-for="SERVICEGROUPID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SERVICEID" class="control-label"></label>
+                @Html.DropDownListFor(x => x.SERVICEID, new SelectList(ViewBag.SERVICES, "Value", "Text"), "--SELECT--", new { @onchange = "refreshPrice($(this).val(),$('#SERVICEGROUPID').val(),1)", @class = "form-control" })
+                @*<input asp-for="SERVICEID" class="form-control" />*@
+                <span asp-validation-for="SERVICEID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VISITTYPEID" class="control-label"></label>
+                @Html.DropDownListFor(x => x.VISITTYPEID, new SelectList(ViewBag.VISITTYPES, "Value", "Text"), "--SELECT--", new { @class = "form-control" })
+                <input asp-for="VISITTYPEID" class="form-control" />
+                <span asp-validation-for="VISITTYPEID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EFFECTIVEFROMDATE" class="control-label"></label>
+                <input asp-for="EFFECTIVEFROMDATE" class="form-control" />
+                <span asp-validation-for="EFFECTIVEFROMDATE" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EFFECTIVETODATE" class="control-label"></label>
+                <input asp-for="EFFECTIVETODATE" class="form-control" />
+                <span asp-validation-for="EFFECTIVETODATE" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PRICE" class="control-label"></label>
+                <input asp-for="PRICE" class="form-control" />
+                <span asp-validation-for="PRICE" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

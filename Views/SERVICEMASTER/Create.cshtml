@@ -1,0 +1,61 @@
+﻿@model DOTNETCOREEXAMPLE.Models.Class_SERVICE_MASTER
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<h2>Create</h2>
+
+<h4>SERVICE MASTER</h4>
+<hr />
+<div class="section-heading-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <h1 class="heading-page text-center-xs">@ViewBag.Title.</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb text-right text-center-xs">
+                    <li>
+                        <a href="#">Service </a>
+                    </li>
+                    <li class="active">@ViewBag.Title</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="SERVICENAME" class="control-label"></label>
+                <input asp-for="SERVICENAME" class="form-control" />
+                <span asp-validation-for="SERVICENAME" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SERVICEGROUPID" class="control-label"></label>
+                @Html.DropDownListFor(x => x.SERVICEGROUPID, new SelectList(ViewBag.GROUPSERVICES, "Value", "Text"), "--SELECT--", new { @onchange = "refreshServices($(this).val())", @class = "form-control" })
+                @*<input asp-for="SERVICEGROUPID" class="form-control" />*@
+                <span asp-validation-for="SERVICEGROUPID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="ISACTIVE" /> @Html.DisplayNameFor(model => model.ISACTIVE)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

@@ -1,0 +1,13 @@
+Order Entry - Line Items - BC
+
+Non-Discounted Line Total NRC - Display
+IIf ([Parent Order Item Id] is NOT NULL AND [Root Bundle Flag]='Y',"",IIf ([BIP ADV PROD CALC] = "Y", [BIP ADV TOTAL EXT CALC],[Non-Discounted Line Total NRC]))
+
+Quote Item
+
+Non-Discounted Line Total NRC - Display
+IIf ([Parent Quote Item Id] is NOT NULL AND [Root Bundle Flag]='Y',"",IIf ([BIP ADV PROD CALC] = "Y", [BIP ADV TOTAL EXT CALC], [Non-Discounted Line Total NRC]))
+
+
+
+Test Customer Master

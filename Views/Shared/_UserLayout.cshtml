@@ -1,0 +1,486 @@
+﻿@using Microsoft.AspNetCore.Http;
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+<!DOCTYPE html>
+<html>
+<head>
+    @*<meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>@ViewBag.Title - Doctor Visitor Management Application</title>*@
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Xrai Diagnostics Register</title>
+    <link rel="icon" href="~/assets/images/favicon.ico">
+
+    <script src="~/assets/js/page/carousel-preload.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-229552969-1">
+    </script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-229552969-1');
+    </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TJFM2X49TP"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-TJFM2X49TP');
+    </script>
+    <!--[if IE 8]><html class="ie8"><![endif]-->
+    <!-- Bootstrap -->
+    <link href="~/assets/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600,700,800,300' rel='stylesheet' type='text/css'>
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Plugins -->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/magnific-popup.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/css/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/css/owl.theme.css">
+    <!-- Theme -->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/carousel-animate.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/css/theme.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    @*@Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")*@
+</head>
+<body class="body-nav-fixed-menu-top">
+    <div class="wrapper-body">
+        <div id="header">
+            <nav id="nav" class="navbar navbar-default navbar-fixed-top">
+                <div class="menu-top menu-top-inverse">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-5 hidden-xs">
+                                <a class="title-menu-top display-inline-block" href="mailto:support@example.com">Call us at - <b>18002702900</b></a>
+                            </div>
+                            <div class="col-sm-7 col-xs-12">
+                                <div class="pull-right">
+                                    <div class="dropdown dropdown-login pull-left">
+                                        <button class="btn-menu-top" id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> @HttpContextAccessor.HttpContext.Session.GetString("fullname") @*@Session["UserName"].ToString()*@  <i class="fa fa-arrow-down"></i> </button>
+                                        <div class="dropdown-menu dropdown-menu-right stop-prop" role="menu" aria-labelledby="dLabel">
+                                            <div class="wrapper-form-box">
+                                                <h3>Switch User/ Logout</h3>
+                                                <form>
+                                                    <div class="form-group">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                                            <input type="text" class="form-control" placeholder="Username">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                                                            <input type="password" class="form-control" placeholder="Password">
+                                                        </div>
+                                                    </div>
+                                                    <button type="submit" class="btn btn-primary text-theme-xs mr-8">Login</button>
+                                                    <a href="#" class="text-theme-xs pull-right a-black">Forgot your password ?</a>
+
+                                                    <a href="~/Account/Logout" class="text-theme-xs logout">Logout</a>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-inline social-icons-menu-top pull-right">
+                                    <a target="_blank" href="https://www.linkedin.com/company/xrai-digital" class="social-hover-v1 a-linkedin"></a>
+                                    <a target="_blank" href="https://www.facebook.com/XRAi.Digital" class="social-hover-v1 a-facebook"></a>
+                                    <a target="_blank" href="https://instagram.com/xraidigital?utm_medium-copy_link" class="social-hover-v1 fa fa-instagram"></a>
+                                    @*<a href="#" class="social-hover-v1 a-google"></a>*@
+                                    @*<a href="#" class="social-hover-v1 a-twitter"></a>*@
+
+                                    <!--   <a href="#" class="social-hover-v1 a-pinterest"></a>
+    <a href="#" class="social-hover-v1 a-behance"></a>
+    <a href="#" class="social-hover-v1 a-youtube"></a> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="/Home/Index"><img class="img-responsive" src="~/assets/images/logo/logo-default.png" alt="theme-img"></a>
+                    </div>
+
+                    <div id="navbar" class="navbar-collapse collapse">
+                        @{string strRegistrationTypeId = HttpContextAccessor.HttpContext.Session.GetString("RegistrationTypeId");}
+                        @if (HttpContextAccessor.HttpContext.Session.GetString("RegistrationTypeId") == "1")
+                        {
+
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="">
+
+                                    @*<a href="~/UserHome/Index" class="" role="button" aria-expanded="false">Dashboard</a>*@
+
+                                </li>
+
+                                @*<li class="">
+                    <a href="~/SLOTMASTER/Index" class="" role="button" aria-expanded="false">Slot Master</a>
+
+                </li>
+
+
+                <li class="">
+                    <a href="~/SERVICEGROUPMASTER/Index#" class="" role="button" aria-expanded="false">Service Group Master</a>
+
+                </li>
+                <li class="">
+                    <a href="~/SERVICEMASTER/INDEX" class="" role="button" aria-expanded="false">Service Master</a>
+
+                </li>*@
+                                <li class="">
+                                    @*<a href="~/PriceRateMaster/INDEX" class="" role="button" aria-expanded="false">Price Master</a>*@
+
+                                </li>
+                                @*<li class="">
+                    <a href="~/SlotBookingMaster/INDEX" class="" role="button" aria-expanded="false">Slot Booking </a>
+
+                </li>*@
+
+
+                                <li class="">
+                                    <a href="~/SlotBookingMaster/INDEX" class="" role="button" aria-expanded="false">Reports </a>
+
+                                </li>
+                                <li class="">
+                                    <a href="~/PatientMaster/INDEX?id=@HttpContextAccessor.HttpContext.Session.GetString("UserId")" class="" role="button" aria-expanded="false">Book an Appointment</a>
+
+                                </li>
+
+
+
+
+
+
+
+
+
+
+                            </ul>
+                        }
+                        else if (HttpContextAccessor.HttpContext.Session.GetString("RegistrationTypeId") == "2")
+                        {
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="">
+
+                                    @*<a href="~/UserHome/Index" class="" role="button" aria-expanded="false">Dashboard</a>*@
+                                </li>
+
+
+
+                                <li class="">
+                                    <a href="~/SlotBookingMaster/INDEX" class="" role="button" aria-expanded="false">Slot Bookings </a>
+
+                                </li>
+
+
+
+                            </ul>
+                        }
+                        else if (HttpContextAccessor.HttpContext.Session.GetString("RegistrationTypeId") == "5")
+                        {
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="">
+
+                                    @*<a href="~/UserHome/Index" class="" role="button" aria-expanded="false">Dashboard</a>*@
+                                </li>
+                                <li class="">
+                                    <a href="~/SlotBookingMaster/INDEX" class="" role="button" aria-expanded="false">Reports </a>
+
+                                </li>
+
+
+
+                                <li class="">
+                                    <a href="~/PatientMaster/INDEX?id=@HttpContextAccessor.HttpContext.Session.GetString("UserId")" class="" role="button" aria-expanded="false">Book an Appointment</a>
+
+                                </li>
+
+
+
+                            </ul>
+                        }
+                        else if (HttpContextAccessor.HttpContext.Session.GetString("RegistrationTypeId") == "4")
+                        {
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="">
+                                    @*<a href="~/UserHome/Index" class="" role="button" aria-expanded="false">Dashboard</a>*@
+
+                                </li>
+
+
+                                <li class="">
+                                    <a href="~/ProjectUserMaster/INDEX" class="" role="button" aria-expanded="false">Users</a>
+
+                                </li>
+
+                                <li class="">
+                                    <a href="~/OfferMaster/INDEX" class="" role="button" aria-expanded="false">Offer Master</a>
+
+                                </li>
+
+
+                            </ul>
+                        }
+                        else if (HttpContextAccessor.HttpContext.Session.GetString("RegistrationTypeId") == "6")
+                        {
+
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="">
+
+                                    @*<a href="~/UserHome/Index" class="" role="button" aria-expanded="false">Dashboard</a>*@
+
+                                </li>
+
+                                @*<li class="">
+                    <a href="~/SLOTMASTER/Index" class="" role="button" aria-expanded="false">Slot Master</a>
+
+                </li>
+
+
+                <li class="">
+                    <a href="~/SERVICEGROUPMASTER/Index#" class="" role="button" aria-expanded="false">Service Group Master</a>
+
+                </li>
+                <li class="">
+                    <a href="~/SERVICEMASTER/INDEX" class="" role="button" aria-expanded="false">Service Master</a>
+
+                </li>*@
+                                <li class="">
+                                    @*<a href="~/PriceRateMaster/INDEX" class="" role="button" aria-expanded="false">Price Master</a>*@
+
+                                </li>
+                                @*<li class="">
+                    <a href="~/SlotBookingMaster/INDEX" class="" role="button" aria-expanded="false">Slot Booking </a>
+
+                </li>*@
+
+
+                                <li class="">
+                                    <a href="~/SlotBookingMaster/INDEX" class="" role="button" aria-expanded="false">Reports </a>
+
+                                </li>
+                                <li class="">
+                                    <a href="~/PatientMaster/INDEX?id=@HttpContextAccessor.HttpContext.Session.GetString("UserId")" class="" role="button" aria-expanded="false">Book an Appointment</a>
+
+                                </li>
+
+
+
+
+
+
+
+
+
+
+                            </ul>
+                        }
+                        else if (HttpContextAccessor.HttpContext.Session.GetString("RegistrationTypeId") == "9")
+                        {
+
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="">
+
+                                    @*<a href="~/UserHome/Index" class="" role="button" aria-expanded="false">Dashboard</a>*@
+
+                                </li>
+
+                                @*<li class="">
+                    <a href="~/SLOTMASTER/Index" class="" role="button" aria-expanded="false">Slot Master</a>
+
+                </li>
+
+
+                <li class="">
+                    <a href="~/SERVICEGROUPMASTER/Index#" class="" role="button" aria-expanded="false">Service Group Master</a>
+
+                </li>
+                <li class="">
+                    <a href="~/SERVICEMASTER/INDEX" class="" role="button" aria-expanded="false">Service Master</a>
+
+                </li>*@
+                                <li class="">
+                                    @*<a href="~/PriceRateMaster/INDEX" class="" role="button" aria-expanded="false">Price Master</a>*@
+
+                                </li>
+                                @*<li class="">
+                    <a href="~/SlotBookingMaster/INDEX" class="" role="button" aria-expanded="false">Slot Booking </a>
+
+                </li>*@
+
+
+                                <li class="">
+                                    <a href="~/SlotBookingMaster/INDEX" class="" role="button" aria-expanded="false">Reports </a>
+
+                                </li>
+                                <li class="">
+                                    <a href="~/PatientMaster/INDEX?id=@HttpContextAccessor.HttpContext.Session.GetString("UserId")" class="" role="button" aria-expanded="false">Book an Appointment</a>
+
+                                </li>
+
+
+
+
+
+
+
+
+
+
+                            </ul>
+                        }
+                        else
+                        {
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="">
+                            @*<a href="~/UserHome/Index" class="" role="button" aria-expanded="false">Dashboard</a>*@
+
+                        </li>
+
+                        <li class="">
+                            <a href="~/SLOTMASTER/Index" class="" role="button" aria-expanded="false">Slots</a>
+
+                        </li>
+
+
+                        <li class="">
+                            <a href="~/SERVICEGROUPMASTER/Index" class="" role="button" aria-expanded="false">Service Groups</a>
+
+                        </li>
+                        <li class="">
+                            <a href="~/SERVICEMASTER/INDEX" class="" role="button" aria-expanded="false">Services</a>
+
+                        </li>
+                        <li class="">
+                            <a href="~/PriceRateMaster/INDEX" class="" role="button" aria-expanded="false">Rate</a>
+
+                        </li>
+                        <li class="">
+                            <a href="~/ProjectUserMaster/INDEX" class="" role="button" aria-expanded="false">Users</a>
+
+                        </li>
+                        @*<li class="">
+            <a href="~/LocationMaster/INDEX" class="" role="button" aria-expanded="false">Locations</a>
+
+        </li>*@
+                        <li class="">
+                            <a href="~/RegistrationType/INDEX" class="" role="button" aria-expanded="false">Registration Types</a>
+
+                        </li>
+                        <li class="">
+                            <a href="~/ServiceProviderMaster/INDEX" class="" role="button" aria-expanded="false">Service Providers</a>
+
+                        </li>
+                        <li class="">
+                            <a href="~/OfferMaster/INDEX" class="" role="button" aria-expanded="false">Offer Master</a>
+
+                        </li>
+                        <li class="">
+                            <a href="~/PatientMaster/INDEX?userid=@HttpContextAccessor.HttpContext.Session.GetString("UserId")" class="" role="button" aria-expanded="false">Patients </a>
+
+                        </li>
+
+                        <li class="">
+                            <a href="~/SlotBookingMaster/INDEX" class="" role="button" aria-expanded="false">All Slot Bookings </a>
+
+                        </li>
+
+
+
+
+
+
+
+
+
+
+                    </ul>
+                        }
+                    </div><!--/.nav-collapse -->
+                </div>
+            </nav>
+        </div>
+
+        @RenderBody()
+        @*@Scripts.Render("~/bundles/jquery")
+            @Scripts.Render("~/bundles/bootstrap")*@
+        @RenderSection("scripts", required: false)
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="assets/js/page/page.navbar-fixed-shrinked.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/assets/js/owl.carousel.js"></script>
+    <script src="~/assets/js/jquery.magnific-popup.js"></script>
+    <script src="~/assets/js/jquery.waypoints.js"></script>
+    <script src="~/assets/js/jquery.countTo.js"></script>
+    <script src="~/assets/js/page/theme.js"></script>
+    <script src="~/assets/js/page/page.home.js"></script>
+    <!-- Date picker-->
+    <script src="~/assets/js/bootstrap-datepicker.min.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            $('#visitdate').datepicker({
+                startView: 2
+            });
+        });
+    </script>
+</body>
+
+</html>
+<div class="modal" tabindex="-1" id="form-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Modal body text goes here.</p>
+            </div>
+            @*<div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>*@
+        </div>
+    </div>
+</div>
+
+<div class="modal" tabindex="-1" id="form-modal-report">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Modal body text goes here.</p>
+            </div>
+            @*<div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>*@
+        </div>
+    </div>
+</div>

@@ -1,0 +1,285 @@
+﻿@model IEnumerable<DOTNETCOREEXAMPLE.Models.Class_PROJECT_USER_MASTER>
+@using Microsoft.AspNetCore.Http;
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+
+<div class="section-heading-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <h1 class="heading-page text-center-xs">
+                    @if (HttpContextAccessor.HttpContext.Session.GetString("RegistrationTypeId") == "1")
+                    {
+                        <span>Patient Dashboard</span>
+                    }
+                    else if (HttpContextAccessor.HttpContext.Session.GetString("RegistrationTypeId") == "2")
+                    {
+
+                        <span>Technician Dashboard</span>
+                    }
+                    else if (HttpContextAccessor.HttpContext.Session.GetString("RegistrationTypeId") == "5")
+                    {
+
+                        <span>Corporate Dashboard</span>
+                    }
+                    else if (HttpContextAccessor.HttpContext.Session.GetString("RegistrationTypeId") == "4")
+                    {
+
+                        <span>Business Admin Dashboard</span>
+                    }
+                    else
+                    {
+                        <span>Cordinator Dashboard</span>
+                    }
+                </h1>
+                    </div>
+                    <div class="col-sm-6">
+                    <ol class="breadcrumb text-right text-center-xs">
+                        <li>
+                            <a href="#">
+                                Dashboard </a >
+                                </li>
+                                <li class="active">Index
+                        </li>
+                    </ol>
+</div>
+        </div>
+    </div>
+</div>
+<!-- SECTION CALL-TO -->
+<!--===============================================================-->
+
+
+
+
+<div class="section section-sm section-bottom">
+    <div class="container">
+
+        <div class="members mb-40">
+
+
+            <h3 class="title-text title-v2"> </h3>
+            <p style="text-align:right">
+                @*<button class="btn-menu-top" id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-user"></i>
+                        @Html.ActionLink("Add New Patient", "Create", "PatientMaster")
+                        <i class="fa fa-arrow-down"></i>
+                    </button>*@
+
+                </p>
+                <div class="appointmentform">
+
+                <div class="col-sm-4 member-tuple">
+                    <div class="tupleholder">
+                        <h4>  </h4>
+                        <div class="tuple-data-holder">
+
+                            Number of Bookings : @ViewBag.CntSlotBookings
+                            @*<img src="~/assets/images/picLayer-1.png" />*@
+
+
+
+                            @*<img src="~/assets/images/picLayer-2.png" />*@
+
+                            @*<div class="col-sm-4 info2"> <img src="assets/images/picLayer-2.png" class="img-responsive">  </div>*@
+                            <div class="col-sm-8 info2">
+
+                            </div>
+                            <div style="clear:both">
+                            </div>
+                        </div>
+                                <div class="buttons mb-10 mt-10">
+
+                                @*<div class="col-sm-4"><a class="btn btn-primary btn-sm text-theme-sm" href="@Url.Action("Create", "SlotBookingMaster", new { id = item.PATIENTID, UserId = item.USERID })">Select</a></div>
+                                        <div class="col-sm-4"><a class="btn btn-primary btn-sm text-theme-sm" href="@Url.Action("EDIT", "PatientMaster", new { id = item.PATIENTID })">Edit</a></div>
+
+                                    <div class="col-sm-4"><a class="btn btn-primary btn-sm text-theme-sm" href="@Url.Action("DETAILS", "PatientMaster", new { id = item.PATIENTID})">Detail</a></div>*@
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-sm-4 member-tuple">
+                        <div class="tupleholder">
+                            <h4>  </h4>
+                            <div class="tuple-data-holder">
+
+                                Number of Patients : @ViewBag.CntPatients
+                                @*<img src="~/assets/images/picLayer-1.png" />*@
+
+
+
+                                @*<img src="~/assets/images/picLayer-2.png" />*@
+
+                                @*<div class="col-sm-4 info2"> <img src="assets/images/picLayer-2.png" class="img-responsive">  </div>*@
+                                <div class="col-sm-8 info2">
+
+                                </div>
+                                <div style="clear:both">
+                                    </div>
+                                    </div>
+                                    <div class="buttons mb-10 mt-10">
+
+                                    @*<div class="col-sm-4"><a class="btn btn-primary btn-sm text-theme-sm" href="@Url.Action("Create", "SlotBookingMaster", new { id = item.PATIENTID, UserId = item.USERID })">Select</a></div>
+                                            <div class="col-sm-4"><a class="btn btn-primary btn-sm text-theme-sm" href="@Url.Action("EDIT", "PatientMaster", new { id = item.PATIENTID })">Edit</a></div>
+
+                                        <div class="col-sm-4"><a class="btn btn-primary btn-sm text-theme-sm" href="@Url.Action("DETAILS", "PatientMaster", new { id = item.PATIENTID})">Detail</a></div>*@
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        <div style="clear:both">
+                            </div>
+                            </div>
+
+                            </div>
+
+
+                           
+                        </div>
+                    </div>
+
+
+                    @*<p>
+                            <a asp-action="Create">Create New</a>
+                        </p>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.username)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.password)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.email)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.userid)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.mobile)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.address)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.address1)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.city)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.state)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.pin)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.registrationtypeid)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.fullname)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.gender)
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                        @foreach (var item in Model) {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.username)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.password)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.email)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.userid)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.mobile)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.address)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.address1)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.city)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.state)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.pin)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.registrationtypeid)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.fullname)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.gender)
+                                    </td>
+                                    <td>
+                                        <a asp-action="Edit" asp-route-id="@item.useridsno">Edit</a> |
+                                        <a asp-action="Details" asp-route-id="@item.useridsno">Details</a> |
+                                        <a asp-action="Delete" asp-route-id="@item.useridsno">Delete</a>
+                                    </td>
+                                </tr>
+                        }
+                            </tbody>
+                        </table>*@
+                    <style>
+
+                        .tupleholder {
+                            padding: 10px;
+                            width: 100%;
+                            border: 1px solid #dddde0;
+                            border-radius: 8px;
+                            margin-bottom: 30px;
+                        }
+
+                        .data - holder {
+                            border-bottom: 1px dotted #797979;
+                        }
+
+                        .info2 {
+                            padding: 0px !important;
+                            margin: 0px !important;
+                        }
+
+                            .info2 img {
+                                padding: 4px;
+                                border: 1px solid #aaa;
+                                border-radius: 14px;
+                            }
+                    </style>

@@ -1,0 +1,171 @@
+﻿@model DOTNETCOREEXAMPLE.Models.Class_SLOT_BOOKING_MASTER
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Class_SLOT_BOOKING_MASTER</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SLOTID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SLOTID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SLOTTYPEID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SLOTTYPEID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.VISITTYPEID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.VISITTYPEID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SLOTBOOKINGDATETIME)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SLOTBOOKINGDATETIME)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SERVICETYPEID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SERVICETYPEID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SERVICEPROVIDERID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SERVICEPROVIDERID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PHONENUMBER)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PHONENUMBER)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PATIENTNAME)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PATIENTNAME)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AGE)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AGE)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.WEIGHT)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.WEIGHT)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.GENDER)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.GENDER)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ADDRESS)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ADDRESS)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ALTERNATEMOBILENUMBER)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ALTERNATEMOBILENUMBER)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EMAIL)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EMAIL)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CREATEDDATE)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CREATEDDATE)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SERVICEGROUPID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SERVICEGROUPID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PAYMENTMETHOD)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PAYMENTMETHOD)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PRESCRIPTIONFILENAME)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PRESCRIPTIONFILENAME)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EXTENSION)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EXTENSION)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PATIENTID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PATIENTID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.USERID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.USERID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SERVICEFILENAME)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SERVICEFILENAME)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.REPORTFILENAME)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.REPORTFILENAME)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SERVICEEXTENSION)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SERVICEEXTENSION)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.REPORTEXTENSION)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.REPORTEXTENSION)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="SLOTBOOKINGID" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

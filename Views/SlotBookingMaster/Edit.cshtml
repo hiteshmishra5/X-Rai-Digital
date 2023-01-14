@@ -1,0 +1,978 @@
+﻿@model DOTNETCOREEXAMPLE.Models.Class_SLOT_BOOKING_MASTER
+@using Microsoft.AspNetCore.Http;
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<div class="section-heading-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <h1 class="heading-page text-center-xs">@ViewBag.Title.</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb text-right text-center-xs">
+                    <li>
+                        <a href="#">Slot Booking</a>
+                    </li>
+                    <li class="active">Edit</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+@using (Html.BeginForm("Edit", "SlotBookingMaster", FormMethod.Post,
+                       new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    
+        
+        <div class="section section-sm section-bottom">
+            <div class="container">
+
+                <div class="row ">
+
+                    <h3 class="title-text"> Your Booked  Slot</h3>
+                    <div class="appointmentform">
+                        <div>
+                            <!-- <p class="text-theme appointment-sub-title">Please fill in your details to book your slot</p>-->
+
+                        </div>
+                        <form method="post" name="customerData" action="~/ccavRequestHandler.aspx">
+                            <!--<table width="40%" height="100" border='1' align="center">
+            <tr>
+                <td>Parameter Name:</td>
+                <td>Parameter Value:</td>
+            </tr>
+            <tr>
+                <td colspan="2"> Compulsory information</td>
+            </tr>
+            <tr>
+                <td>TID	:</td>
+                <td><input type="text" name="tid" id="tid" readonly /></td>
+            </tr>
+            <tr>
+                <td>Merchant Id</td>
+                <td><input type="text" name="merchant_id" id="merchant_id" value="384342" /></td>
+            </tr>
+            <tr>
+                <td>Order Id</td>
+                <td><input type="text" name="order_id" value="123654789" /></td>
+            </tr>
+            <tr>
+                <td>Amount</td>
+                <td><input type="text" name="amount" value="1.00" /></td>
+            </tr>
+            <tr>
+                <td>Currency</td>
+                <td><input type="text" name="currency" value="INR" /></td>
+            </tr>
+            <tr>
+                <td>Redirect URL</td>
+                <td>-->
+                            <!--<input type="text" name="redirect_url" value="http://192.168.0.89/MCPG.ASP.net.2.0.kit/ccavResponseHandler.aspx" />-->
+                            <!--<input type="text" name="redirect_url" value="http://xraidigital.com/SlotBookingMaster/Details/7" />
+            </td>
+        </tr>
+        <tr>
+            <td>Cancel URL</td>
+            <td>-->
+                            <!--<input type="text" name="cancel_url" value="http://192.168.0.96/mcpg_new/iframe/ccavResponseHandler.php" />-->
+                            <!--<input type="text" name="cancel_url" value="Error.aspx" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">Billing information(optional):</td>
+            </tr>
+            <tr>
+                <td>Billing Name</td>
+                <td><input type="text" name="billing_name" value="Charli" /></td>
+            </tr>
+            <tr>
+                <td>Billing Address:</td>
+                <td><input type="text" name="billing_address" value="Room no 1101, near Railway station Ambad" /></td>
+            </tr>
+            <tr>
+                <td>Billing City:</td>
+                <td><input type="text" name="billing_city" value="Indore" /></td>
+            </tr>
+            <tr>
+                <td>Billing State:</td>
+                <td><input type="text" name="billing_state" value="MP" /></td>
+            </tr>
+            <tr>
+                <td>Billing Zip:</td>
+                <td><input type="text" name="billing_zip" value="425001" /></td>
+            </tr>
+            <tr>
+                <td>Billing Country:</td>
+                <td><input type="text" name="billing_country" value="India" /></td>
+            </tr>
+            <tr>
+                <td>Billing Tel:</td>
+                <td><input type="text" name="billing_tel" value="9899622605" /></td>
+            </tr>
+            <tr>
+                <td>Billing Email:</td>
+                <td><input type="text" name="billing_email" value="test@gmail.com" /></td>
+            </tr>
+            <tr>
+                <td colspan="2">Shipping information(optional):</td>
+            </tr>
+            <tr>
+                <td>Shipping Name</td>
+                <td><input type="text" name="delivery_name" value="Chaplin" /></td>
+            </tr>
+            <tr>
+                <td>Shipping Address:</td>
+                <td><input type="text" name="delivery_address" value="room no.701 near bus stand" /></td>
+            </tr>
+            <tr>
+                <td>shipping City:</td>
+                <td><input type="text" name="delivery_city" value="Hyderabad" /></td>
+            </tr>
+            <tr>
+                <td>shipping State:</td>
+                <td><input type="text" name="delivery_state" value="Andhra" /></td>
+            </tr>
+            <tr>
+                <td>shipping Zip:</td>
+                <td><input type="text" name="delivery_zip" value="425001" /></td>
+            </tr>
+            <tr>
+                <td>shipping Country:</td>
+                <td><input type="text" name="delivery_country" value="India" /></td>
+            </tr>
+            <tr>
+                <td>Shipping Tel:</td>
+                <td><input type="text" name="delivery_tel" value="9896426054" /></td>
+            </tr>
+            <tr>
+                <td>Merchant Param1</td>
+                <td><input type="text" name="merchant_param1" value="additional Info." /></td>
+            </tr>
+            <tr>
+                <td>Merchant Param2</td>
+                <td><input type="text" name="merchant_param2" value="additional Info." /></td>
+            </tr>
+            <tr>
+                <td>Merchant Param3</td>
+                <td><input type="text" name="merchant_param3" value="additional Info." /></td>
+            </tr>
+            <tr>
+                <td>Merchant Param4</td>
+                <td><input type="text" name="merchant_param4" value="additional Info." /></td>
+            </tr>
+            <tr>
+                <td>Merchant Param5</td>
+                <td><input type="text" name="merchant_param5" value="additional Info." /></td>
+            </tr>
+            <tr>
+                <td>Promo Code</td>
+                <td><input type="text" name="promo_code" /></td>
+            </tr>
+            <tr>
+                <td>Customer Id:</td>
+                <td><input type="text" name="customer_identifier" /></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Checkout" /></td>
+            </tr>
+        </table>-->
+                            <h3> User </h3>
+                            <div class="field-group">
+
+                                <div class="form-group  col-sm-4">
+                                    <label for="inputEmail">Phone Number : </label>
+                                    @*<input type="email" class="form-control" id="inputEmail" placeholder=" ">*@
+
+                                    @Html.TextBoxFor(model => model.PHONENUMBER, "", new { maxLength = 24, size = 24, @class = "form-control", Value = @ViewBag.phonenumber })
+                                    @Html.HiddenFor(model => model.USERID, new { @class = "form-control" })
+                                    @Html.HiddenFor(model => model.SLOTBOOKINGID, new { @class = "form-control" })
+                                </div>
+                                <div class="form-group  col-sm-2 send-otp">
+                                    @*<button type="submit" class="btn btn-lg btn-primary" onclick="SendOTP()">Send OTP</button>*@
+                                </div>
+                                <div class="form-group  col-sm-6 ">
+                                    @*<label for="inputEmail">Enter OTP</label>
+                    <input type="email" class="form-control" id="inputEmail" placeholder=" ">*@
+                                </div>
+
+                                <div class="clear-fix"> </div>
+                            </div>
+
+                            <h3> Patient's Detail </h3>
+                            <div class="field-group">
+                                <div class="form-group  col-sm-6">
+                                    <label for="inputEmail">Patient Name : </label>
+                                    @ViewBag.PATIENTNAME
+                                    @*@Html.TextBoxFor(model => model.PATIENTNAME, new { @class = "form-control", Value = @ViewBag.PATIENTNAME })*@
+                                    @Html.HiddenFor(model => model.PATIENTID, new { @class = "form-control" })
+                                    @*<input type="email" class="form-control" id="inputEmail" placeholder=" ">*@
+                                </div>
+                                <div class="form-group  col-sm-6">
+                                    <label for="inputEmail">Age (Yrs.) : </label>
+                                    @ViewBag.AGE
+                                    @*@Html.TextBoxFor(model => model.AGE, new { @class = "form-control", Value = @ViewBag.AGE })*@
+                                    @*<input type="text" class="form-control" id="" placeholder=" ">*@
+                                </div>
+                                <div class="form-group  col-sm-6">
+                                    <label for="inputEmail">Weight (Kgs.) : </label>
+                                    @ViewBag.WEIGHT
+                                    @*@Html.TextBoxFor(model => model.WEIGHT, new { @class = "form-control", Value = @ViewBag.WEIGHT })*@
+                                    @*<input type="email" class="form-control" id="inputEmail" placeholder=" ">*@
+                                </div>
+                                <div class="form-group  col-sm-6">
+                                    <label for="slot">Gender : </label>
+                                    @ViewBag.GENDER
+
+                                    @*<select id="slot" class="form-control">
+                        <option selected>Choose...</option>
+                        <option>Male</option>
+                        <option>Female</option>
+                    </select>*@
+                                </div>
+                                <div class="form-group  col-sm-6">
+                                    <label for="message">
+                                        Address :
+                                        <!-- <span class="required">*</span> -->
+                                    </label>
+                                    @ViewBag.ADDRESS
+                                    @*@Html.TextAreaFor(model => model.ADDRESS, new { @class = "form-control", Value = @ViewBag.ADDRESS })*@
+                                </div>
+
+                                <div class="form-group  col-sm-6">
+                                    <label for="inputEmail">Alternate Mobile No. : </label>
+                                    @ViewBag.ALTERNATEMOBILENUMBER
+                                    @*@Html.TextBoxFor(model => model.ALTERNATEMOBILENUMBER, new { @class = "form-control", Value = @ViewBag.ALTERNATEMOBILENUMBER })*@
+                                    @Html.ValidationMessageFor(m => m.ALTERNATEMOBILENUMBER)
+                                    @*<input type="email" class="form-control" id="inputEmail" placeholder=" ">*@
+                                </div>
+                                <div class="form-group  col-sm-6">
+                                    <label for="inputEmail">Email ID : </label>
+                                    @ViewBag.EMAIL
+                                    @*@Html.TextBoxFor(model => model.EMAIL, new { @class = "form-control", Value = @ViewBag.EMAIL })*@
+                                    @Html.ValidationMessageFor(m => m.EMAIL)
+                                    @*<input type="email" class="form-control" id="inputEmail" placeholder=" ">*@
+                                </div>
+                                <div class="clear-fix"> </div>
+                            </div>
+                            <h3> Service </h3>
+                            <div class="field-group">
+                                @*<div class="form-group  col-sm-6">
+            <label for="slot-type">Service Type :  </label>
+
+            @Html.DropDownListFor(x => x.SERVICEGROUPID, new SelectList(ViewBag.GROUPSERVICES, "Value", "Text"), "--SELECT--", new { @class = "form-control" })
+
+            @Html.ValidationMessageFor(model => model.SERVICEGROUPID, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group  col-sm-6">
+            <label for="visit-type">Select Body Part :  </label>
+            @Html.DropDownListFor(x => x.SERVICETYPEID, new SelectList(ViewBag.SERVICES, "Value", "Text"), "--SELECT--", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.SERVICETYPEID, "", new { @class = "text-danger" })
+
+        </div>*@
+
+                                <div class="form-group  col-sm-6">
+                                    <label for="visit-date">Visit Date (dd/mm/yyyy) : </label>
+                                    @{string strRegistrationTypeId = HttpContextAccessor.HttpContext.Session.GetString("RegistrationTypeId");}
+                                    @if (HttpContextAccessor.HttpContext.Session.GetString("RegistrationTypeId") == "1")
+                                    {
+                                        @Html.TextBox("SLOTBOOKINGDATETIME", ((DateTime)ViewBag.SLOTBOOKINGDATETIME).ToString("dd-MM-yyyy"), new { @required = "required" })
+                                        @*@Html.TextBoxFor(model => model.SLOTBOOKINGDATETIME, new { @type = "date", @value = ViewBag.SLOTBOOKINGDATETIME })*@
+                                        @*@Html.TextBoxFor(model => model.SLOTBOOKINGDATETIME, new { @Value = Model.SLOTBOOKINGDATETIME.ToString("yyyy-MM-dd"), type = "date", @class = "form-control", min = DateTime.Today.ToString("yyyy-MM-dd"), max = DateTime.Today.AddDays(7).ToString("yyyy-MM-dd") })*@
+                                        @Html.ValidationMessageFor(m => m.SLOTBOOKINGDATETIME)
+                                    }
+                                    else
+                                    {
+                                        @Html.TextBox("SLOTBOOKINGDATETIME", (DateTime)ViewBag.SLOTBOOKINGDATETIME)
+                                        @*@ViewBag.SLOTBOOKINGDATETIME*@
+                                    }
+                                    @*<div class='input-group date' id='visitdate'>
+                <input type='text' class="form-control" />
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>*@
+                                </div>
+                                <div class="form-group  col-sm-6">
+                                    <label for="visit-type">Visit Slot :</label>
+                                    @*<select id="visit-type" class="form-control">
+                <option selected>Choose...</option>
+                <option>Morning(08:00-12:00 noon)</option>
+                <option>Afternoon (12:01-16:00)</option>
+                <option>Evening (16:00-20:00)</option>
+                <option> Emergency  (20:00-20:30)</option>
+                <option> Emergency  (20:30-21:00)</option>
+            </select>*@
+                                    @Html.DropDownListFor(x => x.SLOTID, new SelectList(ViewBag.SLOTS, "Value", "Text"), "--SELECT--", new { @class = "form-control" })
+
+                                    @Html.ValidationMessageFor(model => model.SLOTID, "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="form-group  col-sm-6">
+                                    <label class="form-label" for="customFile">Prescription : </label>
+                                    @{
+                                        if (HttpContextAccessor.HttpContext.Session.GetString("RegistrationTypeId") == "1" || HttpContextAccessor.HttpContext.Session.GetString("RegistrationTypeId") == "3")
+                                        {
+                                            @Html.Raw("<a href=\"" + ViewBag.MyURL + "\" title=\"" + Model.PRESCRIPTIONFILENAME + "\">View Prescription</a>")
+                                        }
+                                        else
+                                        {
+                                            if (Model.PRESCRIPTIONFILENAME == null || Model.PRESCRIPTIONFILENAME == "")
+                                            {
+                                                <label class="form-label" for="customFile">Upload Prescription </label>
+                                                @*<input type="file" class="form-control file" id="customFile" />*@
+                                                <input type="file" class="form-control file" name="prescriptionfile" id="prescriptionfile" value="a.txt" /><br><br>
+                                            }
+                                            else
+                                            {
+                                                @Html.Raw("<a href=\"" + ViewBag.MyURL + "\" title=\"" + Model.PRESCRIPTIONFILENAME + "\">View Prescription</a>")
+                                            }
+                                        }
+                                    }
+
+
+                                    @*<input type="file" class="form-control file" id="customFile" />
+            <p>  A prescription must be shared with the technician before the procedure </p>*@
+                                </div>
+
+
+                                <div class="form-group  col-sm-6">
+                                    <label class="form-label" for="customFile">Payment Method :</label>
+                                    @*@ViewBag.PAYMENTMETHODS*@
+                                    @Html.TextBoxFor(model => model.PAYMENTMETHOD, new { @Value = Model.PAYMENTMETHOD, @class = "form-control" })
+                                    @*@Html.DropDownListFor(x => x.PAYMENTMETHOD, new SelectList(ViewBag.PAYMENTMETHOD, "Value", "Text"), "--SELECT--", new { value = ViewBag.PAYMENTMETHODS, @class = "form-control" })*@
+
+                                    @Html.ValidationMessageFor(model => model.PAYMENTMETHOD, "", new { @class = "text-danger" })
+                                   
+
+                                    @*<input type="file" class="form-control file" id="customFile" />*@
+                                    @*<p>  A prescription must be shared with the technician before the procedure </p>*@
+                                </div>
+
+                                @{
+                                    if (HttpContextAccessor.HttpContext.Session.GetString("RegistrationTypeId") == "1" || HttpContextAccessor.HttpContext.Session.GetString("RegistrationTypeId") == "3") { }
+                                    else
+                                    {
+                                        if (Model.PAYMENTSTATUS == "Payment Successful")
+                                        {
+
+                                            <!--<div class="form-group  col-sm-6">
+
+                    <label class="form-label" for="customFile">Upload @ViewBag.SERVICEGROUPNAME </label>-->
+                                            @*<input type="file" class="form-control file" id="customFile" />*@
+                                            <!--<input type="file" class="form-control file" name="servicefile" id="servicefile" value="a.txt" /><br><br>-->
+                                            @*<input type="submit" value="Upload file" />*@
+                                            <!--<br><br>
+                    @ViewBag.Message
+                    <p> </p>
+                </div>
+                <div class="form-group  col-sm-6">
+
+                    <label class="form-label" for="customFile">Upload Report </label>-->
+                                            @*<input type="file" class="form-control file" id="customFile" />*@
+                                            <!--<input type="file" class="form-control file" name="reportfile" id="reportfile" value="a.txt" /><br><br>-->
+                                            @*<input type="submit" value="Upload file" />*@
+                                            <!--<br><br>
+                    @ViewBag.Message
+                    <p>  </p>
+                </div>-->
+                                        }
+                                        else
+                                        {
+
+                                        }
+                                    }
+                                }
+                                @{
+                                    if (HttpContextAccessor.HttpContext.Session.GetString("RegistrationTypeId") == "3")
+                                    {
+                                        <div class="form-group  col-sm-6">
+                                            <label for="slot-type">Technician Name :  </label>
+                                            @*<select id="slot-type" class="form-control">
+                        <option selected>Choose...</option>
+                        <option>X-Ray</option>
+                    </select>*@
+                                            @Html.DropDownListFor(x => x.SERVICEPROVIDERID, new SelectList(ViewBag.SERVICEPROVIDERS, "Value", "Text"), "--SELECT--", new { @class = "form-control", @required = "required" })
+
+                                            @Html.ValidationMessageFor(model => model.SERVICEPROVIDERID, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="form-group  col-sm-6">
+                                            <label for="slot-type">Machine Name :  </label>
+                                            @*<select id="slot-type" class="form-control">
+                        <option selected>Choose...</option>
+                        <option>X-Ray</option>
+                    </select>*@
+                                            @Html.DropDownListFor(x => x.MACHINEID, new SelectList(ViewBag.MACHINES, "Value", "Text"), "--SELECT--", new { @style = "visibility:hidden", @class = "form-control" })
+
+                                            @Html.ValidationMessageFor(model => model.MACHINEID, "", new { @class = "text-danger" })
+                                        </div>
+
+                                    }
+                                    else if (HttpContextAccessor.HttpContext.Session.GetString("RegistrationTypeId") == "2")
+                                    {
+                                        @Html.HiddenFor(model => model.SERVICEPROVIDERID, new { @class = "form-control" })
+                                        @Html.HiddenFor(model => model.MACHINEID, new { @class = "form-control" })
+
+                                    }
+
+                                }
+
+                                @{
+                                    if (HttpContextAccessor.HttpContext.Session.GetString("RegistrationTypeId") == "2")
+                                    {
+                                        <div class="form-group  col-sm-6">
+                                            <label for="slot-type">Status :  </label>
+                                            @*<select id="slot-type" class="form-control">
+                        <option selected>Choose...</option>
+                        <option>X-Ray</option>
+                    </select>*@
+                                            @Html.TextBoxFor(model => model.STATUS, new { @readonly = "readonly", @Value = Model.STATUS, @class = "form-control" })
+
+                                            @Html.ValidationMessageFor(model => model.STATUS, "", new { @class = "text-danger" })
+                                        </div>
+                                    }
+                                }
+                            <div class="form-group  col-sm-6">
+                                <label for="slot-type">Is Active :  </label>
+                                @*<select id="slot-type" class="form-control">
+            <option selected>Choose...</option>
+            <option>X-Ray</option>
+        </select>*@
+                                @Html.CheckBoxFor(model => model.ISACTIVE, new { @class = "form-control",onclick = "return false" , @readonly = "readonly" })
+                            </div>
+
+                                <div id="success" class="mt-40">
+                                    <div class="icon-box bordered">
+                                        <i class="fa fa-check fa-round fa-4x text-theme"></i>
+                                        <h3 class="lead text-theme">Your message was successfully sent!</h3>
+                                    </div>
+                                </div>
+
+                                <div id="error" class="mt-40">
+                                    <div class="icon-box bordered">
+                                        <i class="fa fa-lock fa-round fa-4x text-theme"></i>
+                                        <h3 class="lead text-theme">Something went wrong, try refreshing and submitting the form again.</h3>
+                                    </div>
+                                </div>
+                                <div class="clear-fix"> </div>
+                            </div>
+                            @*<div class="form-group ">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1">
+
+                    </label>
+                </div>
+            </div>*@
+
+
+                            <div class="form-group  ">
+                                <label for="inputEmail"></label>
+
+
+                                <input type="submit" class="btn btn-lg btn-primary" value="Save">
+                                @*<input type="submit" class="btn btn-lg btn-primary" value="Cancel">*@
+
+
+
+
+                            </div>
+                        </form>
+
+                        @*<div class="field-group">*@
+                            <table width="100%">
+                                <tr>
+                                   
+                                    <td>
+                                        <table width="100%" border="1">
+                                            <tr>
+
+                                                <td><b>Service</b> </td>
+                                                <td><b>Body Part </b></td>
+                                                <td style="text-align:center"><b>Price</b></td>
+                                                <td>Attach Action</td>
+                                                <td>Show Action</td>
+
+                                            </tr>
+                                            <tr>
+                                                <td><hr /></td>
+                                            </tr>
+                                            @foreach (var item in ViewBag.SLOTBOOKINGDETAILS)
+                                            {
+                                        <tr>
+
+                                            <td style="text-align:left">
+                                                @item.f.SERVICEGROUPNAME
+
+                                            </td>
+                                            <td style="text-align:left">
+                                                @item.c.SERVICENAME
+                                            </td>
+                                            <td style="text-align:center">
+                                                @item.h.PRICE
+                                            </td>
+                                            <td style="">
+                                                @if (HttpContextAccessor.HttpContext.Session.GetString("RegistrationTypeId") == "2")
+                                                {
+                                                    <a class="btn btn-lg btn-primary" onclick="showInPopup('@Url.Action("Create", "SERVICEFILESDETAILS", new { id =@item.h.SLOTBOOKINGDETID,SLOTBOOKINGID=@item.h.SLOTBOOKINGID  })','Attach a Sevice File')">Attach Service files</a><br /><br/>
+                                                    <a class="btn btn-lg btn-primary" onclick="showInPopupReport('@Url.Action("Create", "REPORTFILESDETAILS", new { id =@item.h.SLOTBOOKINGDETID,SLOTBOOKINGID=@item.h.SLOTBOOKINGID  })','Attach a Report File')">Attach Report files</a>
+
+                                                    //<a onclick="showInPopupReport('@Url.Action("Create","REPORTFILESDETAILS",new{ id = 61},Context.Request.Scheme)','Attach a Report File')"> Attach Report files</a>
+                                                }
+
+                                            </td>
+                                            <td>
+                                                @if (HttpContextAccessor.HttpContext.Session.GetString("RegistrationTypeId") == "2")
+                                                {
+
+                                                    <a class="btn btn-lg btn-primary" onclick="showInPopup('@Url.Action("Index", "SERVICEFILESDETAILS", new { id =@item.h.SLOTBOOKINGDETID,slotbookingid=item.h.SLOTBOOKINGID  })','Show Sevice File')">Show Service files</a><br/><br/>
+                                                    <a class="btn btn-lg btn-primary" onclick="showInPopupReport('@Url.Action("Index", "REPORTFILESDETAILS", new { id =@item.h.SLOTBOOKINGDETID,slotbookingid=item.h.SLOTBOOKINGID  })','Show Report File')">Show Report files</a>
+                                                    //<a onclick="showInPopupReport('@Url.Action("Create","REPORTFILESDETAILS",new{ id = 61},Context.Request.Scheme)','Attach a Report File')"> Attach Report files</a>
+                                                }
+
+                                            </td>
+
+
+                                        </tr>
+}
+<tr>
+                                                <td style="text-align:right" colspan="3">
+                                                    <hr />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                </td>
+                                                <td>
+                                                    Total :
+                                                </td>
+                                                <td style="text-align:center">
+                                                    @ViewBag.TOTAL
+                                                </td>
+
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                </td>
+                                                <td>
+                                                    OFFER AMOUNT( @ViewBag.OFFERDISCOUNT %) :
+                                                </td>
+                                                <td style="text-align:center">
+                                                    @ViewBag.OFFERAMOUNT
+                                                </td>
+
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                </td>
+                                                <td>
+                                                    Amount Payable :
+                                                </td>
+                                                <td style="text-align:center">
+                                                    @ViewBag.AMOUNTPAYABLE
+
+                                                   
+                                                </td>
+                                              
+                                            </tr>
+                                            @*<tr>
+                                <td>1</td>
+                                <td>X-ray</td>
+                                <td>Hand X-ray</td>
+                                <td>2000</td>
+                                <td>50</td>
+                                <td>1000</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>X-ray</td>
+                                <td>Leg X-ray</td>
+                                <td>2000</td>
+                                <td></td>
+                                <td></td>
+                            </tr>*@
+
+                                        </table>
+                                    </td>
+                                  
+                                </tr>
+                            </table>
+                        @*</div>*@
+
+                    </div>
+
+
+
+                    <!-- col 2 after form-->
+                    <!-- col 2 after form-->
+                </div>
+            </div>
+        </div>
+        <script>
+            $(document).ready(function () {
+               // alert("Sai");
+                refreshMachines();
+                refreshServiceProviders();
+
+            });
+
+             function refreshMachines() {
+        var projects = $("#MACHINEID");
+                 $.get('@Url.Action("GetMachinesByFree", "SlotBookingMaster")', { dt: $("#SERVICEGROUPID").val()},
+        function (result) {
+            // clear the dropdown
+            projects.empty();
+            // rebuild the dropdown
+            $.each(result, function (i, e) {
+                projects.append($('<option/>').text(e.Text).val(e.Value));
+
+            });
+                  });
+
+        //refreshPrice($("#SERVICETYPEID").val(), $("#SERVICEGROUPID").val(), 1)
+    }
+
+            var SendOTP = function () {
+
+                $.ajax({
+                    url: "/Account/SendOTP",
+                    type: "post",
+                    success: function (data) {
+                        alert(data);
+                        if (data == "failure") {
+                            alert("failed");
+
+                        }
+                        else {
+
+                            alert("OTP sent Successfully");
+                        }
+
+
+                    }
+                })
+
+            }
+
+             function refreshServiceProviders() {
+    var projects = $("#SERVICEPROVIDERID");
+    $.get('@Url.Action("GetServiceProvidersByFree", "SlotBookingMaster")',
+        function (result) {
+            // clear the dropdown
+            projects.empty();
+            // rebuild the dropdown
+
+
+                $.each(result, function (i, e) {
+                    // alert(TodayDate);
+                    //  alert(endDate);
+                    projects.append($('<option/>').text(e.Text).val(e.Value));
+
+                });
+
+            });
+    }
+        </script>
+        @*<dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.SLOTID)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.SLOTID)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.SLOTTYPEID)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.SLOTTYPEID)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.VISITTYPEID)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.VISITTYPEID)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.SLOTBOOKINGDATETIME)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.SLOTBOOKINGDATETIME)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.SERVICETYPEID)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.SERVICETYPEID)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.SERVICEPROVIDERID)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.SERVICEPROVIDERID)
+                </dd>
+
+            </dl>*@
+    
+    @*<div class="form-horizontal">
+            <h4>Class_SLOT_BOOKING_MASTER</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.SLOTBOOKINGID)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.SLOTID, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.SLOTID, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.SLOTID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.SLOTTYPEID, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.SLOTTYPEID, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.SLOTTYPEID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.VISITTYPEID, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.VISITTYPEID, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.VISITTYPEID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.SLOTBOOKINGDATE, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.SLOTBOOKINGDATE, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.SLOTBOOKINGDATE, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.SERVICETYPEID, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.SERVICETYPEID, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.SERVICETYPEID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.SERVICEPROVIDERID, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.SERVICEPROVIDERID, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.SERVICEPROVIDERID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+        </div>*@
+}
+
+@*<div class="row">
+        <div class="col-md-4">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="SLOTBOOKINGID" />
+                <div class="form-group">
+                    <label asp-for="SLOTID" class="control-label"></label>
+                    <input asp-for="SLOTID" class="form-control" />
+                    <span asp-validation-for="SLOTID" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SLOTTYPEID" class="control-label"></label>
+                    <input asp-for="SLOTTYPEID" class="form-control" />
+                    <span asp-validation-for="SLOTTYPEID" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="VISITTYPEID" class="control-label"></label>
+                    <input asp-for="VISITTYPEID" class="form-control" />
+                    <span asp-validation-for="VISITTYPEID" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SLOTBOOKINGDATETIME" class="control-label"></label>
+                    <input asp-for="SLOTBOOKINGDATETIME" class="form-control" />
+                    <span asp-validation-for="SLOTBOOKINGDATETIME" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SERVICETYPEID" class="control-label"></label>
+                    <input asp-for="SERVICETYPEID" class="form-control" />
+                    <span asp-validation-for="SERVICETYPEID" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SERVICEPROVIDERID" class="control-label"></label>
+                    <input asp-for="SERVICEPROVIDERID" class="form-control" />
+                    <span asp-validation-for="SERVICEPROVIDERID" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PHONENUMBER" class="control-label"></label>
+                    <input asp-for="PHONENUMBER" class="form-control" />
+                    <span asp-validation-for="PHONENUMBER" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PATIENTNAME" class="control-label"></label>
+                    <input asp-for="PATIENTNAME" class="form-control" />
+                    <span asp-validation-for="PATIENTNAME" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="AGE" class="control-label"></label>
+                    <input asp-for="AGE" class="form-control" />
+                    <span asp-validation-for="AGE" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="WEIGHT" class="control-label"></label>
+                    <input asp-for="WEIGHT" class="form-control" />
+                    <span asp-validation-for="WEIGHT" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="GENDER" class="control-label"></label>
+                    <input asp-for="GENDER" class="form-control" />
+                    <span asp-validation-for="GENDER" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ADDRESS" class="control-label"></label>
+                    <input asp-for="ADDRESS" class="form-control" />
+                    <span asp-validation-for="ADDRESS" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ALTERNATEMOBILENUMBER" class="control-label"></label>
+                    <input asp-for="ALTERNATEMOBILENUMBER" class="form-control" />
+                    <span asp-validation-for="ALTERNATEMOBILENUMBER" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="EMAIL" class="control-label"></label>
+                    <input asp-for="EMAIL" class="form-control" />
+                    <span asp-validation-for="EMAIL" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CREATEDDATE" class="control-label"></label>
+                    <input asp-for="CREATEDDATE" class="form-control" />
+                    <span asp-validation-for="CREATEDDATE" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SERVICEGROUPID" class="control-label"></label>
+                    <input asp-for="SERVICEGROUPID" class="form-control" />
+                    <span asp-validation-for="SERVICEGROUPID" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PAYMENTMETHOD" class="control-label"></label>
+                    <input asp-for="PAYMENTMETHOD" class="form-control" />
+                    <span asp-validation-for="PAYMENTMETHOD" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PRESCRIPTIONFILENAME" class="control-label"></label>
+                    <input asp-for="PRESCRIPTIONFILENAME" class="form-control" />
+                    <span asp-validation-for="PRESCRIPTIONFILENAME" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="EXTENSION" class="control-label"></label>
+                    <input asp-for="EXTENSION" class="form-control" />
+                    <span asp-validation-for="EXTENSION" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PATIENTID" class="control-label"></label>
+                    <input asp-for="PATIENTID" class="form-control" />
+                    <span asp-validation-for="PATIENTID" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="USERID" class="control-label"></label>
+                    <input asp-for="USERID" class="form-control" />
+                    <span asp-validation-for="USERID" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SERVICEFILENAME" class="control-label"></label>
+                    <input asp-for="SERVICEFILENAME" class="form-control" />
+                    <span asp-validation-for="SERVICEFILENAME" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="REPORTFILENAME" class="control-label"></label>
+                    <input asp-for="REPORTFILENAME" class="form-control" />
+                    <span asp-validation-for="REPORTFILENAME" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SERVICEEXTENSION" class="control-label"></label>
+                    <input asp-for="SERVICEEXTENSION" class="form-control" />
+                    <span asp-validation-for="SERVICEEXTENSION" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="REPORTEXTENSION" class="control-label"></label>
+                    <input asp-for="REPORTEXTENSION" class="form-control" />
+                    <span asp-validation-for="REPORTEXTENSION" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </form>
+        </div>
+    </div>*@
+
+<div>
+    <a asp-action="Index"></a>
+</div>
+
+
+<script>
+    //var showInPopup = function () {
+    //    alert("show");
+    //    $("form-modal").modal('show');
+    //}
+    showInPopup = (url, title) => {
+       
+        $.ajax({
+            type: "GET",
+            url: url,
+            success: function (res) {
+                $("#form-modal .modal-body").html(res);
+                $("#form-modal .modal-title").html(title);
+                $("#form-modal").modal('show');
+
+            }
+
+        }
+
+        )
+
+    }
+
+    showInPopupReport = (url, title) => {
+
+        $.ajax({
+            type: "GET",
+            url: url,
+            success: function (res) {
+                $("#form-modal-report .modal-body").html(res);
+                $("#form-modal-report .modal-title").html(title);
+                $("#form-modal-report").modal('show');
+
+            }
+
+        }
+
+        )
+
+    }
+</script>

@@ -1,0 +1,64 @@
+﻿@model IEnumerable<DOTNETCOREEXAMPLE.Models.Class_SERVICE_MASTER>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+<div class="section-heading-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <h1 class="heading-page text-center-xs">@ViewBag.Title.</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb text-right text-center-xs">
+                    <li>
+                        <a href="#">Service </a>
+                    </li>
+                    <li class="active">@ViewBag.Title</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SERVICENAME)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SERVICEGROUPID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ISACTIVE)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SERVICENAME)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SERVICEGROUPID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ISACTIVE)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.SERVICEID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.SERVICEID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.SERVICEID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

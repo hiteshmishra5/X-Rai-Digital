@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--Rajesh 24 Apr 2021-->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Xrai Diagnostics</title>
+    <link rel="icon" href="assets/images/favicon.ico">
+    <script src="assets/js/page/carousel-preload.js"></script>
+
+    <!--[if IE 8]><html class="ie8"><![endif]-->
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600,700,800,300' rel='stylesheet' type='text/css'>
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Plugins -->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/magnific-popup.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/css/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/css/owl.theme.css">
+    <!-- Theme -->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/carousel-animate.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/css/theme.css">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!--Rajesh-->
+    @*<title>@ViewBag.Title - Doctor Visitor Management Application</title>*@
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body class="body-nav-fixed-menu-top">
+     <div class="wrapper-body">
+
+    
+    @*<div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("Doctor Visitor Management", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Services", "Contact", "Home")</li>
+                        <li>@Html.ActionLink("Diagnostic Services", "Contact", "Home")</li>
+
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    </ul>
+                    @Html.Partial("_LoginPatial")
+                </div>
+            </div>
+        </div>*@
+    <div class="container body-content">
+        @RenderBody()
+        
+        <hr />
+        <footer>
+
+            
+
+
+    @*<p>&copy; @DateTime.Now.Year - Doctor Visitor Management Page</p>*@
+    </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    </div>
+</body>
+    </html>

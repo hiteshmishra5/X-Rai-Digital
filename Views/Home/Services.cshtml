@@ -1,0 +1,143 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewBag.Title = "Services";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="section-heading-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <h1 class="heading-page text-center-xs">Services </h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb text-right text-center-xs">
+                    <li>
+                        <a href="#">Home</a>
+                    </li>
+                    <li class="active">Services</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- SECTION CALL-TO -->
+<!--===============================================================-->
+<div class="section">
+    <div class="container">
+        <div class="col-sm-8">
+
+            <h3 class="title-md text-theme hr-left mb-20">Safe and Reliable Health Services</h3>
+
+
+            <div class="service mb-40">
+                <a name="xray" class="anchor"></a>
+                <h3 class="text-theme  mb-20">X-RAY</h3>
+                <div class="row image col-sm-4">
+                    <img src="~/assets/images/bg/bg-11.jpg" class="img-responsive">
+                </div>
+                <div class="service-text col-sm-8">
+                    <p>
+                        X-rays are a type of radiation that when directed at a person’s body creates pictures of the inside of their body. Your doctor may prescribe an X-ray for multiple health conditions – bone fractures, soft tissue abnormalities, problems to do with your lungs, or for a routine checkup.
+                        <a href="/Account/Login/">Click here</a> to book your x-ray now or you can call us at <b>1800-270-2900.</b>
+                    </p>
+
+                </div>
+                <div class="services-clear"> </div>
+            </div>
+
+            <div class="service mb-30">
+                <a name="ecg" class="anchor"></a>
+                <h3 class="text-theme hr-left mb-20">ECG (Electrocardiography)</h3>
+                <div class="row image col-sm-4">
+                    <img src="~/assets/images/bg/ECG.jpg" class="img-responsive">
+                </div>
+                <div class="service-text col-sm-8">
+                    <p>An electrocardiogram (ECG or EKG) is a simple test that records the electrical currents & impulses generated from the heart, to check for different heart conditions. Your doctor may prescribe an ECG to detect heart abnormalities, or for regular checkup. <a href="/Account/Login/">Click here</a> to book your ECG now or you can call us at <b>1800-270-2900.</b> </p>
+
+                </div>
+                <div class="services-clear"> </div>
+            </div>
+
+            <div class="service mb-30">
+                <a name="holter" class="anchor"></a>
+                <h3 class="text-theme hr-left mb-20">Holter</h3>
+                <div class="row image col-sm-4">
+                    <img src="~/assets/images/bg/xrai-holter.jpg" class="img-responsive">
+                </div>
+                <div class="service-text col-sm-8">
+                    <p> a Holter monitor (often simply Holter) is a portable & wearable type of device, which is used for cardiac monitoring and records the electrical activity of the heart for a period of 24-72 hours. You may be prescribed Holter to detect heart abnormalities. <a href="#" onclick="commingsoon()">Click here</a> to book your Holter now or you can call us at <b>1800-270-2900.</b></p>
+
+                </div>
+                <div class="services-clear"> </div>
+            </div>
+
+            <div class="service mb-30">
+                <a name="samplecollection" class="anchor"></a>
+                <h3 class="text-theme hr-left mb-20">Sample collection </h3>
+                <div class="row image col-sm-4">
+                    <img src="~/assets/images/bg/SAMPLECOLLECTION.jpg" class="img-responsive">
+                </div>
+                <div class="service-text col-sm-8">
+                    <p>A home sample collection, this is done if the person does not want to go to hospital or local lab to provide their blood or body fluid samples for testing. It involves a trained person going to the patient's home, and taking their blood/fluid samples from the patient, and delivering them to a lab for testing & reporting. <a href="#" onclick="commingsoon()">Click here</a> to book your blood sample collection now or you can call us at <b>1800-270-2900.</b></p>
+
+                </div>
+                <div class="services-clear"> </div>
+            </div>
+
+
+
+            <div class="service mb-30">
+                <a name="healthcheckup" class="anchor"></a>
+                <h3 class="text-theme hr-left mb-20">Health check-up  </h3>
+                <div class="row image col-sm-4">
+                    <img src="~/assets/images/bg/Health Check-Up.png" class="img-responsive">
+                </div>
+                <div class="service-text col-sm-8">
+                    <p>A complete health checkup is a collective package of multiple health tests to evaluate one’s health and fitness. It consists ofdifferent tests, such as radiological, blood, and lung function tests. Types of tests, and test packages depend on, the persons age, gender, and general medical condition <a href="#" onclick="commingsoon()">Click here</a> to book your health checkup now or you can call us at <b>1800-270-2900.</b></p>
+
+                </div>
+                <div class="services-clear"> </div>
+            </div>
+
+            <div class="service mb-30">
+                <a name="pft" class="anchor"></a>
+                <h3 class="text-theme hr-left mb-20">PFT  </h3>
+                <div class="row image col-sm-4">
+                    <img src="~/assets/images/bg/pft.jfif" class="img-responsive">
+                </div>
+                <div class="service-text col-sm-8">
+                    <p>A complete health checkup is a collective package of multiple health tests to evaluate one’s health and fitness. It consists ofdifferent tests, such as radiological, blood, and lung function tests. Types of tests, and test packages depend on, the persons age, gender, and general medical condition <a href="#" onclick="commingsoon()">Click here</a> to book your health checkup now or you can call us at <b>1800-270-2900.</b></p>
+
+                </div>
+                <div class="services-clear"> </div>
+            </div>
+        </div>
+        <div class="col-sm-3 col-sm-offset-1">
+            @*<div class="" data-spy="affix" data-offset-top="100">*@
+                <h3 class="title-md text-theme hr-left mb-30">We Provide @@ Home</h3>
+                <div class="list-group services-list">
+                    <a href="#xray" class="list-group-item list-group-item-action"><span class="fa fa-arrow-circle-right"></span> X-RAY </a>
+                    <a href="#ecg" class="list-group-item list-group-item-action"><span class="fa fa-arrow-circle-right"></span> ECG (Electrocardiography) </a>
+                    <a href="#holter" class="list-group-item list-group-item-action"><span class="fa fa-arrow-circle-right"></span> Holter </a>
+                    <a href="#samplecollection" class="list-group-item list-group-item-action"><span class="fa fa-arrow-circle-right"></span> Sample collection </a>
+                    <a href="#healthcheckup" class="list-group-item list-group-item-action"><span class="fa fa-arrow-circle-right"></span> Health check-up </a>
+                    <a href="#pft" class="list-group-item list-group-item-action"><span class="fa fa-arrow-circle-right"></span> PFT </a>
+
+
+                </div>
+            @*</div>*@
+        </div>
+    </div>
+
+
+</div>
+<script>
+
+    function commingsoon() {
+
+        window.alert("Coming Soon");
+        return false;
+    }
+</script>

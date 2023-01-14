@@ -1,0 +1,16 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "PaymentSuccessful";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+    var paymentfailed = "Payment Cancelled";
+}
+<script>
+    var message = '@paymentfailed';
+    if (message) {
+        alert(message);
+        window.location.href = '@Url.Action("Details","SlotBookingMaster",new { id=@ViewBag.ID})';
+    }
+</script>
+<h2>PaymentSuccessful</h2>

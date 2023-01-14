@@ -1,0 +1,93 @@
+@*<table width="100%" border="1">
+
+        <tr>
+            <td colspan="2">
+                <div class="navbar navbar-inverse navbar-fixed-top">
+                    <div class="container">
+                        <div class="navbar-header">
+
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="icon-bar"> <img src="~/Images/logo.png" style="height:100px;" /></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            @Html.ActionLink("Doctor Visitor Management", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                        </div>
+                        @if (Session["UserName"].ToString() == "sai")
+                        {
+                            <div class="navbar-collapse collapse">
+                                <ul class="nav navbar-nav">
+                                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                                    <li>@Html.ActionLink("Slot Booking", "Index", "Home")</li>
+                                    <li>@Html.ActionLink("Information", "About", "Home")</li>
+                                    <li>@Html.ActionLink("Search Visitor", "Contact", "Home")</li>
+                                    <li>@Html.ActionLink("Reports", "Contact", "Home")</li>
+                                </ul>
+                                @Html.Partial("_LogoutPartial")
+
+                            </div>
+                        }
+                        else if (Session["UserName"].ToString() == "sudhi")
+                        {
+                            <div class="navbar-collapse collapse">
+                                <ul class="nav navbar-nav">
+                                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                                    <li>@Html.ActionLink("Slot Booking", "Index", "Home")</li>
+                                    <li>@Html.ActionLink("Service Booking", "Index", "Home")</li>
+
+                                    <li>@Html.ActionLink("Information", "About", "Home")</li>
+                                    <li>@Html.ActionLink("Search Visitor", "Contact", "Home")</li>
+                                    <li>@Html.ActionLink("Clinic Reports", "Contact", "Home")</li>
+                                    <li>@Html.ActionLink("Service Reports", "Contact", "Home")</li>
+                                </ul>
+                                @Html.Partial("_LogoutPartial")
+
+                            </div>
+
+                        }
+                        else if (Session["UserName"].ToString() == "siree")
+                        {
+                            <div class="navbar-collapse collapse">
+                                <ul class="nav navbar-nav">
+                                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                                    <li>@Html.ActionLink("Service Provider", "About", "Home")</li>
+                                    <li>@Html.ActionLink("Service Booking", "About", "Home")</li>
+                                    <li>@Html.ActionLink("Information", "About", "Home")</li>
+                                    <li>@Html.ActionLink("Search Visitor", "Contact", "Home")</li>
+                                    <li>@Html.ActionLink("Service Reports", "Contact", "Home")</li>
+                                </ul>
+                                @Html.Partial("_LogoutPartial")
+
+                            </div>
+                        }
+                        else if (Session["UserName"].ToString() == "Pari")
+                        {
+                            <div class="navbar-collapse collapse">
+                                <ul class="nav navbar-nav">
+                                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                                    <li>@Html.ActionLink("Slot", "Index", "Home")</li>
+                                    <li>@Html.ActionLink("Registration Type", "About", "Home")</li>
+                                    <li>@Html.ActionLink("Service Groups", "About", "Home")</li>
+                                    <li>@Html.ActionLink("Service Types ", "About", "Home")</li>
+                                    <li>@Html.ActionLink("Service Provider", "About", "Home")</li>
+                                    <li>@Html.ActionLink("Service Booking", "About", "Home")</li>
+                                    <li>@Html.ActionLink("Information", "About", "Home")</li>
+                                    <li>@Html.ActionLink("Search Visitor", "Contact", "Home")</li>
+                                    <li>@Html.ActionLink("Service Reports", "Contact", "Home")</li>
+                                </ul>
+                                @Html.Partial("_LogoutPartial")
+
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="container body-content">
+                    @RenderBody()
+                    <hr />
+                    <footer>
+                        <p>&copy; @DateTime.Now.Year - Doctor Visitor Management Page</p>
+                    </footer>
+                </div>
+            </td>
+        </tr>
+    </table>*@

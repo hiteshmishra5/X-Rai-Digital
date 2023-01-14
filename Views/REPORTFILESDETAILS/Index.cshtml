@@ -1,0 +1,61 @@
+﻿@model IEnumerable<DOTNETCOREEXAMPLE.Models.Class_REPORT_FILES_DETAILS>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+<p>
+    @*<a asp-action="Create">Create New</a>*@
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SLOTBOOKINGDETID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.REPORTFILENAME)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.REPORTEXTENSION)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ISACTIVE)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SLOTBOOKINGDETID)
+            </td>
+            <td>
+                <a href="https://xraidigital.com/reportfiles/@item.REPORTFILENAME@item.REPORTEXTENSION" target="_blank">@Html.DisplayFor(modelItem => item.REPORTFILENAME)</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.REPORTEXTENSION)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ISACTIVE)
+            </td>
+            <td>
+                @*<a asp-action="Edit" asp-route-id="@item.REPORTFILEDETID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.REPORTFILEDETID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.REPORTFILEDETID">Delete</a>*@
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</body>
+</html>

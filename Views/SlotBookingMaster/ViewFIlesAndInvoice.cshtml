@@ -1,0 +1,47 @@
+﻿
+@{
+    Layout = null;
+}
+<hr />
+<h3>Prescription Files</h3>
+
+@foreach (var item in ViewBag.PrescriptionFile)
+{
+    <tr>
+        <td>
+            @*@item.PRESCRIPTIONFILENAME@item.EXTENSION*@
+            <a href="https://xraidigital.com/prescriptionfiles/@item.PRESCRIPTIONFILENAME@item.EXTENSION" target="_blank">@item.PRESCRIPTIONFILENAME@item.EXTENSION</a>
+        </td>
+    </tr>
+}
+<hr />
+<h3>Invoice</h3>
+<a href="https://xraidigital.com/SlotBookingMaster/Invoice/@ViewBag.SlotBookingId" target="_blank">Invoice</a>
+<hr />
+<h3>Image Files</h3>
+
+@foreach (var item in ViewBag.ServiceFiles)
+{
+    <tr>
+        <td>
+            @*@item.SERVICEFILENAME@item.SERVICEEXTENSION*@
+            <a href="https://xraidigital.com/servicefiles/@item.SERVICEFILENAME@item.SERVICEEXTENSION" target="_blank">@item.SERVICEFILENAME@item.SERVICEEXTENSION</a>
+        </td>
+    </tr>
+}
+<hr />
+<h3>Report Files</h3>
+
+@foreach (var item in ViewBag.ReportFiles)
+{
+    <tr>
+        <td>
+            @*@item.REPORTFILENAME@item.REPORTEXTENSION*@
+            <a href="https://xraidigital.com/reportfiles/@item.REPORTFILENAME@item.REPORTEXTENSION" target="_blank">@item.REPORTFILENAME@item.REPORTEXTENSION</a>
+        </td>
+    </tr>
+}
+<hr />
+
+
+

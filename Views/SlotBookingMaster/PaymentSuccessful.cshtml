@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewData["Title"] = "PaymentSuccessful";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+    var paymentsuccessful="Payment Successful";
+}
+
+<script>
+    var message = '@paymentsuccessful';
+    if (message) {
+        alert(message);
+        window.location.href = '@Url.Action("Details","SlotBookingMaster",new { id=@ViewBag.ID})';
+    }
+</script>
+<h2>PaymentSuccessful</h2>
+

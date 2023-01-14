@@ -1,0 +1,912 @@
+﻿@model DOTNETCOREEXAMPLE.Models.Class_SLOT_BOOKING_MASTER
+@using Microsoft.AspNetCore.Http;
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+    var message = TempData["MailSentAfterBooking"] ?? string.Empty;
+    //var message1 = Session["pay"] ?? string.Empty;
+}
+
+<script>
+    var message = '@message';
+    if (message) alert(message);
+    @*var message1 = '@message1';*@
+    if (message1) alert(message1);
+</script>
+
+
+
+
+
+<div class="section-heading-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <h1 class="heading-page text-center-xs">@ViewBag.Title.</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb text-right text-center-xs">
+                    <li>
+                        <a href="#">Slot Booking</a>
+                    </li>
+                    <li class="active">Details</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="section section-sm section-bottom">
+    <div class="container">
+
+
+
+
+
+
+        <div class="row ">
+
+            <h3 class="title-text"> Your Booked  Slot</h3> - @Model.PAYMENTSTATUS
+            <div class="appointmentform">
+                <div>
+                    <!-- <p class="text-theme appointment-sub-title">Please fill in your details to book your slot</p>-->
+
+                </div>
+                @*@{int sb = Model.SLOTBOOKINGID; }*@
+            <form method="post" name="customerData">
+                <table width="40%" height="100" border='1' align="center" style="display:none">
+                    <tr>
+                        <td>Parameter Name:</td>
+                        <td>Parameter Value:</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"> Compulsory information</td>
+                    </tr>
+                    <tr>
+                        <td>TID	:</td>
+                        <td><input type="text" name="tid" id="tid" readonly /></td>
+                    </tr>
+                    <tr>
+                        <td>Merchant Id</td>
+                        <td><input type="text" name="merchant_id" id="merchant_id" value="384342" /></td>
+                    </tr>
+                    <tr>
+                        <td>Order Id</td>
+                        <td><input type="text" name="order_id" value="123654789" /></td>
+                    </tr>
+                    <tr>
+                        <td>Amount</td>
+                        <td><input type="text" name="amount" value="1.00" /></td>
+                    </tr>
+                    <tr>
+                        <td>Currency</td>
+                        <td><input type="text" name="currency" value="INR" /></td>
+                    </tr>
+                    <tr>
+                        <td>Redirect URL</td>
+                        <td>
+                            <!--<input type="text" name="redirect_url" value="http://192.168.0.89/MCPG.ASP.net.2.0.kit/ccavResponseHandler.aspx" />-->
+                            <input type="text" name="redirect_url" value="http://xraidigital.com/SlotBookingMaster/Details/7" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Cancel URL</td>
+                        <td>
+                            <!--<input type="text" name="cancel_url" value="http://192.168.0.96/mcpg_new/iframe/ccavResponseHandler.php" />-->
+                            <input type="text" name="cancel_url" value="Error.aspx" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">Billing information(optional):</td>
+                    </tr>
+                    <tr>
+                        <td>Billing Name</td>
+                        <td><input type="text" name="billing_name" value="Charli" /></td>
+                    </tr>
+                    <tr>
+                        <td>Billing Address:</td>
+                        <td><input type="text" name="billing_address" value="Room no 1101, near Railway station Ambad" /></td>
+                    </tr>
+                    <tr>
+                        <td>Billing City:</td>
+                        <td><input type="text" name="billing_city" value="Indore" /></td>
+                    </tr>
+                    <tr>
+                        <td>Billing State:</td>
+                        <td><input type="text" name="billing_state" value="MP" /></td>
+                    </tr>
+                    <tr>
+                        <td>Billing Zip:</td>
+                        <td><input type="text" name="billing_zip" value="425001" /></td>
+                    </tr>
+                    <tr>
+                        <td>Billing Country:</td>
+                        <td><input type="text" name="billing_country" value="India" /></td>
+                    </tr>
+                    <tr>
+                        <td>Billing Tel:</td>
+                        <td><input type="text" name="billing_tel" value="9899622605" /></td>
+                    </tr>
+                    <tr>
+                        <td>Billing Email:</td>
+                        <td><input type="text" name="billing_email" value="test@gmail.com" /></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">Shipping information(optional):</td>
+                    </tr>
+                    <tr>
+                        <td>Shipping Name</td>
+                        <td><input type="text" name="delivery_name" value="Chaplin" /></td>
+                    </tr>
+                    <tr>
+                        <td>Shipping Address:</td>
+                        <td><input type="text" name="delivery_address" value="room no.701 near bus stand" /></td>
+                    </tr>
+                    <tr>
+                        <td>shipping City:</td>
+                        <td><input type="text" name="delivery_city" value="Hyderabad" /></td>
+                    </tr>
+                    <tr>
+                        <td>shipping State:</td>
+                        <td><input type="text" name="delivery_state" value="Andhra" /></td>
+                    </tr>
+                    <tr>
+                        <td>shipping Zip:</td>
+                        <td><input type="text" name="delivery_zip" value="425001" /></td>
+                    </tr>
+                    <tr>
+                        <td>shipping Country:</td>
+                        <td><input type="text" name="delivery_country" value="India" /></td>
+                    </tr>
+                    <tr>
+                        <td>Shipping Tel:</td>
+                        <td><input type="text" name="delivery_tel" value="9896426054" /></td>
+                    </tr>
+                    <tr>
+                        <td>Merchant Param1</td>
+                        <td><input type="text" name="merchant_param1" value="additional Info." /></td>
+                    </tr>
+                    <tr>
+                        <td>Merchant Param2</td>
+                        <td><input type="text" name="merchant_param2" value="additional Info." /></td>
+                    </tr>
+                    <tr>
+                        <td>Merchant Param3</td>
+                        <td><input type="text" name="merchant_param3" value="additional Info." /></td>
+                    </tr>
+                    <tr>
+                        <td>Merchant Param4</td>
+                        <td><input type="text" name="merchant_param4" value="additional Info." /></td>
+                    </tr>
+                    <tr>
+                        <td>Merchant Param5</td>
+                        <td><input type="text" name="merchant_param5" value="additional Info." /></td>
+                    </tr>
+                    <tr>
+                        <td>Promo Code</td>
+                        <td><input type="text" name="promo_code" /></td>
+                    </tr>
+                    <tr>
+                        <td>Customer Id:</td>
+                        <td><input type="text" name="customer_identifier" /></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><input type="submit" value="Checkout" /></td>
+                    </tr>
+                </table>
+                <h3> User </h3>
+                <div class="field-group">
+
+                    <div class="form-group  col-sm-4">
+                        <label for="inputEmail">Phone Number : </label>
+                        @*<input type="email" class="form-control" id="inputEmail" placeholder=" ">*@
+
+                        @Html.DisplayFor(model => model.PHONENUMBER, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group  col-sm-2 send-otp">
+                        @*<button type="submit" class="btn btn-lg btn-primary" onclick="SendOTP()">Send OTP</button>*@
+                    </div>
+                    <div class="form-group  col-sm-6 ">
+                        @*<label for="inputEmail">Enter OTP</label>
+                <input type="email" class="form-control" id="inputEmail" placeholder=" ">*@
+                    </div>
+
+                    <div class="clear-fix"> </div>
+                </div>
+
+                <h3> Patient's Detail </h3>
+                <div class="field-group">
+                    <div class="form-group  col-sm-6">
+                        <label for="inputEmail">Patient Name : </label>
+                        @ViewBag.PATIENTNAME
+                        @*<input type="email" class="form-control" id="inputEmail" placeholder=" ">*@
+                    </div>
+                    <div class="form-group  col-sm-6">
+                        <label for="inputEmail">Age (Yrs.) : </label>
+                        @ViewBag.AGE
+                        @*<input type="text" class="form-control" id="" placeholder=" ">*@
+                    </div>
+                    <div class="form-group  col-sm-6">
+                        <label for="inputEmail">Weight (Kgs.) : </label>
+                        @ViewBag.WEIGHT
+                        @*<input type="email" class="form-control" id="inputEmail" placeholder=" ">*@
+                    </div>
+                    <div class="form-group  col-sm-6">
+                        <label for="slot">Gender :</label>
+                        @ViewBag.GENDER
+                        @*<select id="slot" class="form-control">
+                    <option selected>Choose...</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                </select>*@
+                    </div>
+                    <div class="form-group  col-sm-6">
+                        <label for="message">
+                            Address :
+                            <!-- <span class="required">*</span> -->
+                        </label>
+                        @ViewBag.ADDRESS
+                    </div>
+
+                    <div class="form-group  col-sm-6">
+                        <label for="inputEmail">Alternate Mobile No. : </label>
+                        @ViewBag.ALTERNATEMOBILENUMBER
+                        @*<input type="email" class="form-control" id="inputEmail" placeholder=" ">*@
+                    </div>
+                    <div class="form-group  col-sm-6">
+                        <label for="inputEmail">Email ID : </label>
+                        @ViewBag.EMAIL
+                        @*<input type="email" class="form-control" id="inputEmail" placeholder=" ">*@
+                    </div>
+                    <div class="clear-fix"> </div>
+                </div>
+                <h3> Service </h3>
+                <div class="field-group">
+                    <!--<div class="form-group  col-sm-6">
+                        <label for="slot-type">Service Type :  </label>-->
+                        @*<select id="slot-type" class="form-control">
+                    <option selected>Choose...</option>
+                    <option>X-Ray</option>
+                </select>*@
+                        <!--@ViewBag.SERVICEGROUPNAME
+                    </div>
+                    <div class="form-group  col-sm-6">
+                        <label for="visit-type">Select Body Part :  </label>
+                        @ViewBag.SERVICENAME-->
+                        @*<select id="visit-type" class="form-control">
+                    <option selected>Choose...</option>
+                    <option>Chest</option>
+
+                </select>*@
+                    <!--</div>-->
+
+                    <div class="form-group  col-sm-6">
+                        <label for="visit-date">Visit Date (dd/mm/yyyy) : </label>
+                        @Html.DisplayFor(model => model.SLOTBOOKINGDATETIME)
+                        @*<div class='input-group date' id='visitdate'>
+                    <input type='text' class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>*@
+                    </div>
+                    <div class="form-group  col-sm-6">
+                        <label for="visit-type">Visit Slot :</label>
+                        @*<select id="visit-type" class="form-control">
+                    <option selected>Choose...</option>
+                    <option>Morning(08:00-12:00 noon)</option>
+                    <option>Afternoon (12:01-16:00)</option>
+                    <option>Evening (16:00-20:00)</option>
+                    <option> Emergency  (20:00-20:30)</option>
+                    <option> Emergency  (20:30-21:00)</option>
+                </select>*@
+                        @ViewBag.SLOTNAME
+                    </div>
+
+                    <div class="form-group  col-sm-6">
+                        <label class="form-label" for="customFile">Prescription : </label>
+                        @Html.Hidden("Name", (string)ViewBag.FileName)
+                        @*<button style="width:150px !important" id="btnDownload" onclick="FileDownload()" name="btnDownload" type="button" class="btn btn-lg btn-primary">View Prescription</button>*@
+                        @Html.Raw("<a href=\"" + ViewBag.MyURL + "\" title=\"" + Model.PRESCRIPTIONFILENAME + "\" target=_blank>View Prescription</a>")
+
+                        @*<input type="file" class="form-control file" id="customFile" />
+                <p>  A prescription must be shared with the technician before the procedure </p>*@
+                    </div>
+
+
+                    <div class="form-group  col-sm-6">
+                        <label class="form-label" for="customFile">Payment Method :</label>
+                        @Html.DisplayFor(model => model.PAYMENTMETHOD, new { @class = "form-control" })
+
+                        @*<input type="file" class="form-control file" id="customFile" />*@
+                        @*<p>  A prescription must be shared with the technician before the procedure </p>*@
+                    </div>
+                    <div class="form-group  col-sm-6">
+                        <label class="form-label" for="customFile">Payment Status :</label>
+                        @Html.DisplayFor(model => model.PAYMENTSTATUS, new { @class = "form-control" })
+
+                        @*<input type="file" class="form-control file" id="customFile" />*@
+                        @*<p>  A prescription must be shared with the technician before the procedure </p>*@
+                    </div>
+                    @if (Model.SERVICEFILENAME == null)
+                    {
+
+                    }
+                    else
+                    {
+
+                        <div class="form-group  col-sm-6">
+                            <label class="form-label" for="customFile">Service : </label>
+                            @Html.Raw("<a href=\"" + ViewBag.MyServiceURL + "\" title=\"" + Model.SERVICEFILENAME + "\" target=_blank>View X-RAY </a>")
+
+                            @*<input type="file" class="form-control file" id="customFile" />
+                    <p>  A prescription must be shared with the technician before the procedure </p>*@
+                        </div>
+                        <div class="form-group  col-sm-6">
+                            <label class="form-label" for="customFile">Report : </label>
+                            @Html.Raw("<a href=\"" + ViewBag.MyReportURL + "\" title=\"" + Model.REPORTFILENAME + "\" target=_blank>View Report </a>")
+
+                            @*<input type="file" class="form-control file" id="customFile" />
+                    <p>  A prescription must be shared with the technician before the procedure </p>*@
+                        </div>
+                    }
+                    <div class="form-group  col-sm-6">
+                        <label class="form-label" for="customFile"> Status :</label>
+                        @Html.DisplayFor(model => model.STATUS, new { @class = "form-control" })
+
+                        @*<input type="file" class="form-control file" id="customFile" />*@
+                        @*<p>  A prescription must be shared with the technician before the procedure </p>*@
+                    </div>
+                    <div id="success" class="mt-40">
+                        <div class="icon-box bordered">
+                            <i class="fa fa-check fa-round fa-4x text-theme"></i>
+                            <h3 class="lead text-theme">Your message was successfully sent!</h3>
+                        </div>
+                    </div>
+
+                    <div id="error" class="mt-40">
+                        <div class="icon-box bordered">
+                            <i class="fa fa-lock fa-round fa-4x text-theme"></i>
+                            <h3 class="lead text-theme">Something went wrong, try refreshing and submitting the form again.</h3>
+                        </div>
+                    </div>
+                    <div class="clear-fix"> </div>
+                </div>
+
+                <h3 style="visibility:hidden"> Add Service to the Booking </h3>
+
+                <div class="field-group" style="visibility:hidden">
+                    <div class="form-group  col-sm-4">
+                        <label for="slot-type">Service Type </label>
+
+                        @Html.DropDownListFor(x => x.SERVICEGROUPID, new SelectList(ViewBag.GROUPSERVICES, "Value", "Text"), "--SELECT--", new { @onchange = "refreshServices($(this).val())", @class = "form-control" })
+                        @Html.HiddenFor(model => model.SLOTBOOKINGID, new { maxLength = 24, size = 24, @class = "form-control", Value = ViewBag.SLOTBOOKINGID })
+                        @Html.ValidationMessageFor(model => model.SERVICEGROUPID, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group  col-sm-4">
+                        <label for="visit-type">Select Body Part (Price per view)</label>
+                        @Html.DropDownListFor(x => x.SERVICETYPEID, new SelectList(ViewBag.SERVICES, "Value", "Text"), "--SELECT--", new { @onchange = "refreshPrice($(this).val(),$('#SERVICEGROUPID').val(),1)", @class = "form-control" })
+
+                        @Html.ValidationMessageFor(model => model.SERVICETYPEID, "", new { @class = "text-danger" })
+
+                    </div>
+                    <div class="form-group  col-sm-6">
+                        <label for="visit-type"> Price </label>
+                        @Html.TextBox("PRICE", "", new { maxLength = 24, size = 24, @class = "form-control", @readonly = "readonly" })
+                        @Html.HiddenFor(model => model.PRICERATEID, new { maxLength = 24, size = 24, @class = "form-control" })
+                        @*<select id="visit-type" class="form-control">
+                <option selected>Choose...</option>
+                <option>Chest</option>
+
+            </select>*@
+                    </div>
+                    <div class="form-group  col-sm-2">
+                        <label for="slot-type"> </label>
+                        <a onclick="AddService()" style="width:100px" class="btn btn-primary btn-sm text-theme-sm">Add Service  </a>
+                    </div>
+                    <div class="clear-fix"> </div>
+                </div>
+                    <h3> Services added in this Booking </h3>
+
+                    <div class="field-group">
+                        <table width="100%">
+                            <tr>
+                                <td style="width:20%"></td>
+                                <td>
+                                    <table width="100%" border="1">
+                                        <tr>
+
+                                            <td><b>Service</b> </td>
+                                            <td><b>Body Part </b></td>
+                                            <td style="text-align:center"><b>Price</b></td>
+                                            <td>Action</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td><hr /></td>
+                                        </tr>
+                                        @foreach (var item in ViewBag.SLOTBOOKINGDETAILS)
+                                        {
+                                            <tr>
+
+                                                <td style="text-align:left">
+                                                    @item.f.SERVICEGROUPNAME
+
+                                                </td>
+                                                <td style="text-align:left">
+                                                    @item.c.SERVICENAME
+                                                </td>
+                                                <td style="text-align:center">
+                                                    @*@item.h.PRICE*@
+                                                </td>
+                                                <td>
+                                                    @*<a class="btn btn-lg btn-primary" onclick="showInPopup('@Url.Action("Index", "SERVICEFILESDETAILS", new { id =@item.h.SLOTBOOKINGDETID,slotbookingid=item.h.SLOTBOOKINGID  })','Show a Sevice File')">Show Service files</a>
+                                                    <a class="btn btn-lg btn-primary" onclick="showInPopup('@Url.Action("Index", "REPORTFILESDETAILS", new { id =@item.h.SLOTBOOKINGDETID,slotbookingid=item.h.SLOTBOOKINGID  })','Show a Report File')">Show Report files</a>*@
+
+                                                    @*<a href="#">REmove</a>*@
+                                                </td>
+
+                                            </tr>
+                                        }
+                                        <tr>
+                                            <td style="text-align:right" colspan="3">
+                                                <hr />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                            </td>
+                                            <td>
+                                                Total :
+                                            </td>
+                                            <td style="text-align:center">
+                                                @ViewBag.TOTAL
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                            </td>
+                                            <td>
+                                                OFFER AMOUNT( @ViewBag.OFFERDISCOUNT %) :
+                                            </td>
+                                            <td style="text-align:center">
+                                                @ViewBag.OFFERAMOUNT
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                            </td>
+                                            <td>
+                                                Amount Payable :
+                                            </td>
+                                            <td style="text-align:center">
+                                                @ViewBag.AMOUNTPAYABLE
+                                            </td>
+
+                                        </tr>
+                                        @*<tr>
+            <td>1</td>
+            <td>X-ray</td>
+            <td>Hand X-ray</td>
+            <td>2000</td>
+            <td>50</td>
+            <td>1000</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>X-ray</td>
+            <td>Leg X-ray</td>
+            <td>2000</td>
+            <td></td>
+            <td></td>
+        </tr>*@
+
+                                    </table> </td>
+                            <td  style="width:20%"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    @*<div class="form-group ">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                <label class="form-check-label" for="defaultCheck1">
+                    I hereby give my consent for the procedure
+                </label>
+            </div>
+        </div>*@
+
+
+                    <div class="form-group  ">
+                        <label for="inputEmail"></label>
+                        @{
+                            //string PaymentMethod = Html.Action("GetPaymentMethod", "SlotBookingMaster", new { SLOTBOOKINGID = Model.SLOTBOOKINGID }).ToString();
+                        }
+                        @{
+                            if (Model.PAYMENTMETHOD == "ONLINE")
+                            {
+
+                                if (HttpContextAccessor.HttpContext.Session.GetString("RegistrationTypeId") == "2") { }
+                                else
+                                {
+                                    if (Model.PAYMENTSTATUS == "Payment Successful") { }
+                                    else
+                                    {
+                                        <input type="submit" class="btn btn-lg btn-primary" value="Make Payment">
+                                    }
+                                }
+
+                            }
+                            else
+                            {
+
+                            }
+                        }
+                        @*<a style="width:100px" class='btn btn-lg btn-primary' href="@Url.Action("Edit", "SlotBookingMaster", new { id = Model.SLOTBOOKINGID })">Edit  </a>*@
+                    </div>
+</form>
+            </div>
+
+
+
+            <!-- col 2 after form-->
+            <!-- col 2 after form-->
+        </div>
+    </div>
+</div>
+<script>
+
+    //var SendOTP = function () {
+
+    //    $.ajax({
+    //        url: "/Account/SendOTP",
+    //        type: "post",
+    //        success: function (data) {
+    //            alert(data);
+    //            if (data == "failure") {
+    //                alert("failed");
+
+    //            }
+    //            else {
+
+    //                alert("OTP sent Successfully");
+    //            }
+
+
+    //        }
+    //    })
+
+    //}
+    var FileDownload = function () {
+        //alert("sai");
+        // alert($("#mobile").val());
+
+        $.ajax({
+            url: "/SlotBookingMaster/Download",
+            type: "Post",
+            data: "filename=" + $("#Name").val(),
+
+            success: function (data) {
+                //   alert(data);
+                if (data == "success") {
+
+                    //    $("#enterotp").val("");
+                    //alert("Successfully Allocated");
+
+                }
+                else {
+                    //  alert("All the Technicians at work!!");
+                }
+
+
+            }
+        })
+    }
+
+
+     var AddService = function () {
+        // alert($("#mobile").val());
+
+        $.ajax({
+            url: "/SlotBookingMaster/AddService/",
+            type: "get",
+            data: {
+                SLOTBOOKINGID: $("#SLOTBOOKINGID").val(),
+                SERVICEGROUPID: $("#SERVICEGROUPID").val(),
+                SERVICETYPEID: $("#SERVICETYPEID").val()
+               
+
+            },
+            success: function (data) {
+
+               // alert("Sucessfully Registered Please login");
+              //   window.location.href = '@Url.Action("Login","Account")';
+                if (data == "success") {
+                    //    alert("OTP sent Successfully");
+
+                 //   document.getElementById("btnVerify").type = "submit";
+
+                }
+                else {
+                    //  alert("failure");
+                   // document.getElementById("btnVerify").type = "button";
+
+                    //alert("failed");
+
+                }
+
+
+            }
+        })
+    }
+</script>
+@*<dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SLOTID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SLOTID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SLOTTYPEID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SLOTTYPEID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.VISITTYPEID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.VISITTYPEID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SLOTBOOKINGDATETIME)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SLOTBOOKINGDATETIME)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SERVICETYPEID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SERVICETYPEID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SERVICEPROVIDERID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SERVICEPROVIDERID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PHONENUMBER)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PHONENUMBER)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PATIENTNAME)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PATIENTNAME)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AGE)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AGE)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.WEIGHT)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.WEIGHT)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.GENDER)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.GENDER)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ADDRESS)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ADDRESS)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ALTERNATEMOBILENUMBER)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ALTERNATEMOBILENUMBER)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EMAIL)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EMAIL)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CREATEDDATE)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CREATEDDATE)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SERVICEGROUPID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SERVICEGROUPID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PAYMENTMETHOD)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PAYMENTMETHOD)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PRESCRIPTIONFILENAME)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PRESCRIPTIONFILENAME)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EXTENSION)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EXTENSION)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PATIENTID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PATIENTID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.USERID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.USERID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SERVICEFILENAME)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SERVICEFILENAME)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.REPORTFILENAME)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.REPORTFILENAME)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SERVICEEXTENSION)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SERVICEEXTENSION)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.REPORTEXTENSION)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.REPORTEXTENSION)
+        </dd>
+    </dl>*@
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.SLOTBOOKINGID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
+
+<script>
+
+    var Payment = function () {
+
+        $.ajax({
+            url: "/SlotBookingMaster/Payment",
+            type: "post",
+            success: function (data) {
+                //  alert(data);
+                if (data == "success") {
+                    alert("OTP sent Successfully");
+
+
+                }
+                else {
+                    alert("failed");
+
+                }
+
+
+            }
+        })
+
+    }
+     function refreshServices(id) {
+        $("#SERVICETYPEID").attr("disabled", false);
+        var projects = $("#SERVICETYPEID");
+        if ($("#SERVICEGROUPID").val() == "") {
+            alert("Sai");
+            $('#SERVICETYPEID').attr("disabled", true);
+            //  $('#SERVICETYPEID').attr("disabled", false);
+        } else {
+            $('#SERVICETYPEID').attr("disabled", false);
+            //   $('#SERVICETYPEID').attr("disabled", true);
+            //  alert("Please select the location.");
+            //   return false;
+        }
+
+        $('#SERVICETYPEID').attr("disabled", false);
+    $.get('@Url.Action("GetServicesByServiceGroup", "SlotBookingMaster")', {dt:id},
+        function (result) {
+            // clear the dropdown
+            projects.empty();
+            // rebuild the dropdown
+            $.each(result, function (i, e) {
+                projects.append($('<option/>').text(e.Text).val(e.Value));
+
+            });
+            if (id == 3) {
+                $("#consent").hide();
+                $('#OFFERID').attr("disabled", true);
+
+                $("#defaultCheck1").hide();
+                $('label[for="defaultCheck1"]').hide();
+             //   $("#lbldefaultCheck1").hide();
+            } else {
+                $("#consent").show();
+                $('#OFFERID').attr("disabled", false);
+                $("#defaultCheck1").show();
+                $('label[for="defaultCheck1"]').show();
+               // $("#lbldefaultCheck1").show();
+
+            }
+        });
+
+      //  refreshPrice($("#SERVICETYPEID").val(), $("#SERVICEGROUPID").val(), 1)
+    }
+</script>
+<script>
+    //var showInPopup = function () {
+    //    alert("show");
+    //    $("form-modal").modal('show');
+    //}
+    showInPopup = (url, title) => {
+
+        $.ajax({
+            type: "GET",
+            url: url,
+            success: function (res) {
+                $("#form-modal .modal-body").html(res);
+                $("#form-modal .modal-title").html(title);
+                $("#form-modal").modal('show');
+
+            }
+
+        }
+
+        )
+
+    }
+
+    showInPopupReport = (url, title) => {
+
+        $.ajax({
+            type: "GET",
+            url: url,
+            success: function (res) {
+                $("#form-modal-report .modal-body").html(res);
+                $("#form-modal-report .modal-title").html(title);
+                $("#form-modal-report").modal('show');
+
+            }
+
+        }
+
+        )
+
+    }
+</script>

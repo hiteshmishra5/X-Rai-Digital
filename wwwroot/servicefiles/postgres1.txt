@@ -1,0 +1,23 @@
+  //data: "{id: '" + $("#imgCapture")[0].src + "'}",
+
+//  contentType: "application/json; charset=utf-8",
+                                                //dataType: "json",
+
+ data: "id=" '"+ $("#imgCapture")[0].src +"'",
+
+
+create or replace view SLOT_BOOKING_VIEW as 
+select c.SLOTBOOKINGID as SLOTBOOKINGID,
+       c.SERVICEGROUPID as SERVICEGROUPID,
+	   c.SERVICETYPEID as SERVICETYPEID
+       c.SLOTID as SLOTID, 
+       p.SERVICEGROUPNAME as SERVICEGROUPNAME,  
+       a.SERVICENAME as SERVICENAME, 
+       s.SLOTNAME as SLOTNAME    
+from SLOT_BOOKING_MASTER c
+   inner join SLOT_GROUP_MASTER p
+      on p.SERVICEGROUPID=c.SERVICEGROUPID
+   inner join SERVICE_MASTER a
+      on a.SERVICEID = c.SERVICETYPEID 
+   inner join slot_master s 
+      on s.SLOTID = a.SLOTID;

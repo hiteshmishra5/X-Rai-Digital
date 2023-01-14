@@ -1,0 +1,195 @@
+﻿@model IEnumerable<DOTNETCOREEXAMPLE.Models.Class_PROJECT_USER_MASTER>
+@using Microsoft.AspNetCore.Http;
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@{
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<script>
+    var IsActive = function (i) {
+        //  alert(i);
+        // alert($("#mobile").val());
+
+        $.ajax({
+            url: "/ProjectUserMaster/IsActive/",
+            type: "Post",
+            data: {
+                id: i
+
+
+            },
+            success: function (data) {
+
+                if (data == "success") {
+                    alert("User is Active now");
+                    window.location.href = "/ProjectUserMaster/Index";
+
+
+                }
+                else {
+                    //alert("All the Technicians at work!!");
+                    alert("User is InActive now");
+                    window.location.href = "/ProjectUserMaster/Index";
+                }
+
+
+            }
+        })
+    }
+</script>
+<div class="section-heading-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <h1 class="heading-page text-center-xs">User Dashboard </h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb text-right text-center-xs">
+                    <li>
+                        <a href="#">Patient</a>
+                    </li>
+                    <li class="active">Index</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        <a asp-action="Register" asp-controller="Account">Create New</a>
+    </p>
+    <table border="1" width="100%">
+        <thead>
+            <tr>
+                @if (HttpContextAccessor.HttpContext.Session.GetString("RegistrationTypeId") == "3")
+                {
+                    <th>Action</th>
+                }
+                <th>
+                    @Html.DisplayNameFor(model => model.useridsno)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.username)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.password)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.userid)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.mobile)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.address)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.address1)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.city)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.state)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.pin)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.registrationtypeid)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.fullname)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.gender)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.mpin)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    @if (HttpContextAccessor.HttpContext.Session.GetString("RegistrationTypeId") == "3")
+                    {
+                        <td>
+                            @if (item.isactive == true )
+                            {
+                            <button onclick="IsActive(@item.useridsno)" class="btn btn-danger btn-sm">InActive</button>
+                            }
+                            else
+                            {
+                            <button onclick="IsActive(@item.useridsno)" class="btn btn-danger btn-sm">Active</button>
+                            }
+                        </td>
+                    }
+                    <td>
+                        @Html.DisplayFor(modelItem => item.useridsno)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.username)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.password)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.userid)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.mobile)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.address)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.address1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.city)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.state)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.pin)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.registrationtypeid)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fullname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.gender)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.mpin)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.useridsno">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.useridsno">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.useridsno">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>

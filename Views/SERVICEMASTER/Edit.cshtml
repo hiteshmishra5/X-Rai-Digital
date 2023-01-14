@@ -1,0 +1,44 @@
+﻿@model DOTNETCOREEXAMPLE.Models.Class_SERVICE_MASTER
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<h2>Edit</h2>
+
+<h4>Class_SERVICE_MASTER</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="SERVICEID" />
+            <div class="form-group">
+                <label asp-for="SERVICENAME" class="control-label"></label>
+                <input asp-for="SERVICENAME" class="form-control" />
+                <span asp-validation-for="SERVICENAME" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SERVICEGROUPID" class="control-label"></label>
+                <input asp-for="SERVICEGROUPID" class="form-control" />
+                <span asp-validation-for="SERVICEGROUPID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="ISACTIVE" /> @Html.DisplayNameFor(model => model.ISACTIVE)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

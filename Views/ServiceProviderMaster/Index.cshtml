@@ -1,0 +1,73 @@
+﻿@model IEnumerable<DOTNETCOREEXAMPLE.Models.Class_SERVICE_PROVIDER_MASTER>
+
+@{
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<div class="section-heading-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <h1 class="heading-page text-center-xs">@ViewBag.Title.</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb text-right text-center-xs">
+                    <li>
+                        <a href="#">Slot Booking </a>
+                    </li>
+                    <li class="active">@ViewBag.Title</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SERVICEPROVIDERNAME)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ISACTIVE)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.USERID)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SERVICEPROVIDERNAME)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ISACTIVE)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.USERID)
+            </td>
+            <td>
+                @*<a asp-action="Edit" asp-route-id="@item.SERVICEPROVIDERID">Edit</a> |*@
+                <a asp-action="Details" asp-route-id="@item.SERVICEPROVIDERID">Details</a> |
+                @*<a asp-action="Delete" asp-route-id="@item.SERVICEPROVIDERID">Delete</a>*@
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</body>
+</html>

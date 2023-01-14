@@ -1,0 +1,51 @@
+﻿@model DOTNETCOREEXAMPLE.Models.Class_SERVICE_FILES_DETAILS
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+
+<div>
+    <h4>Class_SERVICE_FILES_DETAILS</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SLOTBOOKINGDETID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SLOTBOOKINGDETID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SERVICEFILENAME)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SERVICEFILENAME)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SERVICEEXTENSION)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SERVICEEXTENSION)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ISACTIVE)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ISACTIVE)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.SERVICEFILEDETID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
+</body>
+</html>
